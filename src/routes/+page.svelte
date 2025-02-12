@@ -6,9 +6,6 @@
 
 <SignedOut>
     <LandingPageSignedOut></LandingPageSignedOut>
-
-
-
 </SignedOut>
 <SignedIn>
     <MainArchive></MainArchive>
