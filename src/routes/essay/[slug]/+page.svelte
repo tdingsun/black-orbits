@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { onMount } from "svelte";
 
-    const transformScroll = (e) => {
+    const transformScroll = (e: any) => {
         if(!e.deltaY) {
             return;
         }

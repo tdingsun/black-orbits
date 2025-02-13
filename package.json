@@ -36,6 +36,10 @@
 	},
 	"dependencies": {
 		"@clerk/elements": "^0.22.21",
-		"svelte-clerk": "^0.8.1"
+		"svelte-clerk": "^0.8.1",
+		"@sanity/client": "^6.27.2",
+		"@sanity/image-url": "^1.1.0",
+		"groq": "^3.72.1",
+		"svelte-lazy-image": "^0.5.1"
 	}
 }
