@@ -16,7 +16,7 @@
  <div>tags</div>
 {#each tagsState.currCollectionYears as tag}
     <div onclick={() => toggleTag(tag)}
-        class="text-xs cursor-pointer hover:underline {tagsState.selectedTag === tag ? 'font-bold' : ''}"
+        class="text-xs cursor-pointer hover:underline {tagsState.selectedYear === tag ? 'font-bold' : ''}"
         >
         {tag}
     </div>
