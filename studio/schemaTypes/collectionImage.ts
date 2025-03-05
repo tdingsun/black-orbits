@@ -49,6 +49,19 @@ export default defineType({
             type: 'string'
         }),
         defineField({
+            name: 'year',
+            title: 'Year',
+            type: 'number'
+        }),
+        defineField({
+            name: 'imgTags',
+            title: 'Tags',
+            type: 'tags',
+            options: {
+                includeFromRelated: 'imgTags'
+            }
+        }),
+        defineField({
             name: 'hotspots',
             title: 'Hotspots',
             type: 'array',

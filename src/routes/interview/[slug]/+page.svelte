@@ -30,23 +30,8 @@
 
     </a>
 </div>
-<div class="flex p-2 gap-4 ">
-    <div class="text-2xl w-[450px] min-w-[450px]">
-        <div>
-            {data.collection.title}
-        </div>
-        <img class=" pt-1 rounded-sm" src={getImgUrl(data.collection.essayCoverImgObj.image)} alt={data.collection.essayCoverImgObj.alt ? data.collection.essayCoverImgObj.alt : ''} />
-
-        
-    </div>
-    <div class="max-w-md text-sm w-[450px] min-w-[450px]">
-        Lorem ipsum odor amet, consectetuer adipiscing elit. Metus parturient leo pulvinar litora id urna gravida. Purus mauris litora vestibulum dapibus rhoncus elit dignissim tempor parturient.
-    </div>
-    <div class="[column-gap:2rem] [column-width:450px]  min-w-[450px] w-[450px] h-[600px] ">
-       <BlockContent value={data.collection.essay}></BlockContent>
-        
-    
-</div>
+<div class="p-2 gap-4 max-w-xl m-auto ">
+    <BlockContent value={data.collection.interview}></BlockContent>
 </div>
 
 

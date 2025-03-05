@@ -12,6 +12,13 @@ export default defineType({
     },
     fields: [
         defineField({
+            name: 'isCurrent',
+            title: 'Is Current Collection',
+            description: 'set to true if this is the current collection',
+            type: 'boolean',
+            initialValue: false
+        }),
+        defineField({
             name: 'title',
             title: 'Collection Title',
             type: 'string',
@@ -46,6 +53,14 @@ export default defineType({
             name: 'essayTitle',
             title: 'Essay title',
             type: 'blockContent'
+        }),
+        defineField({
+            name: 'essayCoverImg',
+            title: 'Essay Cover Image',
+            type: 'reference',
+            to: [
+                { type: 'collectionImage'}
+            ]
         }),
         defineField({
             name: 'essayDek',

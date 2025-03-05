@@ -5,6 +5,7 @@
     import placeholderImg from "$lib/images/00.jpg";
 	import Caption from "./Caption.svelte";
     import Colophon from "./Colophon.svelte";
+    let { colophon } = $props();
 </script>
 
 <div class="flex text-primary-text p-4 gap-4">
@@ -17,7 +18,7 @@
             </Caption>
         </div>
 
-        <Colophon></Colophon>
+        <Colophon {colophon}></Colophon>
     </div>
     <div class="basis-1/2 sticky top-0 max-h-dvh overflow-scroll flex justify-center">
         <SignIn appearance={{

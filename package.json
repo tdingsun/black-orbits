@@ -19,6 +19,8 @@
 		"@sveltejs/adapter-netlify": "^4.4.0",
 		"@sveltejs/kit": "^2.16.0",
 		"@sveltejs/vite-plugin-svelte": "^5.0.0",
+		"@portabletext/svelte": "npm:@eirikk/portabletext-2-svelte-5@0.1.0-alpha.2",
+"@portabletext/types": "^2.0.13",
 		"@tailwindcss/vite": "^4.0.0",
 		"eslint": "^9.18.0",
 		"eslint-config-prettier": "^10.0.1",
@@ -36,10 +38,11 @@
 	},
 	"dependencies": {
 		"@clerk/elements": "^0.22.21",
-		"svelte-clerk": "^0.8.1",
 		"@sanity/client": "^6.27.2",
 		"@sanity/image-url": "^1.1.0",
+		"@sanity/types": "^3.75.0",
 		"groq": "^3.72.1",
+		"svelte-clerk": "^0.8.1",
 		"svelte-lazy-image": "^0.5.1"
 	}
 }

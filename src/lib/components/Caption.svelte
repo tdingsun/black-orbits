@@ -2,6 +2,6 @@
     let { children } = $props();
 </script>
 
-<div class="font-mono text-sm tracking-tight">
+<div class="font-mono text-sm tracking-tight flex gap-2">
     ↳ {@render children()}
 </div>

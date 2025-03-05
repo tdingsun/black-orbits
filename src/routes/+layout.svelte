@@ -1,6 +1,6 @@
 <script lang="ts">
 	import type { Snippet } from 'svelte';
-	import { ClerkProvider, SignIn } from 'svelte-clerk';
+	import { ClerkProvider } from 'svelte-clerk';
 	import '../app.css';
 	let { children }: { children: Snippet} = $props();
 

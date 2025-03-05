@@ -26,18 +26,48 @@ export function urlFor(source: Image) {
 }
 
 export const getImgUrl = (imgRef: Image) => {
-	return urlFor(imgRef).width(1600).fit('max').url()
-  }
+	return urlFor(imgRef).width(1600).fit('max').url();
+};
 
+export async function getColophon(): Promise<any> {
+	return await client.fetch(groq`*[_id == "colophon"][0]`);
+}
 
 export async function getAllCollections(): Promise<any> {
-    return await client.fetch(groq`*[_type == "collection" && slug.current]`)
+	return await client.fetch(groq`*[_type == "collection" && slug.current]`);
+}
+
+export async function getCurrentCollection(): Promise<any> {
+	return await client.fetch(groq`*[_type == "collection" && isCurrent == true][0]{
+		..., 'photoObjs': photos[]->, 
+		'essayCoverImgObj': essayCoverImg->,
+		interview[]{
+			...,
+			_type=="collectionImage"=>@->
+		},
+		essay[]{
+			...,
+			_type=="collectionImage"=>@->
+		}
+		}`);
 }
 
 export async function getCollectionBySlug(slug: string): Promise<any> {
-    return await client.fetch(groq`*[_type == "collection" && slug.current == "${slug}"][0]`)
+	return await client.fetch(groq`*[_type == "collection" && slug.current == "${slug}"][0]{
+		..., 
+		'photoObjs': photos[]->, 
+		'essayCoverImgObj': essayCoverImg->, 
+		interview[]{
+			...,
+			_type=="collectionImage"=>@->
+		},
+		essay[]{
+			...,
+			_type=="collectionImage"=>@->
+		}
+	}`);
 }
 
 export async function getPhotoBySlug(slug: string): Promise<any> {
-    return await client.fetch(groq`*[_type == "collectionImage" && slug.current == "${slug}"][0]`)
+	return await client.fetch(groq`*[_type == "collectionImage" && slug.current == "${slug}"][0]`);
 }
