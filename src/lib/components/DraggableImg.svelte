@@ -1,8 +1,19 @@
 <script lang="ts">
     import { getImgUrl } from '$lib/sanity';
+	import { tagsState } from '$lib/states.svelte';
 	import { onMount } from 'svelte';
     let { photo } = $props();
     let el;
+
+    let shouldHide = $derived(
+        (photo.imgTags && photo.imgTags.length > 0 && photo.imgTags.filter((tag) => tag.value === tagsState.selectedTag).length > 0)
+        ||
+        (photo.year && photo.year.toString() === tagsState.selectedYear.toString())
+    )
+    console.log(photo.year.toString());
+
+    console.log(tagsState.selectedYear);
+    
 
     onMount(() => {
 
@@ -70,6 +81,6 @@
 
 </script>
 
-<img bind:this={el} class="draggableImg pt-1 rounded-sm w-48 relative -left-[100dvw]" src={getImgUrl(photo.image)} alt={photo.alt ? photo.alt : ''} />
+<img bind:this={el} class="{shouldHide ? 'hidden' : ''} draggableImg pt-1 rounded-sm w-48 absolute -left-[100dvw]" src={getImgUrl(photo.image)} alt={photo.alt ? photo.alt : ''} />
 
 

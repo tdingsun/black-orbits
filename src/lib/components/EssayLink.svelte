@@ -5,6 +5,6 @@
 
 <div>
     <a href={`/essay/${collectionState.currCollection.slug.current}`}>
-        Link to essay
+        Essay
     </a>
 </div>
