@@ -1,4 +1,5 @@
 import {defineField, defineType} from 'sanity'
+import blockContent from './blockContent'
 
 export default defineType({
     name: 'collectionImage',
@@ -15,7 +16,9 @@ export default defineType({
         defineField({
             name: 'title',
             title: 'Title',
-            type: 'string'
+            type: 'string',
+            validation: (Rule) => Rule.required(),
+
         }),
         defineField({
             name: 'slug',
@@ -26,6 +29,23 @@ export default defineType({
                 source: 'title',
                 maxLength: 96,
             }
+        }),
+        defineField({
+            name: 'collection',
+            title: "Part of Collection",
+            type: 'reference',
+            to: [
+                {type: 'collection'}
+            ],
+            validation: (Rule) => Rule.required(),
+
+        }),
+        defineField({
+            name: 'attribution',
+            title: 'Attribution',
+            type: 'blockContent',
+            validation: (Rule) => Rule.required(),
+
         }),
         defineField({
             name: 'image',

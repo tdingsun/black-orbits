@@ -5,7 +5,6 @@
  import BlockContentLink from '$lib/components/BlockContentLink.svelte';
  import BlockContentCollectionImg from '$lib/components/BlockContentCollectionImg.svelte';
  let {value} = $props();
- console.log(value);
  const components: Partial<PortableTextComponents> = {
      block: {
          normal: BlockContentParagraph

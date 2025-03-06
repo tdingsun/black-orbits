@@ -33,8 +33,11 @@ export async function getColophon(): Promise<any> {
 	return await client.fetch(groq`*[_id == "colophon"][0]`);
 }
 
-export async function getAllCollections(): Promise<any> {
-	return await client.fetch(groq`*[_type == "collection" && slug.current]`);
+export async function getAllCollectionTitles(): Promise<any> {
+	return await client.fetch(groq`*[_type == "collection" && slug.current]{
+		title,
+		slug
+		}`);
 }
 
 export async function getCurrentCollection(): Promise<any> {
@@ -69,5 +72,22 @@ export async function getCollectionBySlug(slug: string): Promise<any> {
 }
 
 export async function getPhotoBySlug(slug: string): Promise<any> {
-	return await client.fetch(groq`*[_type == "collectionImage" && slug.current == "${slug}"][0]`);
+	return await client.fetch(groq`*[_type == "collectionImage" && slug.current == "${slug}"][0]{
+		...,
+		'collection': collection->{
+			title,
+			slug,
+			essayTitle,
+			essayAuthor,
+			essay[]{
+				_type=="collectionImage"=>@->{
+					slug
+				}
+			},
+			photos[]->{
+				slug
+			}
+
+		},
+	}`);
 }

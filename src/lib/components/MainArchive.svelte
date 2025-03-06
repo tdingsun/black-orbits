@@ -1,4 +1,6 @@
 <script lang="ts">
+  import SignOut from './SignOut.svelte';
+
 	import Years from './Years.svelte';
 
 	import Tags from './Tags.svelte';
@@ -27,13 +29,7 @@
 			</div>
 		</div>
 		<div class="flex w-[100px] justify-end">
-			<SignOutButton>
-				<div
-					class="border-primary-text text-primary-text hover:bg-primary-text hover:text-bg cursor-pointer border p-1 text-sm transition-colors"
-				>
-					Sign out
-				</div>
-			</SignOutButton>
+			<SignOut></SignOut>
 		</div>
 	</div>
 

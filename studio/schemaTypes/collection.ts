@@ -16,7 +16,8 @@ export default defineType({
             title: 'Is Current Collection',
             description: 'set to true if this is the current collection',
             type: 'boolean',
-            initialValue: false
+            initialValue: false,
+            validation: (Rule) => Rule.required(),
         }),
         defineField({
             name: 'title',
@@ -42,7 +43,12 @@ export default defineType({
         defineField({
             name: 'interviewTitle',
             title: 'Interview Title',
-            type: 'blockContent'
+            type: 'string'
+        }),
+        defineField({
+            name: 'interviewAuthor',
+            title: 'Interview author',
+            type: 'string'
         }),
         defineField({
             name: 'interview',
@@ -52,7 +58,12 @@ export default defineType({
         defineField({
             name: 'essayTitle',
             title: 'Essay title',
-            type: 'blockContent'
+            type: 'string'
+        }),
+        defineField({
+            name: 'essayAuthor',
+            title: 'Essay author',
+            type: 'string'
         }),
         defineField({
             name: 'essayCoverImg',

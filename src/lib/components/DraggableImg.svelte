@@ -10,10 +10,6 @@
         ||
         (photo.year && photo.year.toString() === tagsState.selectedYear.toString())
     )
-    console.log(photo.year.toString());
-
-    console.log(tagsState.selectedYear);
-    
 
     onMount(() => {
 
@@ -73,14 +69,15 @@
                 document.onmouseup = null;
                 document.onmousemove = null;
             }
-
-
         }
-
     })
 
 </script>
 
-<img bind:this={el} class="{shouldHide ? 'hidden' : ''} draggableImg pt-1 rounded-sm w-48 absolute -left-[100dvw]" src={getImgUrl(photo.image)} alt={photo.alt ? photo.alt : ''} />
-
-
+<div bind:this={el} class="w-48 draggableImg absolute -left-[100dvw]" >
+    <img class="{shouldHide ? 'hidden' : ''}  pt-1 rounded-sm w-48  " src={getImgUrl(photo.image)} alt={photo.alt ? photo.alt : ''} />
+    <div>
+        <a href={`/photo/${photo.slug.current}`} class="hover:underline">
+            See More
+        </a></div>
+    </div>
