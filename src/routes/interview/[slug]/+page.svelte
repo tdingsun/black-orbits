@@ -1,10 +1,9 @@
 <script lang="ts">
 	import { onMount } from "svelte";
-    import { collectionState } from "$lib/states.svelte";
     import type { PageData } from './$types';
-	import BlockContentImg from "$lib/components/BlockContentImg.svelte";
-	import { getImgUrl } from "$lib/sanity";
+
 	import BlockContent from "$lib/components/BlockContent.svelte";
+	import NavHeader from "$lib/components/NavHeader.svelte";
     let { data }: { data: PageData } = $props();
 
     const transformScroll = (e: any) => {
@@ -24,13 +23,13 @@
 
 </script>
 
-<div class="p-2">
-    <a href="/">
-        back to all collections
-
-    </a>
-</div>
+<NavHeader isContentPage={true}></NavHeader>
 <div class="p-2 gap-4 max-w-xl m-auto ">
+    <div class="text-4xl pb-4">
+        <div class="">{data.collection.interviewTitle}</div>
+        <div class=" italic">by {data.collection.interviewAuthor}</div>
+    </div>
+
     <BlockContent value={data.collection.interview}></BlockContent>
 </div>
 

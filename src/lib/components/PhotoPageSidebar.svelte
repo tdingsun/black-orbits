@@ -1,7 +1,10 @@
 <script lang="ts">
+  import ColophonLink from './ColophonLink.svelte';
+
 	import { collectionState } from "$lib/states.svelte";
 	import BlockContent from "./BlockContent.svelte";
 	import SignOut from "./SignOut.svelte";
+	import SiteTitle from "./SiteTitle.svelte";
     let { showAllHotspots=$bindable(), photo, highlightHotspot, dehighlightHotspot, hotspotHover = $bindable() } = $props();
     console.log(photo);
     let isInEssay = $derived(photo.collection.essay.filter((obj) => obj.slug && obj.slug.current === photo.slug.current))
@@ -13,11 +16,10 @@
 
 <div class="basis-1/4 min-w-xs h-dvh border-r border-primary-text p-4">
     <div class="border-b border-primary-text flex justify-between pb-4">
-        <div class="flex flex-col gap-2">
-            <a href="/" class="font-bold">black orbits</a>
+        <div class="flex flex-col">
+            <SiteTitle></SiteTitle>
             
-            <a class="hover:underline" href="/colophon">colophon</a>
-        </div>
+<ColophonLink></ColophonLink>        </div>
         <div class="flex flex-col gap-2">
             <SignOut></SignOut>
         </div>

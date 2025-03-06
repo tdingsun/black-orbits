@@ -8,17 +8,21 @@
 	import EssayLink from './EssayLink.svelte';
 	import InterviewLink from './InterviewLink.svelte';
 	import { collectionState } from '$lib/states.svelte';
+	import ColophonLink from './ColophonLink.svelte';
 
-	let { headerHeight=$bindable(), isContentPage=false } = $props();
+	let { headerHeight=$bindable(), isContentPage=false, isColophonPage=false } = $props();
 
 
 </script>
 
-<div bind:clientHeight={headerHeight} class=" border-primary-text  sticky top-0 flex items-start justify-between border-b p-4 gap-8 w-dvw">
+<div bind:clientHeight={headerHeight} class=" border-primary-text  sticky top-0 flex items-start justify-between border-b p-4 gap-8 w-dvw bg-bg">
 		<div class="w-[100px] {isContentPage ? 'flex gap-8' : ''}">
 			<SiteTitle></SiteTitle>
-			<a class="hover:underline {isContentPage ? '' : 'hidden'}" href="/collection/{collectionState.currCollection.slug.current}">Back&nbsp;to&nbsp;Collection</a>
-			<a class="hover:underline" href="/colophon">Colophon</a>
+			<div class={isColophonPage ? 'hidden' : ''}>
+				<a class="hover:underline {isContentPage ? '' : 'hidden'}" href="/collection/{collectionState.currCollection.slug.current}">Back&nbsp;to&nbsp;Collection</a>
+				<ColophonLink></ColophonLink>
+			</div>
+			<div href="" class="{isColophonPage ? '' : 'hidden'}">Back</div>
 		</div>
 		<div class=" w-xl  {isContentPage ? 'hidden' : ''}">
 			<CollectionTitle></CollectionTitle>

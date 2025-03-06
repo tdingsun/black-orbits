@@ -2,6 +2,6 @@
 
 </script>
 
-<div class="font-bold">Black&nbsp;Orbits</div>
+<div class="font-bold"><a href="/">Black&nbsp;Orbits</a></div>
 
 

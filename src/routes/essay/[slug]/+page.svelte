@@ -13,13 +13,12 @@
 		if (!e.deltaY) {
 			return;
 		}
-		window.scrollBy((e.deltaX + e.deltaY) * 0.4, 0);
+		window.scrollBy((e.deltaX + e.deltaY) * 0.5, 0);
 		e.preventDefault();
 	};
 	onMount(() => {
-		document.addEventListener('wheel', (e) => {
-			transformScroll(e);
-		});
+        document.onwheel = transformScroll
+
 	});
 
 	console.log(data.collection);
