@@ -4,7 +4,7 @@
 </script>
 
 <div>
-    <a href={`/essay/${collectionState.currCollection.slug.current}`}>
+    <a class="hover:underline" href={`/essay/${collectionState.currCollection.slug.current}`}>
         Essay
     </a>
 </div>

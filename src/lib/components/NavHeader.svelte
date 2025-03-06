@@ -17,12 +17,12 @@
 <div bind:clientHeight={headerHeight} class=" border-primary-text  sticky top-0 flex items-start justify-between border-b p-4 gap-8 w-dvw">
 		<div class="w-[100px] {isContentPage ? 'flex gap-8' : ''}">
 			<SiteTitle></SiteTitle>
-			<a class="hover:underline" href="/collection/{collectionState.currCollection.slug.current}">Back&nbsp;to&nbsp;Collection</a>
+			<a class="hover:underline {isContentPage ? '' : 'hidden'}" href="/collection/{collectionState.currCollection.slug.current}">Back&nbsp;to&nbsp;Collection</a>
 			<a class="hover:underline" href="/colophon">Colophon</a>
 		</div>
 		<div class=" w-xl  {isContentPage ? 'hidden' : ''}">
 			<CollectionTitle></CollectionTitle>
-			<div class="{isContentPage ? 'hidden' : ''}">
+			<div class="{isContentPage ? 'hidden' : ''} py-2">
 				<CollectionDek></CollectionDek>
 
 			</div>
