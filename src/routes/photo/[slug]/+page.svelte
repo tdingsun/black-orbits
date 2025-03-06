@@ -22,13 +22,28 @@
 			currPhotoIdxInCollection === 0 ? numPhotosInCollection - 1 : currPhotoIdxInCollection - 1
 		].slug.current
 	);
+    let hotspotHover = $state(0);
+    let showAllHotspots = $state(true);
+
+    let highlightHotspot = (hotspotID: number) => {
+        hotspotHover = hotspotID + 1; //1 indexed, so 0 means no hover
+    }
+
+    let dehighlightHotspot = () => {
+        hotspotHover = 0; //1 indexed, so 0 means no hover
+    }
 </script>
 
 <div class="flex">
-	<PhotoPageSidebar photo={data.photo}></PhotoPageSidebar>
-	<div class="flex h-dvh flex-col justify-between p-4">
-		<div>
-			<img class="mb-2" src={getImgUrl(data.photo.image)} />
+	<PhotoPageSidebar bind:showAllHotspots={showAllHotspots} {dehighlightHotspot} {highlightHotspot} bind:hotspotHover={hotspotHover} photo={data.photo}></PhotoPageSidebar>
+	<div class="flex h-dvh flex-col justify-between p-4 w-full">
+		<div class="mx-auto">
+            <div class="relative">
+                <img class="mb-2 max-w-full max-h-[calc(100dvh-8rem)]" src={getImgUrl(data.photo.image)} />
+                {#each data.photo.hotspots as hotspot, idx}
+                    <div onmouseenter={() => highlightHotspot(idx)} onmouseleave={dehighlightHotspot} style="top:{hotspot.yPos}%; left:{hotspot.xPos}%;" class="{showAllHotspots ? '' : 'hidden'} {hotspotHover === idx + 1 ? 'border-solid' : ''} border-dashed transition-colors cursor-pointer rounded-full w-20 h-20 border border-amber-300 absolute"></div>
+                {/each}
+            </div>
 			<Caption>
 				<BlockContent value={data.photo.caption}></BlockContent>
 			</Caption>

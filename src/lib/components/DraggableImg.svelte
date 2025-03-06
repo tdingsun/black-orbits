@@ -77,7 +77,7 @@
 <div bind:this={el} class="w-48 draggableImg absolute -left-[100dvw]" >
     <img class="{shouldHide ? 'hidden' : ''}  pt-1 rounded-sm w-48  " src={getImgUrl(photo.image)} alt={photo.alt ? photo.alt : ''} />
     <div>
-        <a href={`/photo/${photo.slug.current}`} class="hover:underline">
+        <a href={`/photo/${photo.slug.current}`} class="hover:underline text-xs">
             See More
         </a></div>
     </div>

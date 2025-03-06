@@ -1,52 +1,61 @@
 <script lang="ts">
-	import { onMount } from "svelte";
-    import { collectionState } from "$lib/states.svelte";
-    import type { PageData } from './$types';
-	import BlockContentImg from "$lib/components/BlockContentImg.svelte";
-	import { getImgUrl } from "$lib/sanity";
-	import BlockContent from "$lib/components/BlockContent.svelte";
-    let { data }: { data: PageData } = $props();
+	import { onMount } from 'svelte';
+	import { collectionState } from '$lib/states.svelte';
+	import type { PageData } from './$types';
+	import BlockContentImg from '$lib/components/BlockContentImg.svelte';
+	import { getImgUrl } from '$lib/sanity';
+	import BlockContent from '$lib/components/BlockContent.svelte';
+	import NavHeader from '$lib/components/NavHeader.svelte';
+	import Caption from '$lib/components/Caption.svelte';
+	let { data }: { data: PageData } = $props();
 
-    const transformScroll = (e: any) => {
-        if(!e.deltaY) {
-            return;
-        }
-        window.scrollBy((e.deltaX + e.deltaY) * 0.33, 0);
-        e.preventDefault();
-    }
-    onMount(() => {
-        document.addEventListener('wheel', (e) => {
-            transformScroll(e)
-        })
-    })
+	const transformScroll = (e: any) => {
+		if (!e.deltaY) {
+			return;
+		}
+		window.scrollBy((e.deltaX + e.deltaY) * 0.4, 0);
+		e.preventDefault();
+	};
+	onMount(() => {
+		document.addEventListener('wheel', (e) => {
+			transformScroll(e);
+		});
+	});
 
-    console.log(data.collection);
+	console.log(data.collection);
 
+    let headerHeight = $state(0);
 </script>
 
-<div class="p-2">
-    <a href="/">
-        back to all collections
+<div class="w-full">
+    <div class="fixed left-0 top-0">
+        <NavHeader bind:headerHeight={headerHeight} isContentPage={true}></NavHeader>
 
-    </a>
-</div>
-<div class="flex p-2 gap-4 ">
-    <div class="text-2xl w-[450px] min-w-[450px]">
-        <div>
-            {data.collection.title}
-        </div>
-        <img class=" pt-1 rounded-sm" src={getImgUrl(data.collection.essayCoverImgObj.image)} alt={data.collection.essayCoverImgObj.alt ? data.collection.essayCoverImgObj.alt : ''} />
-
-        
     </div>
-    <div class="max-w-md text-sm w-[450px] min-w-[450px]">
-        Lorem ipsum odor amet, consectetuer adipiscing elit. Metus parturient leo pulvinar litora id urna gravida. Purus mauris litora vestibulum dapibus rhoncus elit dignissim tempor parturient.
-    </div>
-    <div class="[column-gap:2rem] [column-width:450px]  min-w-[450px] w-[450px] h-[600px] ">
-       <BlockContent value={data.collection.essay}></BlockContent>
-        
-    
-</div>
-</div>
 
+<div style="margin-top:{headerHeight}px" class="{headerHeight === 0 ? 'hidden' : 'flex'}  gap-8 p-4">
+	<div class="w-[500px] min-w-[500px] text-4xl">
+		<div>
+			{data.collection.essayTitle}
+		</div>
+        <div class="italic">by {data.collection.essayAuthor}</div>
+		<img
+			class=" rounded-sm pt-4"
+			src={getImgUrl(data.collection.essayCoverImgObj.image)}
+			alt={data.collection.essayCoverImgObj.alt ? data.collection.essayCoverImgObj.alt : ''}
+		/>
+        <Caption>
+            <BlockContent value={data.collection.essayCoverImgObj.caption}></BlockContent>
+        </Caption>
+	</div>
+	<div class="w-[400px] max-w-md min-w-[400px] h-min text-sm border border-primary-text p-4">
+        <BlockContent value={data.collection.dek}></BlockContent>
+	</div>
+	<div class="h-[600px] w-[500px] min-w-[500px] [column-gap:2rem] [column-width:450px] pr-8">
+		<BlockContent value={data.collection.essay}></BlockContent>
+        <div class="p-8 h-[50dvh]"></div>
+	</div>
+</div>
+</div>
+   
 

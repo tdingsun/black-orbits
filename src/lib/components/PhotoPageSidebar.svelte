@@ -2,18 +2,21 @@
 	import { collectionState } from "$lib/states.svelte";
 	import BlockContent from "./BlockContent.svelte";
 	import SignOut from "./SignOut.svelte";
-    let { photo } = $props();
+    let { showAllHotspots=$bindable(), photo, highlightHotspot, dehighlightHotspot, hotspotHover = $bindable() } = $props();
     console.log(photo);
     let isInEssay = $derived(photo.collection.essay.filter((obj) => obj.slug && obj.slug.current === photo.slug.current))
-
+    const toggleAllHotspots = () => {
+        showAllHotspots = !showAllHotspots
+    }
 </script>
 
 
 <div class="basis-1/4 min-w-xs h-dvh border-r border-primary-text p-4">
     <div class="border-b border-primary-text flex justify-between pb-4">
         <div class="flex flex-col gap-2">
-            black orbits
-            <a href="/colophon">colophon</a>
+            <a href="/" class="font-bold">black orbits</a>
+            
+            <a class="hover:underline" href="/colophon">colophon</a>
         </div>
         <div class="flex flex-col gap-2">
             <SignOut></SignOut>
@@ -22,9 +25,9 @@
 
     <div class="border-b border-primary-text py-2 text-sm">
         <div class="pb-8">
-            This image is a part of <a class="font-bold" href="/collection/{photo.collection.slug.current}">{photo.collection.title}</a>
+            This image is a part of <a class="hover:underline font-bold" href="/collection/{photo.collection.slug.current}">[{photo.collection.title}]</a>
             {#if isInEssay}
-            and is referenced in the essay <a href="/essay/{photo.collection.slug.current}" class="font-bold !inline">{photo.collection.essayTitle}</a>
+            and is referenced in the essay <a href="/essay/{photo.collection.slug.current}" class="hover:underline font-bold">[{photo.collection.essayTitle}]</a>
             {:else}
             .
             {/if}
@@ -56,11 +59,11 @@
     <div class="text-sm py-2">
         <div class="flex justify-between mb-4">
             <div>hotspots</div>
-            <div>[show/hide]</div>
+            <div class="hover:font-bold cursor-pointer" onclick={toggleAllHotspots}>{showAllHotspots ? '[hide]' : '[show]'}</div>
         </div>
         {#each photo.hotspots as hotspot, idx}
 
-            <div>
+            <div onmouseenter={() => highlightHotspot(idx)} onmouseleave={dehighlightHotspot} class="{showAllHotspots ? '' : 'hidden'} {idx + 1 === hotspotHover ? 'border border-primary-text' : ''}">
                 <div class="font-bold">
                     {idx + 1}. {hotspot.title}
                 </div>
