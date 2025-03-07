@@ -41,7 +41,7 @@
             <div class="relative">
                 <img class="mb-2 max-w-full max-h-[calc(100dvh-8rem)]" src={getImgUrl(data.photo.image)} />
                 {#each data.photo.hotspots as hotspot, idx}
-                    <div onmouseenter={() => highlightHotspot(idx)} onmouseleave={dehighlightHotspot} style="top:{hotspot.yPos}%; left:{hotspot.xPos}%;" class="{showAllHotspots ? '' : 'hidden'} {hotspotHover === idx + 1 ? 'border-solid' : ''} border-dashed transition-colors cursor-pointer rounded-full w-20 h-20 border border-amber-300 absolute"></div>
+                    <div onmouseenter={() => highlightHotspot(idx)} onmouseleave={dehighlightHotspot} style="top:{hotspot.yPos}%; left:{hotspot.xPos}%;" class="{showAllHotspots ? '' : 'hidden'} {hotspotHover === idx + 1 ? 'border-solid bg-transparent border-yellow-300 blur-none' : 'bg-bg blur-xs'} transition-colors cursor-pointer rounded-full w-20 h-20 border  border-bg  mix-blend-overlay absolute"></div>
                 {/each}
             </div>
 			<Caption>
