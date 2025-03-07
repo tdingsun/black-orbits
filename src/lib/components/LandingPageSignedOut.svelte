@@ -10,7 +10,10 @@
 
 <div class="flex text-primary-text p-4 gap-4">
     <div class="basis-1/2">
-    <SiteTitle></SiteTitle>
+        <div class="mb-4 text-4xl">
+            <SiteTitle></SiteTitle>
+
+        </div>
         <div class="pb-4">
             <img src={placeholderImg} />
             <Caption>

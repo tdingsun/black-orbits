@@ -1,5 +1,4 @@
 import {  getCurrentCollection } from '$lib/sanity';
-import {  tagsState } from '$lib/states.svelte';
 import type { PageLoad } from './$types';
 export const load = (async () => {
     const currentCollection = await getCurrentCollection();
@@ -12,9 +11,8 @@ export const load = (async () => {
         })
         yearTags.add(photoObj.year);
     });
-    tagsState.currCollectionTags = tags;
-    tagsState.currCollectionYears = yearTags;
+
     return {
-        currentCollection
+        currentCollection, tags, yearTags
     };
 }) satisfies PageLoad;

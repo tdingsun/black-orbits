@@ -6,5 +6,6 @@ export const tagsState = $state({
 })
 
 export const collectionState = $state({
-    currCollection: {}
+    currCollection: {},
+    allCollections: {}
 });

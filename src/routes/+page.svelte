@@ -3,11 +3,15 @@
     import MainArchive from "$lib/components/MainArchive.svelte";
 	import { SignedIn, SignedOut } from "svelte-clerk";
     import type { PageData } from './$types';
-    import { collectionState } from "$lib/states.svelte";
+    import { collectionState, tagsState } from "$lib/states.svelte";
+	import { afterNavigate } from "$app/navigation";
     let { data }: { data: PageData } = $props();
 
-    collectionState.currCollection = data.currentCollection;
-
+    afterNavigate(() => {
+        collectionState.currCollection = data.currentCollection;
+        tagsState.currCollectionTags = data.tags;
+        tagsState.currCollectionYears =data.yearTags;
+    })
 </script>
 
 <SignedOut>

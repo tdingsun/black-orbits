@@ -34,9 +34,9 @@ export async function getColophon(): Promise<any> {
 }
 
 export async function getAllCollectionTitles(): Promise<any> {
-	return await client.fetch(groq`*[_type == "collection" && slug.current]{
-		title,
-		slug
+	return await client.fetch(groq`*[_type == "collection"]{
+		'slug': slug.current,
+		title
 		}`);
 }
 
