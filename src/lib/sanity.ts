@@ -30,7 +30,13 @@ export const getImgUrl = (imgRef: Image) => {
 };
 
 export async function getColophon(): Promise<any> {
-	return await client.fetch(groq`*[_id == "colophon"][0]`);
+	return await client.fetch(groq`*[_id == "colophon"][0]{
+		...,
+		content[]{
+			...,
+			_type=="collectionImage"=>@->
+		}
+	}`);
 }
 
 export async function getAllCollectionTitles(): Promise<any> {

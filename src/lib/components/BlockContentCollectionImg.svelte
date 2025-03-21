@@ -6,6 +6,7 @@
     let { portableText } = $props();
 
     let isEssayPage = $derived(page.url.pathname.startsWith('/essay'));
+    console.log(portableText);
 </script>
 
 <div class="{isEssayPage ? 'absolute  bottom-0' : ''} pb-6 ">

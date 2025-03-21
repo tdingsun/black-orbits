@@ -14,3 +14,19 @@ html, body {
 :root {
     overscroll-behavior: none;
 }
+
+.auth-container {
+    .cl-formButtonPrimary::after {
+        background: none!important;
+        content: "-->"!important;
+        position: relative!important;
+        width: 30px;
+        letter-spacing: -2px;
+    }
+    .cl-formButtonPrimary:hover::after {
+        opacity: 1!important;
+    }
+    ::placeholder {
+        opacity: 0!important;
+    }
+}
