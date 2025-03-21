@@ -15,10 +15,4 @@
 
 </script>
 
-<SignedOut>
-    <LandingPageSignedOut colophon={data.colophon}></LandingPageSignedOut>
-</SignedOut>
-<SignedIn>
-    <MainArchive></MainArchive>
-</SignedIn>
-
+<MainArchive></MainArchive>
