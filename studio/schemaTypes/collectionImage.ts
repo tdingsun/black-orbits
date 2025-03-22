@@ -91,6 +91,12 @@ export default defineType({
                     type: 'object',
                     fields: [
                         defineField({
+                            name: 'isPublished',
+                            title: 'Is Published?',
+                            type: 'boolean',
+                            initialValue: false
+                        }),
+                        defineField({
                             name: 'xPos',
                             title: "x Position (percentage)",
                             type: 'number'
@@ -106,9 +112,25 @@ export default defineType({
                             type: 'string'
                         }),
                         defineField({
+                            name: 'attribution',
+                            title: 'Attribution',
+                            type: 'string'
+                        }),
+                        defineField({
+                            name: 'email',
+                            title: 'Contributor Email',
+                            type: 'string'
+                        }),
+                        defineField({
                             name: 'content',
                             title: 'Hotspot content',
-                            type: 'blockContent'
+                            type: 'text'
+                        }),
+                        defineField({
+                            name: 'userId',
+                            title: 'userId',
+                            type: 'string',
+                            readOnly: true
                         })
                     ]
                 }

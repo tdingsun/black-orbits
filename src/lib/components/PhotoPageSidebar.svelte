@@ -1,10 +1,13 @@
 <script lang="ts">
+  import HotspotForm from './HotspotForm.svelte';
+
 	import ColophonLink from './ColophonLink.svelte';
 
-	import { collectionState } from '$lib/states.svelte';
 	import BlockContent from './BlockContent.svelte';
 	import SignOut from './SignOut.svelte';
 	import SiteTitle from './SiteTitle.svelte';
+	import { client } from '$lib/sanity';
+	import { photoState } from '$lib/states.svelte';
 	let {
 		showAllHotspots = $bindable(),
 		photo,
@@ -19,17 +22,39 @@
 		showAllHotspots = !showAllHotspots;
 	};
 
-    let showForm = $state(false);
-
     let toggleForm = () => {
-        showForm = !showForm
+        photoState.showForm = !photoState.showForm
     }
+
+	let comment = $state('');
+	let name = $state('');
+	let email = $state('');
+	let title = $state('');
+
+	let submit = () => {
+		const result = client.patch(photo._id)
+			.setIfMissing({hotspots: []})
+			.prepend('hotspots', [
+				{
+					xPos: 0,
+					yPos: 0, 
+					title,
+					attribution: name,
+					email,
+					content: comment,
+					isPublished: false
+				}
+			])
+			.commit({
+				autoGenerateArrayKeys: true
+			})
+	}
 </script>
 
 <div
-	class="border-primary-text relative flex h-dvh min-w-xs basis-1/4 flex-col justify-between border-r"
+	class="border-primary-text relative flex h-dvh overflow-auto min-w-xs basis-1/4 flex-col justify-between border-r"
 >
-	<div class="p-4">
+	<div class="p-4 pb-0 flex flex-col h-full ">
 		<div class="border-primary-text flex justify-between border-b pb-4">
 			<div class="flex flex-col gap-1">
 				<SiteTitle></SiteTitle>
@@ -43,7 +68,7 @@
 		</div>
 
 		<div class="border-primary-text border-b py-2 text-sm">
-			<div class="pb-8">
+			<div class="pb-8 ">
 				This image is a part of <a
 					class="font-bold hover:underline"
 					href="/collection/{photo.collection.slug.current}">[{photo.collection.title}]</a
@@ -57,7 +82,7 @@
 					.
 				{/if}
 			</div>
-			<div class="flex flex-col gap-2 text-sm">
+			<div class="flex flex-col gap-2 text-sm {photoState.showForm ? 'hidden' : ''}">
 				<div class="flex gap-2">
 					<div class="w-24 flex-shrink-0">title</div>
 					<div>{photo.title}</div>
@@ -81,52 +106,43 @@
 			</div>
 		</div>
 
-		<div class="py-2 text-sm">
+		<div class="py-2 text-sm {photoState.showForm ? 'hidden' : ''}">
 			<div class="mb-4 flex justify-between">
 				<div>hotspots</div>
 				<div class="cursor-pointer hover:font-bold" onclick={toggleAllHotspots}>
 					{showAllHotspots ? '[hide]' : '[show]'}
 				</div>
 			</div>
-			{#each photo.hotspots as hotspot, idx}
+			{#if photo.hotspots}
+			{#each photo.hotspots.filter(hotspot => hotspot.isPublished) as hotspot, idx}
+				{#if hotspot.isPublished}
 				<div
 					onmouseenter={() => highlightHotspot(idx)}
 					onmouseleave={dehighlightHotspot}
 					class="{showAllHotspots ? '' : 'hidden'} {idx + 1 === hotspotHover
 						? 'border-primary-text border'
-						: ''}"
+						: ''} mb-4"
 				>
 					<div class="font-bold">
 						{idx + 1}. {hotspot.title}
 					</div>
 					<div>
-						<BlockContent value={hotspot.content}></BlockContent>
+						{hotspot.content}
 					</div>
 				</div>
+				{/if}
 			{/each}
+			{/if}
+			<div class="p-4 bottom-0 left-0 absolute">
+				<button onclick={toggleForm} class="cursor-pointer border-primary-text border px-2 py-1 text-sm">Submit an observation</button>
+			</div>
+		</div>
+
+		<div class=" flex-grow  {photoState.showForm ? 'pt-2 pb-4' : 'hidden h-0 overflow-hidden'}  text-sm w-full  bg-bg  border-primary-text">
+			<HotspotForm {photo} id={photo._id}></HotspotForm>
 		</div>
 	</div>
 
-    <div class="p-4">
-        <button onclick={toggleForm} class="cursor-pointer border-primary-text border px-2 py-1 text-sm">Submit an observation</button>
-    </div>
-	<div class="{showForm ? 'p-4' : 'h-0 overflow-hidden'} absolute bottom-0 w-full  bg-bg border-t border-primary-text">
-		<div class="flex flex-col gap-2">
-			<div>1. click image to select hotspot</div>
-			<div class="border-primary-text my-2 h-24 w-24 border"></div>
-			<div>2. add comment</div>
-			<div>
-				<textarea class="border-primary-text h-72 w-full border"></textarea>
-			</div>
-            <div class="flex gap-3 text-sm">
-                <button class="cursor-pointer flex justify-center basis-1/2 border-primary-text border px-2 py-1 ">
-                    submit
-                </button>
-                <button onclick={toggleForm} class="cursor-pointer flex justify-center basis-1/2 border-primary-text border px-2 py-1 ">
-                    cancel
-                </button>
-            </div>
-        
-		</div>
-	</div>
+
+	
 </div>

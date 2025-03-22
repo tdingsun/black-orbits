@@ -2,7 +2,6 @@
     import { tagsState } from "$lib/states.svelte";
 
     const toggleTag = (tag: string) => {
-        console.log(tag);
         if(tagsState.selectedTag === tag){
             tagsState.selectedTag = ''
         } else {

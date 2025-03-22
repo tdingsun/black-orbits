@@ -21,7 +21,6 @@
 
 	});
 
-	console.log(data.collection);
 
     let headerHeight = $state(0);
 </script>

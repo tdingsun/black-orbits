@@ -19,7 +19,6 @@
         })
     })
 
-    console.log(data.collection);
 
 </script>
 

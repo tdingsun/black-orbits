@@ -42,7 +42,6 @@
                 pos3 = e.clientX;
                 pos4 = e.clientY;
                 document.querySelectorAll('.draggableImg').forEach(el => {
-                    console.log(el);
                     el.style.zIndex = 0;
                 })
                 el.style.zIndex = 1;

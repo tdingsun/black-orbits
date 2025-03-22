@@ -14,7 +14,7 @@ export const client = createClient({
 	projectId: PUBLIC_SANITY_PROJECT_ID,
 	dataset: PUBLIC_SANITY_DATASET,
 	useCdn: false, // `false` if you want to ensure fresh data
-	apiVersion: '2025-01-31' // date of setup
+	apiVersion: '2025-01-31', // date of setup
 });
 
 //url builder

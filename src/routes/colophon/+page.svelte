@@ -10,7 +10,6 @@ let previousPage : string = $state('/') ;
 
 afterNavigate(({from}) => {
    previousPage = from?.url.pathname || previousPage
-   console.log(previousPage);
 }) 
 </script>
 

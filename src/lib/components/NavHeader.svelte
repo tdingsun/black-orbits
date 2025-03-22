@@ -13,7 +13,6 @@
 		isColophonPage = false,
 		backLink
 	} = $props();
-	console.log(collectionState.currCollection);
 </script>
 
 <div
