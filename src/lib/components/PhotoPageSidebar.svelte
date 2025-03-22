@@ -26,29 +26,6 @@
         photoState.showForm = !photoState.showForm
     }
 
-	let comment = $state('');
-	let name = $state('');
-	let email = $state('');
-	let title = $state('');
-
-	let submit = () => {
-		const result = client.patch(photo._id)
-			.setIfMissing({hotspots: []})
-			.prepend('hotspots', [
-				{
-					xPos: 0,
-					yPos: 0, 
-					title,
-					attribution: name,
-					email,
-					content: comment,
-					isPublished: false
-				}
-			])
-			.commit({
-				autoGenerateArrayKeys: true
-			})
-	}
 </script>
 
 <div
@@ -120,8 +97,8 @@
 					onmouseenter={() => highlightHotspot(idx)}
 					onmouseleave={dehighlightHotspot}
 					class="{showAllHotspots ? '' : 'hidden'} {idx + 1 === hotspotHover
-						? 'border-primary-text border'
-						: ''} mb-4"
+						? 'opacity-100'
+						: 'opacity-50'} pb-4"
 				>
 					<div class="font-bold">
 						{idx + 1}. {hotspot.title}
