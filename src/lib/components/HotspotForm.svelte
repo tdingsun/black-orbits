@@ -8,12 +8,13 @@
 	console.log(ctx.auth);
 	let { id, photo } = $props();
 
-	let toggleForm = () => {
+	let toggleForm = (e) => {
+		e.preventDefault();
 		photoState.showForm = !photoState.showForm;
 	};
 </script>
 
-<form class="flex flex-col justify-between  h-full">
+<form method="POST" class="flex flex-col justify-between  h-full">
 	<div class="flex flex-col gap-4">
 		<div >
 			<div class="font-bold">Submit an Observation</div>
@@ -30,6 +31,7 @@
 			<label>
 				Title
 				<input
+					required={true}
 					minlength="1"
 					maxlength="90"
 					name="title"
@@ -41,6 +43,7 @@
 			<label>
 				Observation
 				<textarea
+					required={true}
 					minlength="1"
 					maxlength="1000"
 					name="comment"
@@ -52,13 +55,13 @@
 		<div>
 			<label>
 				Name
-				<input maxlength="90" name="name" class="border-primary-text w-full border" />
+				<input required={true} maxlength="90" name="name" class="border-primary-text w-full border" />
 			</label>
 		</div>
 		<div class="pb-4">
 			<label>
 				Email
-				<input maxlength="90" name="email" type="email" class="border-primary-text w-full border" />
+				<input required={true} maxlength="90" name="email" type="email" class="border-primary-text w-full border" />
 			</label>
 		</div>
 	</div>
@@ -71,7 +74,7 @@
 		/>
 
 		<button
-			onclick={toggleForm}
+			onclick={(e) => toggleForm(e)} 
 			class="border-primary-text flex basis-1/2 cursor-pointer justify-center border px-2 py-1"
 		>
 			Cancel
