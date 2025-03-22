@@ -63,9 +63,9 @@ export default defineType({
             type: 'object',
             fields: [
               {
-                title: 'content',
-                name: 'content',
-                type: 'blockContent',
+                title: 'image',
+                name: 'image',
+                type: 'image',
               },
             ],
           },

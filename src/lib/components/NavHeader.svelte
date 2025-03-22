@@ -11,13 +11,13 @@
 		headerHeight = $bindable(),
 		isContentPage = false,
 		isColophonPage = false,
-		backLink
+		backLink = undefined
 	} = $props();
 </script>
 
 <div
 	bind:clientHeight={headerHeight}
-	class=" border-primary-text bg-bg sticky top-0 flex w-dvw items-start justify-between gap-8 border-b p-4 pb-3"
+	class="relative z-10 border-primary-text bg-bg sticky top-0 flex w-dvw items-start justify-between gap-8 border-b p-4 pb-3"
 >
 	<div class="w-[100px] {isContentPage ? 'flex items-center gap-4' : ''}">
 		<div class="mb-1">
@@ -36,7 +36,10 @@
 			</div>
 		{/if}
 
+		{#if backLink}
 		<a href={backLink} class="text-sm {isColophonPage ? '' : 'hidden'}">Back</a>
+
+		{/if}
 	</div>
 	{#if !isContentPage}
 		<div class=" w-xl {isContentPage ? 'hidden' : ''}">

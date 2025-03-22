@@ -66,6 +66,7 @@ export async function getCollectionBySlug(slug: string): Promise<any> {
 		..., 
 		'photoObjs': photos[]->, 
 		'essayCoverImgObj': essayCoverImg->, 
+		interviewAudio{..., 'url':asset->url},
 		interview[]{
 			...,
 			_type=="collectionImage"=>@->

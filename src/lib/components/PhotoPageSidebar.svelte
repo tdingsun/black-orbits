@@ -116,15 +116,18 @@
 		</div>
 
 		<div class="py-2 text-sm {photoState.showForm ? 'hidden' : ''}">
-			<div class="mb-4 flex justify-between">
-				<div>hotspots</div>
-				<button onclick={toggleAllHotspots}>
-					<StyledButton>
-						{showAllHotspots ? 'hide' : 'show'}
+			{#if photo.hotspots && photo.hotspots.filter((hotspot) => hotspot.isPublished).length > 0}
+				<div class="mb-4 flex justify-between">
+					<div>hotspots</div>
+					<button onclick={toggleAllHotspots}>
+						<StyledButton>
+							{showAllHotspots ? 'hide' : 'show'}
 
-					</StyledButton>
-				</button>
-			</div>
+						</StyledButton>
+					</button>
+				</div>
+			{/if}
+			
 			{#if photo.hotspots}
 				<div class="{showAllHotspots ? '' : 'hidden'}">
 					{#each photo.hotspots.filter((hotspot) => hotspot.isPublished) as hotspot, idx}
