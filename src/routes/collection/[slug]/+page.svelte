@@ -1,7 +1,5 @@
 <script lang="ts">
-	import LandingPageSignedOut from "$lib/components/LandingPageSignedOut.svelte";
     import MainArchive from "$lib/components/MainArchive.svelte";
-	import { SignedIn, SignedOut } from "svelte-clerk";
     import type { PageData } from './$types';
     import { collectionState, tagsState } from "$lib/states.svelte";
 	import { afterNavigate } from "$app/navigation";
@@ -9,8 +7,9 @@
 
     afterNavigate(() => {
         collectionState.currCollection = data.currentCollection;
-        tagsState.currCollectionTags = data.tags;
-        tagsState.currCollectionYears =data.yearTags;
+        tagsState.imgTags.allTags = data.tags;
+        tagsState.timeTags.allTags = data.timeTags;
+        tagsState.colorTags.allTags = data.colorTags;
     })
 
 </script>

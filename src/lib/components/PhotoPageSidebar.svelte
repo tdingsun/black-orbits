@@ -116,7 +116,12 @@
 		</div>
 
 		<div class=" flex-grow  {photoState.showForm ? 'pt-2 pb-4' : 'hidden h-0 overflow-hidden'}  text-sm w-full  bg-bg  border-primary-text">
-			<HotspotForm {photo} id={photo._id}></HotspotForm>
+			{#if photoState.formSubmitted}
+				<div class="flex justify-center items-center h-full text-center p-4">Thank you for submitting!<br/><br/>Your observation will be added to the photo upon review.</div>
+			{:else}
+				<HotspotForm {photo} id={photo._id}></HotspotForm>
+
+			{/if}
 		</div>
 	</div>
 

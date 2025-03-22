@@ -1,8 +1,19 @@
 export const tagsState = $state({
-    currCollectionTags: new Set(),
-    currCollectionYears: new Set(),
-    selectedTag: '',
-    selectedYear: ''
+    imgTags: {
+        title: 'Tags',
+        allTags: new Set(),
+        selectedTag: ''
+    },
+    timeTags: {
+        title: 'Time',
+        allTags: new Set(),
+        selectedTag: ''
+    },
+    colorTags: {
+        title: 'Color',
+        allTags: new Set(),
+        selectedTag: ''
+    }
 })
 
 export const collectionState = $state({
@@ -14,4 +25,5 @@ export const photoState = $state({
     xPos: 0,
     yPos: 0,
     showForm: false,
+    formSubmitted: false
 })

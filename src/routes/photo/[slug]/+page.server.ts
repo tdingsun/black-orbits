@@ -5,6 +5,7 @@ import { createClient } from '@sanity/client';
 
 import { PUBLIC_SANITY_DATASET, PUBLIC_SANITY_PROJECT_ID } from '$env/static/public';
 import { SANITY_SECRET_KEY } from '$env/static/private';
+import { photoState } from '$lib/states.svelte.js';
 
 if (!PUBLIC_SANITY_PROJECT_ID || !PUBLIC_SANITY_DATASET) {
     throw new Error('Did you forget to run sanity init --env?');
@@ -36,23 +37,28 @@ export const actions = {
     default: async ({ cookies, request }) => {
         const data = await request.formData();
         const id = data.get('id') as string;
-        const result = sanityClient.patch(id)
-        .setIfMissing({hotspots: []})
-        .prepend('hotspots', [
-            {
-                xPos: Number(data.get('xPos')),
-                yPos: Number(data.get('yPos')), 
-                title: data.get('title'),
-                attribution: data.get('name'),
-                email: data.get('email'),
-                content: data.get('comment'),
-                isPublished: false,
-                userId: data.get('userId')
-            }
-        ])
-        .commit({
-            autoGenerateArrayKeys: true
-        })
-        return result;
+        if(photoState.formSubmitted){
+            return false;
+        } else {
+            const result = sanityClient.patch(id)
+            .setIfMissing({hotspots: []})
+            .prepend('hotspots', [
+                {
+                    xPos: Number(data.get('xPos')),
+                    yPos: Number(data.get('yPos')), 
+                    title: data.get('title'),
+                    attribution: data.get('name'),
+                    email: data.get('email'),
+                    content: data.get('comment'),
+                    isPublished: false,
+                    userId: data.get('userId')
+                }
+            ])
+            .commit({
+                autoGenerateArrayKeys: true
+            })
+            return result;
+        }
+       
     }
 }

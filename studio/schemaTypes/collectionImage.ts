@@ -40,13 +40,7 @@ export default defineType({
             validation: (Rule) => Rule.required(),
 
         }),
-        defineField({
-            name: 'attribution',
-            title: 'Attribution',
-            type: 'blockContent',
-            validation: (Rule) => Rule.required(),
 
-        }),
         defineField({
             name: 'image',
             title: 'Image',
@@ -69,9 +63,31 @@ export default defineType({
             type: 'string'
         }),
         defineField({
-            name: 'year',
-            title: 'Year',
-            type: 'number'
+            name: 'attribution',
+            title: 'Attribution',
+            type: 'blockContent',
+            validation: (Rule) => Rule.required(),
+        }),
+        defineField({
+            name: 'time',
+            title: 'Time Period',
+            type: 'tags',
+            options: {
+                includeFromRelated: 'time',
+            }
+        }),
+        defineField({
+            name: 'color',
+            title: 'color',
+            type: 'tags',
+            options: {
+                includeFromRelated: 'color',
+                predefinedTags: [
+                    {label: "Black and White", value: "bw"},
+                    {label: "Sepia", value: "sepia"},
+                    {label: "Color", value: "color"},
+                ]
+            }
         }),
         defineField({
             name: 'imgTags',

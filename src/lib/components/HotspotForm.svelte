@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { enhance } from '$app/forms';
 	import { getImgUrl } from '$lib/sanity';
 
 	import { photoState } from '$lib/states.svelte';
@@ -8,13 +9,32 @@
 	console.log(ctx.auth);
 	let { id, photo } = $props();
 
-	let toggleForm = (e) => {
+	let toggleForm = (e: MouseEvent) => {
 		e.preventDefault();
 		photoState.showForm = !photoState.showForm;
 	};
+
+	let onSubmit = () => {
+		console.log('here');
+		if(photoState.formSubmitted){
+			console.log('not submitting');
+			return false;
+		} else {
+
+			photoState.formSubmitted = true;
+		setTimeout(() => {
+			console.log('timeout');
+			photoState.showForm = false;
+			photoState.formSubmitted = false;
+		}, 3000)
+		return false;
+
+		}
+
+	}
 </script>
 
-<form method="POST" class="flex flex-col justify-between  h-full">
+<form use:enhance onsubmit={onSubmit} method="POST" class="flex flex-col justify-between  h-full">
 	<div class="flex flex-col gap-4">
 		<div >
 			<div class="font-bold">Submit an Observation</div>
@@ -35,7 +55,7 @@
 					minlength="1"
 					maxlength="90"
 					name="title"
-					class="border-primary-text w-full border"
+					class="border-primary-text w-full border p-1"
 				/>
 			</label>
 		</div>
@@ -47,7 +67,8 @@
 					minlength="1"
 					maxlength="1000"
 					name="comment"
-					class="border-primary-text h-48 w-full border"
+					placeholder="Ex. What is this detail? When is this photo from?"
+					class="border-primary-text h-48 w-full border p-1"
 				></textarea>
 			</label>
 		</div>
@@ -55,13 +76,13 @@
 		<div>
 			<label>
 				Name
-				<input required={true} maxlength="90" name="name" class="border-primary-text w-full border" />
+				<input required={true} maxlength="90" name="name" class="border-primary-text w-full border p-1" />
 			</label>
 		</div>
 		<div class="pb-4">
 			<label>
 				Email
-				<input required={true} maxlength="90" name="email" type="email" class="border-primary-text w-full border" />
+				<input required={true} maxlength="90" name="email" type="email" class="border-primary-text w-full border p-1" />
 			</label>
 		</div>
 	</div>

@@ -4,15 +4,23 @@ export const load = (async () => {
     const currentCollection = await getCurrentCollection();
 
     const tags = new Set<string>();
-    const yearTags = new Set<number>();
-    currentCollection.photoObjs.forEach(photoObj => {
-        photoObj.imgTags.forEach(tag => {
-            tags.add(tag.value);
-        })
-        yearTags.add(photoObj.year);
-    });
+    const timeTags = new Set<string>();
+    const colorTags = new Set<string>();
+    if(currentCollection.photoObjs){
+        currentCollection.photoObjs.forEach(photoObj => {
+            photoObj.imgTags.forEach(tag => {
+                tags.add(tag.value);
+            })
+            photoObj.time.forEach(tag => {
+                timeTags.add(tag.value);
+            })
+            photoObj.color.forEach(tag => {
+                colorTags.add(tag.value);
+            })
+        });
+    }
 
     return {
-        currentCollection, tags, yearTags
+        currentCollection, tags, timeTags, colorTags
     };
 }) satisfies PageLoad;

@@ -9,8 +9,9 @@
 
     afterNavigate(() => {
         collectionState.currCollection = data.currentCollection;
-        tagsState.currCollectionTags = data.tags;
-        tagsState.currCollectionYears =data.yearTags;
+        tagsState.imgTags.allTags = data.tags;
+        tagsState.timeTags.allTags = data.timeTags;
+        tagsState.colorTags.allTags = data.colorTags;
     })
 </script>
 

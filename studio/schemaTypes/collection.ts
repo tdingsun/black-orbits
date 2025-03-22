@@ -51,6 +51,11 @@ export default defineType({
             type: 'string'
         }),
         defineField({
+            name: 'interviewAudio',
+            title: 'Interview audio',
+            type: 'file'
+        }),
+        defineField({
             name: 'interview',
             title: 'Interview',
             type: 'blockContent'
