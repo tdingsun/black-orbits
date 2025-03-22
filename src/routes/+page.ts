@@ -8,15 +8,23 @@ export const load = (async () => {
     const colorTags = new Set<string>();
     if(currentCollection.photoObjs){
         currentCollection.photoObjs.forEach(photoObj => {
-            photoObj.imgTags.forEach(tag => {
-                tags.add(tag.value);
-            })
-            photoObj.time.forEach(tag => {
-                timeTags.add(tag.value);
-            })
-            photoObj.color.forEach(tag => {
-                colorTags.add(tag.value);
-            })
+            if(photoObj.imgTags){
+                photoObj.imgTags.forEach(tag => {
+                    tags.add(tag.value);
+                })
+            }
+            if(photoObj.time){
+                photoObj.time.forEach(tag => {
+                    timeTags.add(tag.value);
+                })
+            }
+            if(photoObj.color){
+                photoObj.color.forEach(tag => {
+                    colorTags.add(tag.value);
+                })
+            }
+            
+            
         });
     }
 

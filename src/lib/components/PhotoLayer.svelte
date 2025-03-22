@@ -6,11 +6,13 @@
 
 </script>
 
-<div>
-    {#if Object.prototype.hasOwnProperty.call(collectionState.currCollection, 'photoObjs')}
+{#if Object.prototype.hasOwnProperty.call(collectionState.currCollection, 'photoObjs')}
+
+<div class="flex flex-wrap gap-8 justify-center">
         {#each collectionState.currCollection.photoObjs as photo}
-            <DraggableImg {photo}></DraggableImg>
+            <DraggableImg {photo} totalNumPhotos={collectionState.currCollection.photoObjs.length}></DraggableImg>
         {/each}
-    {/if}
 
 </div>
+
+{/if}
