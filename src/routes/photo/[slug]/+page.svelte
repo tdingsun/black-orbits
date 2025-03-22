@@ -77,7 +77,7 @@
 							class="{showAllHotspots && !photoState.showForm ? '' : 'hidden'} {hotspotHover ===
 							idx + 1
 								? 'border-solid border-yellow-300 bg-bg blur-none'
-								: hotspotHover === 0 ? 'bg-white blur-xs' : 'bg-transparent border-none'} border-bg absolute mt-[-5%] ml-[-5%] h-[10%] w-[10%] cursor-pointer rounded-full border mix-blend-overlay transition-colors"
+								: hotspotHover === 0 ? 'bg-white blur-xs' : 'bg-transparent border-none'} border-bg absolute mt-[-5%] ml-[-5%] w-[10%] aspect-square cursor-pointer rounded-full border mix-blend-overlay transition-colors"
 						></div>
 					{/each}
 				{/if}
@@ -86,7 +86,7 @@
 						style="top:{photoState.yPos}%; left:{photoState.xPos}%;"
 						class="{showAllHotspots
 							? ''
-							: 'hidden'} pointer-events-none absolute mt-[-5%] ml-[-5%] h-[10%] w-[10%] cursor-pointer rounded-full border border-solid border-red-500 bg-transparent mix-blend-overlay transition-colors"
+							: 'hidden'} pointer-events-none absolute mt-[-5%] ml-[-5%] w-[10%] aspect-square cursor-pointer rounded-full border border-solid border-red-500 bg-transparent mix-blend-overlay transition-colors"
 					></div>
 				{/if}
 				<div></div>
