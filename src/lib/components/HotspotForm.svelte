@@ -49,7 +49,7 @@
 		</div>
 		<div>
 			<label>
-				Title
+				<div class="text-xs">Title</div>
 				<input
 					required={true}
 					minlength="1"
@@ -61,7 +61,7 @@
 		</div>
 		<div>
 			<label>
-				Observation
+				<div class="text-xs">Observation</div>
 				<textarea
 					required={true}
 					minlength="1"
@@ -75,13 +75,13 @@
 
 		<div>
 			<label>
-				Name
+				<div class="text-xs">Name</div>
 				<input required={true} maxlength="90" name="name" class="border-primary-text w-full border p-1" />
 			</label>
 		</div>
 		<div class="pb-4">
 			<label>
-				Email
+				<div class="text-xs">Email</div>
 				<input required={true} maxlength="90" name="email" type="email" class="border-primary-text w-full border p-1" />
 			</label>
 		</div>

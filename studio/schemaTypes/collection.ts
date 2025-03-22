@@ -56,6 +56,14 @@ export default defineType({
             type: 'file'
         }),
         defineField({
+            name: 'interviewCoverImg',
+            title: 'Interview Cover Image',
+            type: 'reference',
+            to: [
+                { type: 'collectionImage'}
+            ]
+        }),
+        defineField({
             name: 'interview',
             title: 'Interview',
             type: 'blockContent'

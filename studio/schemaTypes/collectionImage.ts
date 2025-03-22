@@ -69,6 +69,12 @@ export default defineType({
             validation: (Rule) => Rule.required(),
         }),
         defineField({
+            name: 'size',
+            title: 'Size',
+            type: 'string',
+            validation: (Rule) => Rule.required(),
+        }),
+        defineField({
             name: 'time',
             title: 'Time Period',
             type: 'tags',

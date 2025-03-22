@@ -18,7 +18,7 @@
     </div>
     <div class="divide-y divide-primary-text auth-container basis-1/2 p-4 sticky top-0 max-h-dvh overflow-scroll flex flex-col gap-4">
         <div class="flex gap-8 pb-4">
-            <div onclick={() => showSignUp = false} class="flex justify-center {showSignUp ? 'hover:underline cursor-pointer' : 'font-bold'}">Log in</div>
+            <div onclick={() => showSignUp = false} class="flex justify-center {showSignUp ? 'hover:underline cursor-pointer' : 'font-bold'}">Sign in</div>
             {#if !showSignUp}
             <SignIn appearance={{
                 elements: {

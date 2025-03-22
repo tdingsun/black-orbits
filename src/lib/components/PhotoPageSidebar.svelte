@@ -59,7 +59,7 @@
 					.
 				{/if}
 			</div>
-			<div class="flex flex-col gap-2 text-sm {photoState.showForm ? 'hidden' : ''}">
+			<div class="flex flex-col gap-2 text-xs {photoState.showForm ? 'hidden' : ''}">
 				<div class="flex gap-2">
 					<div class="w-24 flex-shrink-0">title</div>
 					<div>{photo.title}</div>
@@ -69,8 +69,24 @@
 					<div><BlockContent value={photo.attribution}></BlockContent></div>
 				</div>
 				<div class="flex gap-2">
+					<div class="w-24 flex-shrink-0">size</div>
+					<div>{photo.size}</div>
+				</div>
+				<div class="flex gap-2">
 					<div class="w-24 flex-shrink-0">year</div>
-					<div>{photo.year}</div>
+					<div class="flex gap-2">
+						{#each photo.time as tag}
+							<div>{tag.value}</div>
+						{/each}
+					</div>
+				</div>
+				<div class="flex gap-2">
+					<div class="w-24 flex-shrink-0">color</div>
+					<div class="flex gap-2">
+						{#each photo.color as tag}
+							<div>{tag.value}</div>
+						{/each}
+					</div>
 				</div>
 				<div class="flex gap-2">
 					<div class="w-24 flex-shrink-0">tags</div>
