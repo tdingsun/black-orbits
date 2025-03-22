@@ -12,9 +12,9 @@
     }
 </script>
 
-<div class="flex flex-col gap-2">
+<div class="flex flex-col gap-1">
     <div class="text-xs font-bold">{tags.title}</div>
-    <div class="flex flex-col gap-2">
+    <div class="flex flex-col gap-0.5">
         {#each tags.allTags as tag}
         <div onclick={() => toggleTag(tag)}
             class="text-xs cursor-pointer  hover:px-1 border w-max  py-0.5 rounded-xs  {tags.selectedTag === tag ? ' border-primary-text px-1' : 'border-transparent'}"
