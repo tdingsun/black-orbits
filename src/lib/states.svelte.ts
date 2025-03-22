@@ -24,6 +24,9 @@ export const collectionState = $state({
 export const photoState = $state({
     xPos: 0,
     yPos: 0,
+    xPixel: 0,
+    yPixel: 0,
     showForm: false,
-    formSubmitted: false
+    formSubmitted: false,
+    showFormError: false,
 })

@@ -37,6 +37,7 @@ export const actions = {
     default: async ({ cookies, request }) => {
         const data = await request.formData();
         const id = data.get('id') as string;
+        console.log('HEREEEEE');
         if(photoState.formSubmitted){
             return false;
         } else {
@@ -56,7 +57,8 @@ export const actions = {
             ])
             .commit({
                 autoGenerateArrayKeys: true
-            })
+            });
+            console.log(result);
             return result;
         }
        

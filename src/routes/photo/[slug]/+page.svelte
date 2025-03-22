@@ -6,6 +6,7 @@
 	import Caption from '$lib/components/Caption.svelte';
 	import { photoState } from '$lib/states.svelte';
 	import { preventDefault } from 'svelte/legacy';
+	import StyledButton from '$lib/components/StyledButton.svelte';
 	let { data }: { data: PageData } = $props();
 
 	let currPhotoIdxInCollection = $derived(
@@ -38,8 +39,11 @@
 	let imgW = $state(1);
 	let imgH = $state(1);
 	let onImgClick = (e: MouseEvent) => {
-		let xPercentage = Math.floor((e.offsetX / imgW) * 100);
-		let yPercentage = Math.floor((e.offsetY / imgH) * 100);
+		let xPercentage = (e.offsetX / imgW) * 100;
+		let yPercentage = (e.offsetY / imgH) * 100;
+
+		photoState.xPixel = e.offsetX;
+		photoState.yPixel = e.offsetY;
 
 		photoState.xPos = xPercentage;
 		photoState.yPos = yPercentage;
@@ -76,8 +80,8 @@
 							style="top:{hotspot.yPos}%; left:{hotspot.xPos}%;"
 							class="{showAllHotspots && !photoState.showForm ? '' : 'hidden'} {hotspotHover ===
 							idx + 1
-								? 'border-solid border-yellow-300 bg-bg blur-none'
-								: hotspotHover === 0 ? 'bg-white blur-xs' : 'bg-transparent border-none'} border-bg absolute mt-[-5%] ml-[-5%] w-[10%] aspect-square cursor-pointer rounded-full border mix-blend-overlay transition-colors"
+								? 'border-solid border-yellow-200 border bg-bg opacity-100'
+								: hotspotHover === 0 ? 'bg-white blur-xs opacity-100' : 'opacity-0'} border-bg absolute mt-[-5%] ml-[-5%] w-[10%] aspect-square cursor-pointer rounded-full border mix-blend-overlay transition-[color,_background-color,_border-color,_opacity]"
 						></div>
 					{/each}
 				{/if}
@@ -97,10 +101,14 @@
 		</div>
 		<div class="flex justify-between text-sm">
 			<a href="/photo/{prevPhotoSlug}">
-				<div class="border-primary-text border px-2 py-1">prev photo</div>
+				<StyledButton>
+					prev
+				</StyledButton>
 			</a>
 			<a href="/photo/{nextPhotoSlug}">
-				<div class="border-primary-text border px-2 py-1">next photo</div>
+				<StyledButton>
+					next
+				</StyledButton>
 			</a>
 		</div>
 	</div>

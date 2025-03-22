@@ -1,12 +1,10 @@
 <script lang="ts">
 	import { enhance } from '$app/forms';
 	import { getImgUrl } from '$lib/sanity';
-
 	import { photoState } from '$lib/states.svelte';
 	import { useClerkContext } from 'svelte-clerk';
 	const ctx = useClerkContext();
 	const userId = $derived(ctx.auth.userId);
-	console.log(ctx.auth);
 	let { id, photo } = $props();
 
 	let toggleForm = (e: MouseEvent) => {
@@ -14,39 +12,56 @@
 		photoState.showForm = !photoState.showForm;
 	};
 
-	let onSubmit = () => {
-		console.log('here');
+	let onSubmit = (e: SubmitEvent) => {
 		if(photoState.formSubmitted){
 			console.log('not submitting');
-			return false;
+			e.preventDefault();
+			photoState.showFormError = true;
+			setTimeout(() => {
+				photoState.showForm = false;
+				photoState.showFormError = false;
+		}, 3000)
 		} else {
-
 			photoState.formSubmitted = true;
 		setTimeout(() => {
-			console.log('timeout');
 			photoState.showForm = false;
 			photoState.formSubmitted = false;
 		}, 3000)
-		return false;
-
 		}
-
 	}
+
+	let hiddenImg;
+	let canvas;
+
+	$effect(() => {
+		const ctx = canvas.getContext('2d');
+		let w = hiddenImg.naturalWidth * 0.1;
+		let h = w;
+		let clipX = hiddenImg.naturalWidth * photoState.xPos/100 - w/2;
+		let clipY = hiddenImg.naturalHeight * photoState.yPos/100 - h/2;
+
+		ctx.clearRect(0, 0, canvas.width, canvas.height)
+		if(photoState.xPos > 0){
+			ctx.drawImage(hiddenImg, clipX, clipY, w, h, 0, 0, canvas.width, canvas.height);
+		}
+	})
 </script>
 
-<form use:enhance onsubmit={onSubmit} method="POST" class="flex flex-col justify-between  h-full">
+<form use:enhance onsubmit={(e) => onSubmit(e)} method="POST" class="flex flex-col justify-between h-full">
 	<div class="flex flex-col gap-4">
 		<div >
 			<div class="font-bold">Submit an Observation</div>
-			<div class="">(Click image to select hotspot)</div>
-
 		</div>
 		<input type="hidden" name="id" value={id} />
 		<input type="hidden" name="userId" value={userId} />
 		<input type="hidden" name="xPos" value={photoState.xPos} />
 		<input type="hidden" name="yPos" value={photoState.yPos} />
-		<div style="background-image: url({getImgUrl(photo.image)}); background-position: {photoState.xPos}% {photoState.yPos}%; background-size: 800%;" class=" border-primary-text my-2 h-24 w-24 rounded-full border relative">
+		<div class="flex items-center gap-4">
+			<img bind:this={hiddenImg} class="hidden" src={getImgUrl(photo.image)}/>
+			<canvas height=96 width=96 class="border-primary-text rounded-full border" bind:this={canvas}></canvas>
+			<div class="text-xs">(Click image to<br>select hotspot)</div>	
 		</div>
+		
 		<div>
 			<label>
 				<div class="text-xs">Title</div>
@@ -68,7 +83,7 @@
 					maxlength="1000"
 					name="comment"
 					placeholder="Ex. What is this detail? When is this photo from?"
-					class="border-primary-text h-48 w-full border p-1"
+					class="border-primary-text h-24 w-full border p-1"
 				></textarea>
 			</label>
 		</div>
@@ -87,16 +102,15 @@
 		</div>
 	</div>
 
-	<div class="flex gap-3 text-sm">
+	<div class="flex gap-3 text-sm mt-4">
 		<input
 			type="submit"
-			formmethod="post"
-			class="border-primary-text flex basis-1/2 cursor-pointer justify-center border px-2 py-1"
+			class="rounded-xs border-primary-text flex basis-1/2 cursor-pointer justify-center border px-2 py-1"
 		/>
 
 		<button
 			onclick={(e) => toggleForm(e)} 
-			class="border-primary-text flex basis-1/2 cursor-pointer justify-center border px-2 py-1"
+			class="rounded-xs border-primary-text flex basis-1/2 cursor-pointer justify-center border px-2 py-1"
 		>
 			Cancel
 		</button>

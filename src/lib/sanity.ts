@@ -90,6 +90,13 @@ export async function getPhotoBySlug(slug: string): Promise<any> {
 					slug
 				}
 			},
+			interviewTitle,
+			interviewAuthor,
+			interview[]{
+				_type=="collectionImage"=>@->{
+					slug
+				}
+			},
 			photos[]->{
 				slug
 			}

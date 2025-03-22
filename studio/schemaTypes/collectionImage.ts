@@ -66,13 +66,11 @@ export default defineType({
             name: 'attribution',
             title: 'Attribution',
             type: 'blockContent',
-            validation: (Rule) => Rule.required(),
         }),
         defineField({
             name: 'size',
             title: 'Size',
             type: 'string',
-            validation: (Rule) => Rule.required(),
         }),
         defineField({
             name: 'time',

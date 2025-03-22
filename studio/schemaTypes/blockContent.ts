@@ -57,19 +57,18 @@ export default defineType({
               },
             ],
           },
-          
           {
-            title: 'Footnote',
-            name: 'footnote',
+            title: 'marginalia',
+            name: 'marginalia',
             type: 'object',
             fields: [
               {
-                name: 'text',
-                type: 'array',
-                of: [{type: 'block'}]
-              }
-            ]
-          }
+                title: 'content',
+                name: 'content',
+                type: 'blockContent',
+              },
+            ],
+          },
         ],
       },
     }),

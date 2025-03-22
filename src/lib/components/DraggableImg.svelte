@@ -5,7 +5,6 @@
     let { photo } = $props();
     let el;
 
-    console.log(!tagsState.imgTags.selectedTag)
     let shouldShow = $derived(
         (
             (!tagsState.imgTags.selectedTag || (photo.imgTags && photo.imgTags.length > 0 && photo.imgTags.filter((tag) => tag.value === tagsState.imgTags.selectedTag).length > 0))

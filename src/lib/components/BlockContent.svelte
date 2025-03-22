@@ -4,6 +4,8 @@
  import BlockContentParagraph from '$lib/components/BlockContentParagraph.svelte';
  import BlockContentLink from '$lib/components/BlockContentLink.svelte';
  import BlockContentCollectionImg from '$lib/components/BlockContentCollectionImg.svelte';
+ import BlockContentMarginalia from '$lib/components/BlockContentMarginalia.svelte';
+ 
  let {value} = $props();
  const components: Partial<PortableTextComponents> = {
      block: {
@@ -14,7 +16,8 @@
          collectionImage: BlockContentCollectionImg
      },
      marks: {
-         link: BlockContentLink
+         link: BlockContentLink,
+         marginalia: BlockContentMarginalia
      }
  };
  //TODO: more styling like for headers
