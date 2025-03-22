@@ -12,8 +12,8 @@
     }
 </script>
 
-<div class="flex flex-col gap-1">
-    <div class="text-xs font-bold">{tags.title}</div>
+<div class="flex flex-col gap-1 select-none">
+    <div class="text-xs font-bold cursor-default">{tags.title}</div>
     <div class="flex flex-col gap-0.5">
         {#each tags.allTags as tag}
         <div onclick={() => toggleTag(tag)}
