@@ -8,49 +8,36 @@
 	import { collectionState } from '$lib/states.svelte';
 	import ColophonLink from './ColophonLink.svelte';
 	import StyledButton from './StyledButton.svelte';
-	let {
-		headerHeight = $bindable(),
-		isContentPage = false,
-		isColophonPage = false,
-		backLink = undefined
-	} = $props();
+	let { headerHeight = $bindable(), isContentPage = false, isColophonPage = false } = $props();
 </script>
 
 <div
 	bind:clientHeight={headerHeight}
-	class="z-9999 border-primary-text bg-bg sticky top-0 flex w-dvw items-start justify-between gap-8 border-b p-4 pb-3"
+	class="border-primary-text bg-bg sticky top-0 z-9999 flex w-dvw items-start justify-between gap-8 border-b p-4 pb-3"
 >
-	<div class="w-[100px] self-stretch flex  {isContentPage ? 'flex items-center gap-8' : ''}">
-		<div class="self-stretch flex gap-8 flex-col justify-between  h-auto ">
-			<SiteTitle></SiteTitle>	
+	<div class="flex w-[100px] self-stretch {isContentPage ? 'flex items-center gap-8' : ''}">
+		<div class="flex h-auto justify-between gap-8 self-stretch">
+			<SiteTitle></SiteTitle>
 		</div>
-		{#if !isColophonPage}
-			<div class="flex items-center gap-8 text-sm">
-				{#if Object.prototype.hasOwnProperty.call(collectionState.currCollection, 'slug')}
-					<a
-						class="hover:underline {isContentPage ? '' : 'hidden'}"
-						href="/collection/{collectionState.currCollection?.slug?.current}"
-						><StyledButton>
-							Back&nbsp;to&nbsp;Collection
-						</StyledButton></a
-					>
-				{/if}
-			</div>
-		{/if}
-
-		{#if backLink}
-		<a href={backLink} class="text-sm {isColophonPage ? '' : 'hidden'}">Back</a>
-
-		{/if}
 	</div>
-	
+
+	{#if !isColophonPage}
+		{#if Object.prototype.hasOwnProperty.call(collectionState.currCollection, 'slug')}
+			<a
+				class="{isContentPage ? '' : 'hidden'} hover:underline"
+				href="/collection/{collectionState.currCollection?.slug?.current}"
+			>
+				[Back&nbsp;to&nbsp;Collection]
+			</a>
+		{/if}
+	{/if}
+
 	{#if !isContentPage}
 		<div class=" w-xl {isContentPage ? 'hidden' : ''}">
 			<div class="-mt-1">
 				<CollectionTitle></CollectionTitle>
-
 			</div>
-			<div class="{isContentPage ? 'hidden' : ''} py-2">
+			<div class="py-2">
 				<CollectionDek></CollectionDek>
 			</div>
 			<div class="flex gap-8">
@@ -60,12 +47,12 @@
 		</div>
 	{/if}
 
-	<div class="flex flex-col self-stretch justify-between items-end  w-[100px]">
-			<SignOut></SignOut>
-			{#if !isContentPage}
+	<div class="flex w-[100px] flex-col items-end justify-between self-stretch">
+		<SignOut></SignOut>
+		{#if !isContentPage}
+			<StyledButton>
 				<ColophonLink></ColophonLink>
-			{/if}
-
-	
+			</StyledButton>
+		{/if}
 	</div>
 </div>

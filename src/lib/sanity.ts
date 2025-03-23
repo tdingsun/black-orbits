@@ -14,7 +14,7 @@ export const client = createClient({
 	projectId: PUBLIC_SANITY_PROJECT_ID,
 	dataset: PUBLIC_SANITY_DATASET,
 	useCdn: false, // `false` if you want to ensure fresh data
-	apiVersion: '2025-01-31', // date of setup
+	apiVersion: '2025-01-31' // date of setup
 });
 
 //url builder
@@ -34,7 +34,30 @@ export async function getColophon(): Promise<any> {
 		...,
 		content[]{
 			...,
-			_type=="collectionImage"=>@->
+			_type=="collectionImage"=>@->{
+				...,
+				'collectionInfo': collection->{
+					title,
+					slug,
+					essayTitle,
+					essayAuthor,
+					essay[]{
+						_type=="collectionImage"=>@->{
+							slug
+						}
+					},
+					interviewTitle,
+					interviewAuthor,
+					interview[]{
+						_type=="collectionImage"=>@->{
+							slug
+						}
+					},
+					photos[]->{
+						slug
+					}
+				}
+			}	
 		}
 	}`);
 }
@@ -52,11 +75,57 @@ export async function getCurrentCollection(): Promise<any> {
 		'essayCoverImgObj': essayCoverImg->,
 		interview[]{
 			...,
-			_type=="collectionImage"=>@->
+			_type=="collectionImage"=>@->{
+				...,
+				'collectionInfo': collection->{
+					title,
+					slug,
+					essayTitle,
+					essayAuthor,
+					essay[]{
+						_type=="collectionImage"=>@->{
+							slug
+						}
+					},
+					interviewTitle,
+					interviewAuthor,
+					interview[]{
+						_type=="collectionImage"=>@->{
+							slug
+						}
+					},
+					photos[]->{
+						slug
+					}
+				}
+			}	
 		},
 		essay[]{
 			...,
-			_type=="collectionImage"=>@->
+			_type=="collectionImage"=>@->{
+				...,
+				'collectionInfo': collection->{
+					title,
+					slug,
+					essayTitle,
+					essayAuthor,
+					essay[]{
+						_type=="collectionImage"=>@->{
+							slug
+						}
+					},
+					interviewTitle,
+					interviewAuthor,
+					interview[]{
+						_type=="collectionImage"=>@->{
+							slug
+						}
+					},
+					photos[]->{
+						slug
+					}
+				}
+			}	
 		}
 		}`);
 }
@@ -65,15 +134,84 @@ export async function getCollectionBySlug(slug: string): Promise<any> {
 	return await client.fetch(groq`*[_type == "collection" && slug.current == "${slug}"][0]{
 		..., 
 		'photoObjs': photos[]->, 
-		'essayCoverImgObj': essayCoverImg->, 
+		'essayCoverImgObj': essayCoverImg->{
+			...,
+			'collectionInfo': collection->{
+			title,
+					slug,
+					essayTitle,
+					essayAuthor,
+					essay[]{
+						_type=="collectionImage"=>@->{
+							slug
+						}
+					},
+					interviewTitle,
+					interviewAuthor,
+					interview[]{
+						_type=="collectionImage"=>@->{
+							slug
+						}
+					},
+					photos[]->{
+						slug
+					}
+			}
+		}, 
 		interviewAudio{..., 'url':asset->url},
 		interview[]{
 			...,
-			_type=="collectionImage"=>@->
+			_type=="collectionImage"=>@->{
+				...,
+				'collectionInfo': collection->{
+					title,
+					slug,
+					essayTitle,
+					essayAuthor,
+					essay[]{
+						_type=="collectionImage"=>@->{
+							slug
+						}
+					},
+					interviewTitle,
+					interviewAuthor,
+					interview[]{
+						_type=="collectionImage"=>@->{
+							slug
+						}
+					},
+					photos[]->{
+						slug
+					}
+				}
+			}	
 		},
 		essay[]{
 			...,
-			_type=="collectionImage"=>@->
+			_type=="collectionImage"=>@->{
+				...,
+				'collectionInfo': collection->{
+					title,
+					slug,
+					essayTitle,
+					essayAuthor,
+					essay[]{
+						_type=="collectionImage"=>@->{
+							slug
+						}
+					},
+					interviewTitle,
+					interviewAuthor,
+					interview[]{
+						_type=="collectionImage"=>@->{
+							slug
+						}
+					},
+					photos[]->{
+						slug
+					}
+				}
+			}	
 		}
 	}`);
 }
@@ -81,7 +219,7 @@ export async function getCollectionBySlug(slug: string): Promise<any> {
 export async function getPhotoBySlug(slug: string): Promise<any> {
 	return await client.fetch(groq`*[_type == "collectionImage" && slug.current == "${slug}"][0]{
 		...,
-		'collection': collection->{
+		'collectionInfo': collection->{
 			title,
 			slug,
 			essayTitle,
@@ -101,7 +239,6 @@ export async function getPhotoBySlug(slug: string): Promise<any> {
 			photos[]->{
 				slug
 			}
-
 		},
 	}`);
 }

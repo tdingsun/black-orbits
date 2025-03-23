@@ -5,6 +5,6 @@
 
 <div>
 <a class="hover:underline" href={`/interview/${collectionState.currCollection?.slug?.current}`}>
-    Interview
+    [Interview]
 </a>
 </div>

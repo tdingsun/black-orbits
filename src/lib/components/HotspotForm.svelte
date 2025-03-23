@@ -1,16 +1,11 @@
 <script lang="ts">
 	import { enhance } from '$app/forms';
 	import { getImgUrl } from '$lib/sanity';
-	import { photoState } from '$lib/states.svelte';
+	import { photoState, toggleForm } from '$lib/states.svelte';
 	import { useClerkContext } from 'svelte-clerk';
 	const ctx = useClerkContext();
 	const userId = $derived(ctx.auth.userId);
 	let { id, photo } = $props();
-
-	let toggleForm = (e: MouseEvent) => {
-		e.preventDefault();
-		photoState.showForm = !photoState.showForm;
-	};
 
 	let onSubmit = (e: SubmitEvent) => {
 		if(photoState.formSubmitted){
@@ -50,7 +45,7 @@
 <form use:enhance onsubmit={(e) => onSubmit(e)} method="POST" class="flex flex-col justify-between h-full">
 	<div class="flex flex-col gap-4">
 		<div >
-			<div class="font-bold">Submit an Observation</div>
+			<div class="">Submit an Observation</div>
 		</div>
 		<input type="hidden" name="id" value={id} />
 		<input type="hidden" name="userId" value={userId} />
@@ -105,12 +100,12 @@
 	<div class="flex gap-3 text-sm mt-4">
 		<input
 			type="submit"
-			class="rounded-xs border-primary-text flex basis-1/2 cursor-pointer justify-center border px-2 py-1"
+			class="text-xs rounded-xs border-primary-text flex basis-1/2 cursor-pointer justify-center border px-2 py-1"
 		/>
 
 		<button
 			onclick={(e) => toggleForm(e)} 
-			class="rounded-xs border-primary-text flex basis-1/2 cursor-pointer justify-center border px-2 py-1"
+			class="text-xs rounded-xs border-primary-text flex basis-1/2 cursor-pointer justify-center border px-2 py-1"
 		>
 			Cancel
 		</button>

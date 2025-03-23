@@ -6,7 +6,7 @@
 {#if collectionState.currCollection.slug}
 <div>
     <a class="hover:underline" href={`/essay/${collectionState.currCollection?.slug?.current}`}>
-        Essay
+        [Essay]
     </a>
 </div>
 {/if}

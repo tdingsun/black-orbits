@@ -21,7 +21,6 @@
         })
     })
 
-    
 </script>
 
 <NavHeader isContentPage={true}></NavHeader>
@@ -32,7 +31,7 @@
     </div>
 
     {#if data.collection.interviewAudio}
-        <div class="py-4 sticky top-14  bg-bg border-b mb-4">
+        <div class="py-4 sticky top-13  bg-bg border-b mb-4">
             <AudioPlayer src={data.collection.interviewAudio.url}></AudioPlayer>
         
         </div>

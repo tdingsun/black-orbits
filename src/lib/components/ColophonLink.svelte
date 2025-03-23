@@ -6,7 +6,7 @@ let showColophon = () => {
 	}
 </script>
 
-<button onclick={showColophon} class="hover:underline cursor-pointer">Colophon</button>
+<button onclick={showColophon} class="cursor-pointer">Colophon</button>
             <!-- <a class="hover:underline" href="/colophon">Colophon</a> -->
 
 

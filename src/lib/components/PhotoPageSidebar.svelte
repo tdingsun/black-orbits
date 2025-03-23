@@ -1,78 +1,84 @@
 <script lang="ts">
 	import StyledButton from './StyledButton.svelte';
 	import HotspotForm from './HotspotForm.svelte';
-
-	import ColophonLink from './ColophonLink.svelte';
-
 	import BlockContent from './BlockContent.svelte';
 	import SignOut from './SignOut.svelte';
 	import SiteTitle from './SiteTitle.svelte';
-	import { client } from '$lib/sanity';
-	import { photoState } from '$lib/states.svelte';
-	let {
-		showAllHotspots = $bindable(),
-		photo,
-		highlightHotspot,
+	import {
+		photoState,
 		dehighlightHotspot,
-		hotspotHover = $bindable()
-	} = $props();
+		highlightHotspot,
+		toggleForm,
+		toggleHotspots
+	} from '$lib/states.svelte';
+
+	let { photo, isModal = false } = $props();
+
+	let currPhotoIdxInCollection = $derived(
+		photo.collectionInfo.photos.findIndex(
+			(currPhoto) => currPhoto.slug.current === photo.slug.current
+		)
+	);
+	let numPhotosInCollection = $derived(photo.collectionInfo.photos.length);
+
 	let isInEssay = $derived(
-		photo.collection.essay.filter((obj) => obj.slug && obj.slug.current === photo.slug.current)
+		photo.collectionInfo.essay.filter((obj) => obj.slug && obj.slug.current === photo.slug.current)
 			.length
 	);
 	let isInInterview = $derived(
-		photo.collection.interview.filter((obj) => obj.slug && obj.slug.current === photo.slug.current)
-			.length
+		photo.collectionInfo.interview.filter(
+			(obj) => obj.slug && obj.slug.current === photo.slug.current
+		).length
 	);
-
-	const toggleAllHotspots = () => {
-		showAllHotspots = !showAllHotspots;
-	};
-
-	let toggleForm = () => {
-		photoState.showForm = !photoState.showForm;
-	};
+	let nextPhotoSlug = $derived(
+		photo.collectionInfo.photos[
+			currPhotoIdxInCollection === numPhotosInCollection - 1 ? 0 : currPhotoIdxInCollection + 1
+		].slug.current
+	);
+	let prevPhotoSlug = $derived(
+		photo.collectionInfo.photos[
+			currPhotoIdxInCollection === 0 ? numPhotosInCollection - 1 : currPhotoIdxInCollection - 1
+		].slug.current
+	);
 </script>
 
 <div
-	class="border-primary-text relative flex h-dvh min-w-xs basis-1/4 flex-col justify-between overflow-auto border-r"
+	class="border-primary-text relative flex h-full min-w-xs basis-1/4 flex-col justify-between overflow-auto border-r"
 >
-	<div class="flex h-full flex-col p-4 pb-0">
-		<div class="border-primary-text flex justify-between border-b pb-4">
+	<div class="flex h-full flex-col pb-0">
+		<div class="border-primary-text flex justify-between p-4 {isModal ? 'hidden' : ''}">
 			<div class="flex flex-col gap-1">
 				<SiteTitle></SiteTitle>
-				<div class="text-sm">
+				<!-- <div class="text-sm">
 					<ColophonLink></ColophonLink>
-				</div>
+				</div> -->
 			</div>
 			<div class="flex flex-col gap-2">
 				<SignOut></SignOut>
 			</div>
 		</div>
 
-		<div class="border-primary-text border-b py-2 text-sm {photoState.showForm ? 'flex-grow' : ''}">
+		<div class="border-primary-text p-4 text-sm {photoState.showForm ? 'flex-grow' : ''}">
 			<div class="pb-4">
 				<span>This image is a part of</span>
-				 <a
-					class="font-bold hover:underline"
-					href="/collection/{photo.collection.slug.current}">[{photo.collection.title}]
+				<a class="font-bold hover:underline" href="/collection/{photo.collectionInfo.slug.current}"
+					>[{photo.collectionInfo.title}]
 				</a>{#if isInEssay || isInInterview}
 					{` and is referenced in`}
 				{/if}{#if isInEssay}
 					{` the essay `}
-					<a
-						href="/essay/{photo.collection.slug.current}"
-						class="font-bold hover:underline">[{photo.collection.essayTitle}]
+					<a href="/essay/{photo.collectionInfo.slug.current}" class="font-bold hover:underline"
+						>[{photo.collectionInfo.essayTitle}]
 					</a>
 					<span>
-						by {photo.collection.essayAuthor}{#if isInInterview}, and{/if}
+						by {photo.collectionInfo.essayAuthor}{#if isInInterview}, and{/if}
 					</span>
 				{/if}{#if isInInterview}
 					{` the interview `}<a
-						href="/interview/{photo.collection.slug.current}"
-						class="font-bold hover:underline">[{photo.collection.interviewTitle}]</a
+						href="/interview/{photo.collectionInfo.slug.current}"
+						class="font-bold hover:underline">[{photo.collectionInfo.interviewTitle}]</a
 					>
-					by {photo.collection.interviewAuthor}
+					by {photo.collectionInfo.interviewAuthor}
 				{/if}.
 			</div>
 			<div class="flex flex-col gap-2 text-xs {photoState.showForm ? 'hidden' : ''}">
@@ -115,67 +121,80 @@
 			</div>
 		</div>
 
-		<div class="py-2 text-sm {photoState.showForm ? 'hidden' : ''}">
+		<div class="text-sm {photoState.showForm ? 'hidden' : ''} flex flex-grow flex-col">
 			{#if photo.hotspots && photo.hotspots.filter((hotspot) => hotspot.isPublished).length > 0}
-				<div class="mb-4 flex justify-between">
-					<div>hotspots</div>
-					<button onclick={toggleAllHotspots}>
-						<StyledButton>
-							{showAllHotspots ? 'hide' : 'show'}
+				<div
+					class="mb-14 h-0 flex-grow overflow-scroll border-y p-4 pb-0"
+				>
+					<div class=" flex justify-between pb-4">
+						<div>Observations</div>
+						<button onclick={toggleHotspots}>
+							<StyledButton>
+								{photoState.showAllHotspots ? 'hide' : 'show'}
+							</StyledButton>
+						</button>
+					</div>
 
-						</StyledButton>
-					</button>
+					<div class="{photoState.showAllHotspots
+						? ''
+						: 'hidden'} ">
+{#each photo.hotspots.filter((hotspot) => hotspot.isPublished) as hotspot, idx}
+{#if hotspot.isPublished}
+	<div
+		onmouseenter={() => highlightHotspot(idx)}
+		onmouseleave={dehighlightHotspot}
+		class="relative pb-8"
+		role="presentation"
+	>
+		<div class="relative flex gap-3">
+			<div
+				class="{idx + 1 === photoState.hotspotHover
+					? 'text-bg bg-primary-text'
+					: ''} border-primary-text flex h-6 w-6 items-center justify-center rounded-full border text-xs transition-colors"
+			>
+				{idx + 1}
+			</div>
+			<div class="relative -top-0.5">
+				<div class="font-bold">
+					{hotspot.title}
+				</div>
+				<div class="text-xs">
+					Submitted by {hotspot.attribution ? hotspot.attribution : 'anonymous'}
+				</div>
+				<div class="mt-2">
+					{hotspot.content}
+				</div>
+			</div>
+		</div>
+	</div>
+{/if}
+{/each}
+					</div>
+
+					
 				</div>
 			{/if}
-			
-			{#if photo.hotspots}
-				<div class="{showAllHotspots ? '' : 'hidden'}">
-					{#each photo.hotspots.filter((hotspot) => hotspot.isPublished) as hotspot, idx}
-					{#if hotspot.isPublished}
-						<div
-							onmouseenter={() => highlightHotspot(idx)}
-							onmouseleave={dehighlightHotspot}
-							class="  pb-8 relative"
-						>
-							<div class="relative flex gap-3">
-								<div class="{idx + 1 === hotspotHover
-								? 'text-bg bg-primary-text'
-								: ''} text-xs border-primary-text transition-colors rounded-full border  w-6 h-6 flex justify-center items-center">
-									{idx + 1}
-								</div>
-								<div class="-top-0.5 relative">
-									<div class="font-bold">
-										{hotspot.title}
-									</div>
-									<div class="text-xs">
-										Submitted by {hotspot.attribution ? hotspot.attribution : 'anonymous'}
-									</div>
-									<div class="mt-2">
-										{hotspot.content}
-									</div>
-								</div>
-								
-							</div>
-							
-						</div>
-					{/if}
-				{/each}
-				</div>
+			<div class="absolute bottom-0 left-0 flex w-full justify-between p-4">
+				{#if !isModal}
+					<a href="/photo/{prevPhotoSlug}">
+						<StyledButton>prev</StyledButton>
+					</a>
+				{/if}
 				
-			{/if}
-			<div class="absolute bottom-0 left-0 p-4">
-				<button
-					onclick={toggleForm}>
-					<StyledButton>
-						Submit an Observation
-					</StyledButton>
-					</button>
+				<button onclick={(e) => toggleForm(e)}>
+					<StyledButton>Submit an Observation</StyledButton>
+				</button>
+				{#if !isModal}
+				<a href="/photo/{nextPhotoSlug}">
+					<StyledButton>next</StyledButton>
+				</a>
+				{/if}
 			</div>
 		</div>
 
 		<div
 			class=" {photoState.showForm
-				? 'pt-2 pb-4'
+				? 'p-4 border-t'
 				: 'hidden h-0 overflow-hidden'}  bg-bg border-primary-text w-full text-sm"
 		>
 			{#if photoState.showFormError}

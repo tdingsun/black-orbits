@@ -21,12 +21,12 @@
 	{#if Object.prototype.hasOwnProperty.call(collectionState.currCollection, 'title')}
 		<div class="flex gap-2">
 			<div class="py-1 pr-2">Collection:</div>
-			<div onmouseleave={hideMenu} class=" top-[-1px] relative min-w-50">
-				<div onclick={toggleMenu} class="border {showMenu ? 'border-primary-text' : 'border-transparent'} hover:border-primary-text rounded-xs bg-bg px-2 py-1 flex  cursor-pointer gap-2">
+			<div role="menu" tabindex="0" onclick={toggleMenu} onkeypress={toggleMenu}  onmouseleave={hideMenu} class=" top-[-1px] relative min-w-50">
+				<div  class="border {showMenu ? 'border-primary-text' : 'border-transparent'} hover:border-primary-text rounded-xs bg-bg px-2 py-1 flex cursor-pointer gap-2">
 					<div>{collectionState.currCollection.title}</div>
-					<div class="relative -top-0.75 rotate-45">
-						<div class="border-primary-text absolute h-3 w-3 border-r"></div>
-						<div class="border-primary-text absolute h-3 w-3 border-b"></div>
+					<div class="relative top-0.25 rotate-45">
+						<div class="border-primary-text absolute h-2 w-2 border-r-[1.5px]"></div>
+						<div class="border-primary-text absolute h-2 w-2 border-b-[1.5px]"></div>
 					</div>
 				</div>
 				{#if collectionState.allCollections.length}
@@ -37,7 +37,7 @@
 					>
 						{#each collectionState.allCollections as collection}
 							{#if collection.slug !== collectionState.currCollection.slug.current}
-								<a href="/collection/{collection.slug}">
+								<a role="menu" tabindex="0" href="/collection/{collection.slug}">
 									<div class="hover:bg-primary-text hover:text-bg h-full w-full px-2 py-1">
 										{collection.title}
 									</div>
