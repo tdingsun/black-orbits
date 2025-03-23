@@ -29,4 +29,8 @@ export const photoState = $state({
     showForm: false,
     formSubmitted: false,
     showFormError: false,
+});
+
+export const siteState = $state({
+    showColophon: false
 })

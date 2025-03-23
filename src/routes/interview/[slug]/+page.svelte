@@ -25,16 +25,20 @@
 </script>
 
 <NavHeader isContentPage={true}></NavHeader>
-<div class="p-2 gap-4 max-w-xl m-auto relative pb-48">
+<div class="p-2 gap-4 max-w-xl m-auto  pb-48">
     <div class="text-4xl pb-4">
         <div class="">{data.collection.interviewTitle}</div>
         <div class=" italic">by {data.collection.interviewAuthor}</div>
     </div>
 
-    <div class="py-4 sticky top-14  bg-bg border-b mb-4">
-        <AudioPlayer src={data.collection.interviewAudio.url}></AudioPlayer>
-    
-    </div>
+    {#if data.collection.interviewAudio}
+        <div class="py-4 sticky top-14  bg-bg border-b mb-4">
+            <AudioPlayer src={data.collection.interviewAudio.url}></AudioPlayer>
+        
+        </div>
+    {/if}
+
+
 
     <BlockContent value={data.collection.interview}></BlockContent>
 </div>

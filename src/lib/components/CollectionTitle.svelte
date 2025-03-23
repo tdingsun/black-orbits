@@ -6,6 +6,12 @@
 	let toggleMenu = () => {
 		showMenu = !showMenu;
 	};
+	let hideMenu = () => {
+		showMenu = false;
+	};
+	let showTheMenu = () => {
+		showMenu = true;
+	}
 	afterNavigate(() => {
 		showMenu = false;
 	});
@@ -14,9 +20,9 @@
 <div>
 	{#if Object.prototype.hasOwnProperty.call(collectionState.currCollection, 'title')}
 		<div class="flex gap-2">
-			<div>Collection:</div>
-			<div class="relative min-w-50">
-				<div onclick={toggleMenu} class=" flex cursor-pointer gap-2 hover:underline">
+			<div class="py-1 pr-2">Collection:</div>
+			<div onmouseleave={hideMenu} class=" top-[-1px] relative min-w-50">
+				<div onclick={toggleMenu} class="border {showMenu ? 'border-primary-text' : 'border-transparent'} hover:border-primary-text rounded-xs bg-bg px-2 py-1 flex  cursor-pointer gap-2">
 					<div>{collectionState.currCollection.title}</div>
 					<div class="relative -top-0.75 rotate-45">
 						<div class="border-primary-text absolute h-3 w-3 border-r"></div>
@@ -27,12 +33,12 @@
 					<div
 						class="{showMenu
 							? 'flex'
-							: 'hidden'} bg-bg absolute mt-2 w-full flex-col gap-1 border text-sm"
+							: 'hidden'} bg-bg absolute  w-full flex-col gap-1 border border-t-0 "
 					>
 						{#each collectionState.allCollections as collection}
 							{#if collection.slug !== collectionState.currCollection.slug.current}
 								<a href="/collection/{collection.slug}">
-									<div class="hover:bg-primary-text hover:text-bg h-full w-full p-2">
+									<div class="hover:bg-primary-text hover:text-bg h-full w-full px-2 py-1">
 										{collection.title}
 									</div>
 								</a>

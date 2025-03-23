@@ -135,19 +135,22 @@
 						<div
 							onmouseenter={() => highlightHotspot(idx)}
 							onmouseleave={dehighlightHotspot}
-							class="  pb-4 relative"
+							class="  pb-8 relative"
 						>
 							<div class="relative flex gap-3">
 								<div class="{idx + 1 === hotspotHover
 								? 'text-bg bg-primary-text'
-								: ''} border-primary-text transition-colors rounded-full border  w-8 h-8 flex justify-center items-center">
+								: ''} text-xs border-primary-text transition-colors rounded-full border  w-6 h-6 flex justify-center items-center">
 									{idx + 1}
 								</div>
 								<div class="-top-0.5 relative">
 									<div class="font-bold">
 										{hotspot.title}
 									</div>
-									<div>
+									<div class="text-xs">
+										Submitted by {hotspot.attribution ? hotspot.attribution : 'anonymous'}
+									</div>
+									<div class="mt-2">
 										{hotspot.content}
 									</div>
 								</div>

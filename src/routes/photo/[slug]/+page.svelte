@@ -69,7 +69,7 @@
 					onclick={(e) => onImgClick(e)}
 					class="{photoState.showForm
 						? 'cursor-pointer'
-						: ''} mb-2 max-h-[calc(100dvh-8rem)] max-w-full"
+						: ''} mb-2 max-h-[calc(100dvh-9rem)] max-w-full"
 					src={getImgUrl(data.photo.image)}
 				/>
 				{#if data.photo.hotspots}
