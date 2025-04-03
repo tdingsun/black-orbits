@@ -7,23 +7,7 @@
 	const userId = $derived(ctx.auth.userId);
 	let { id, photo } = $props();
 
-	let onSubmit = (e: SubmitEvent) => {
-		if(photoState.formSubmitted){
-			console.log('not submitting');
-			e.preventDefault();
-			photoState.showFormError = true;
-			setTimeout(() => {
-				photoState.showForm = false;
-				photoState.showFormError = false;
-		}, 3000)
-		} else {
-			photoState.formSubmitted = true;
-		setTimeout(() => {
-			photoState.showForm = false;
-			photoState.formSubmitted = false;
-		}, 3000)
-		}
-	}
+
 
 	let hiddenImg;
 	let canvas;
@@ -42,7 +26,29 @@
 	})
 </script>
 
-<form use:enhance onsubmit={(e) => onSubmit(e)} method="POST" class="flex flex-col justify-between h-full">
+<form use:enhance={({ formElement, formData, action, cancel, submitter }) => {
+	if(photoState.formSubmitted){
+		cancel();
+		console.log('not submitting');
+		e.preventDefault();
+		photoState.showFormError = true;
+		setTimeout(() => {
+			photoState.showForm = false;
+			photoState.showFormError = false;
+		}, 3000)
+	} 
+	return async ({ result, update }) => {
+		if (result.type === 'success') {
+			console.log('success');
+			photoState.formSubmitted = true;
+			setTimeout(() => {
+				photoState.showForm = false;
+				photoState.formSubmitted = false;
+			}, 3000)
+		}
+		update();
+	}
+}} method="POST" action="?/submitHotspot" class="flex flex-col justify-between h-full">
 	<div class="flex flex-col gap-4">
 		<div >
 			<div class="">Submit an Observation</div>
@@ -100,6 +106,7 @@
 	<div class="flex gap-3 text-sm mt-4">
 		<input
 			type="submit"
+			formaction="?/submitHotspot"
 			class="text-xs rounded-xs border-primary-text flex basis-1/2 cursor-pointer justify-center border px-2 py-1"
 		/>
 

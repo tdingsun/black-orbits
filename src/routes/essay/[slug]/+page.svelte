@@ -1,12 +1,10 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
-	import { collectionState, photoState, siteState } from '$lib/states.svelte';
+	import { photoState, siteState } from '$lib/states.svelte';
 	import type { PageData } from './$types';
-	import BlockContentImg from '$lib/components/BlockContentImg.svelte';
 	import { getImgUrl } from '$lib/sanity';
 	import BlockContent from '$lib/components/BlockContent.svelte';
 	import NavHeader from '$lib/components/NavHeader.svelte';
-	import Caption from '$lib/components/Caption.svelte';
 	import PhotoDetailModal from "$lib/components/PhotoDetailModal.svelte";
 
 	let { data }: { data: PageData } = $props();
@@ -69,8 +67,6 @@ let showModal = () => {
 		<div class="font-mono text-xs top-1 relative tracking-tight">
 			<BlockContent value={data.collection.essayDek}></BlockContent>
 		</div>
-	
-
 	</div>
 
 

@@ -34,12 +34,26 @@ export const load = async ({ locals }) => {
 };
 
 export const actions = {
-    default: async ({ cookies, request }) => {
+    submitHotspot: async ({ cookies, request }) => {
+
         const data = await request.formData();
-        const id = data.get('id') as string;
+
+        let id = data.get('id') as string;
+        
+        const now = new Date();
+        const timestamp = now.toISOString();
         if(photoState.formSubmitted){
             return false;
         } else {
+            const params = {
+                draft: `drafts.${id}`,
+                published: id,
+              }
+            const query = `defined(*[(_id in [$draft])][0]._id)`;
+            const hasDraft = await sanityClient.fetch(query, params);
+            if(hasDraft){
+                id = `drafts.${id}`
+            };
             const result = sanityClient.patch(id)
             .setIfMissing({hotspots: []})
             .prepend('hotspots', [
@@ -51,13 +65,13 @@ export const actions = {
                     email: data.get('email'),
                     content: data.get('comment'),
                     isPublished: false,
-                    userId: data.get('userId')
+                    userId: data.get('userId'),
+                    timestamp
                 }
             ])
             .commit({
                 autoGenerateArrayKeys: true
             });
-            console.log(result);
             return result;
         }
        

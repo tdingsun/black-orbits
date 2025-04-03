@@ -151,6 +151,12 @@ export default defineType({
                             title: 'userId',
                             type: 'string',
                             readOnly: true
+                        }),
+                        defineField({
+                            name: 'timestamp',
+                            title: 'timestamp',
+                            type: 'string',
+                            readOnly: true
                         })
                     ]
                 }

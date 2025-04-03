@@ -70,6 +70,7 @@
 				el.style.top = el.offsetTop - pos2 + 'px';
 				el.style.left = el.offsetLeft - pos1 + 'px';
 				el.style.position = 'absolute';
+				el.style.cursor = 'grabbing';
                 isDragging = true;
                 console.log('here');
 
@@ -79,6 +80,7 @@
 				// stop moving when mouse button is released:
 				document.onmouseup = null;
 				document.onmousemove = null;
+				el.style.cursor = 'pointer';
                 if(!isDragging){
                     goto(`/photo/${photo.slug.current}`)
                 }
@@ -92,7 +94,7 @@
 		bind:this={el} style="z-index: 1"
 		class="{shouldShow
 			? ''
-			: 'hidden'} hover:!transform-none transition-transform pointer-events-auto draggableImg -left-[100dvw] w-full cursor-pointer active:cursor-grabbing "
+			: 'hidden'} hover:!transform-none transition-transform pointer-events-auto draggableImg -left-[100dvw] w-full cursor-pointer "
 	>
 		<div class="group w-full perspective-distant">
 			<div
@@ -100,19 +102,24 @@
 					? 'group-hover:rotate-y-180'
 					: ''}  w-full transition-transform duration-500 transform-3d "
 			>
-				{#if photo.image}
+				{#if photo.imagebackside && photo.image}
+					<img
+						bind:clientHeight={imgHeight}
+						class=" w-full rounded-sm rotate-y-180 z-0 absolute top-0 backface-hidden active:border active:border-primary-text"
+						src={getImgUrl(photo.image)}
+						alt={photo.alt ? photo.alt : ''}
+					/>
+					<img
+						bind:clientHeight={imgBackHeight}
+						class="  w-full  rounded-sm backface-hidden active:border active:border-primary-text"
+						src={getImgUrl(photo.imagebackside)}
+						alt={photo.alt ? photo.alt : ''}
+					/>
+				{:else if photo.image}
 					<img
 						bind:clientHeight={imgHeight}
 						class=" w-full rounded-sm backface-hidden active:border active:border-primary-text"
 						src={getImgUrl(photo.image)}
-						alt={photo.alt ? photo.alt : ''}
-					/>
-				{/if}
-				{#if photo.imagebackside}
-					<img
-						bind:clientHeight={imgBackHeight}
-						class="absolute top-0 z-0 w-full rotate-y-180 rounded-sm backface-hidden active:border active:border-primary-text"
-						src={getImgUrl(photo.imagebackside)}
 						alt={photo.alt ? photo.alt : ''}
 					/>
 				{/if}
