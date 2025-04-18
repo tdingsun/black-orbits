@@ -30,7 +30,6 @@
 	if(photoState.formSubmitted){
 		cancel();
 		console.log('not submitting');
-		e.preventDefault();
 		photoState.showFormError = true;
 		setTimeout(() => {
 			photoState.showForm = false;

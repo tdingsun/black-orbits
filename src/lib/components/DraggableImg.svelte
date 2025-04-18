@@ -72,7 +72,6 @@
 				el.style.position = 'absolute';
 				el.style.cursor = 'grabbing';
                 isDragging = true;
-                console.log('here');
 
 			}
 
@@ -89,45 +88,48 @@
 	});
 </script>
 
-<div style="height: {Math.max(imgHeight, imgBackHeight)}px" class="relative w-48 pointer-events-none">
-	<div
-		bind:this={el} style="z-index: 1"
-		class="{shouldShow
-			? ''
-			: 'hidden'} hover:!transform-none transition-transform pointer-events-auto draggableImg -left-[100dvw] w-full cursor-pointer "
-	>
-		<div class="group w-full perspective-distant">
-			<div
-				class="{photo.image && photo.imagebackside
-					? 'group-hover:rotate-y-180'
-					: ''}  w-full transition-transform duration-500 transform-3d "
-			>
-				{#if photo.imagebackside && photo.image}
-					<img
-						bind:clientHeight={imgHeight}
-						class=" w-full rounded-sm rotate-y-180 z-0 absolute top-0 backface-hidden active:border active:border-primary-text"
-						src={getImgUrl(photo.image)}
-						alt={photo.alt ? photo.alt : ''}
-					/>
-					<img
-						bind:clientHeight={imgBackHeight}
-						class="  w-full  rounded-sm backface-hidden active:border active:border-primary-text"
-						src={getImgUrl(photo.imagebackside)}
-						alt={photo.alt ? photo.alt : ''}
-					/>
-				{:else if photo.image}
-					<img
-						bind:clientHeight={imgHeight}
-						class=" w-full rounded-sm backface-hidden active:border active:border-primary-text"
-						src={getImgUrl(photo.image)}
-						alt={photo.alt ? photo.alt : ''}
-					/>
-				{/if}
+<a href={`/photo/${photo.slug.current}`} oncontextmenu={(e) => {e.preventDefault(); return false}}>
+	<div style="height: {Math.max(imgHeight, imgBackHeight)}px" class="relative w-48 pointer-events-none">
+		<div
+			 style="z-index: 1"
+			class="{shouldShow
+				? ''
+				: 'hidden'} hover:!transform-none transition-transform pointer-events-auto draggableImg -left-[100dvw] w-full cursor-pointer "
+		>
+			<div class="group w-full perspective-distant">
+				<div
+					class="{photo.image && photo.imagebackside
+						? 'group-hover:rotate-y-180'
+						: ''}  w-full transition-transform duration-500 transform-3d "
+				>
+					{#if photo.imagebackside && photo.image}
+						<img
+							bind:clientHeight={imgHeight}
+							class=" w-full rounded-sm rotate-y-180 z-0 absolute top-0 backface-hidden active:border active:border-primary-text"
+							src={getImgUrl(photo.image)}
+							alt={photo.alt ? photo.alt : ''}
+						/>
+						<img
+							bind:clientHeight={imgBackHeight}
+							class="  w-full  rounded-sm backface-hidden active:border active:border-primary-text"
+							src={getImgUrl(photo.imagebackside)}
+							alt={photo.alt ? photo.alt : ''}
+						/>
+					{:else if photo.image}
+						<img
+							bind:clientHeight={imgHeight}
+							class=" w-full rounded-sm backface-hidden active:border active:border-primary-text"
+							src={getImgUrl(photo.image)}
+							alt={photo.alt ? photo.alt : ''}
+						/>
+					{/if}
+				</div>
 			</div>
+	
+			<!-- <div>
+				<a href={`/photo/${photo.slug.current}`} class="text-xs hover:underline"> See More </a>
+			</div> -->
 		</div>
-
-		<!-- <div>
-			<a href={`/photo/${photo.slug.current}`} class="text-xs hover:underline"> See More </a>
-		</div> -->
 	</div>
-</div>
+</a>
+

@@ -4,6 +4,8 @@
 	import BlockContent from './BlockContent.svelte';
 	import SignOut from './SignOut.svelte';
 	import SiteTitle from './SiteTitle.svelte';
+	import { SignedIn, SignedOut } from 'svelte-clerk';
+
 	import {
 		photoState,
 		dehighlightHotspot,
@@ -123,9 +125,7 @@
 
 		<div class="text-sm {photoState.showForm ? 'hidden' : ''} flex flex-grow flex-col">
 			{#if photo.hotspots && photo.hotspots.filter((hotspot) => hotspot.isPublished).length > 0}
-				<div
-					class="mb-14 h-0 flex-grow overflow-scroll border-y p-4 pb-0"
-				>
+				<div class="mb-14 h-0 flex-grow overflow-scroll border-y p-4 pb-0">
 					<div class=" flex justify-between pb-4">
 						<div>Observations</div>
 						<button onclick={toggleHotspots}>
@@ -135,66 +135,74 @@
 						</button>
 					</div>
 
-					<div class="{photoState.showAllHotspots
-						? ''
-						: 'hidden'} ">
-{#each photo.hotspots.filter((hotspot) => hotspot.isPublished) as hotspot, idx}
-{#if hotspot.isPublished}
-	<div
-		onmouseenter={() => highlightHotspot(idx)}
-		onmouseleave={dehighlightHotspot}
-		class="relative pb-8"
-		role="presentation"
-	>
-		<div class="relative flex gap-3">
-			<div
-				class="{idx + 1 === photoState.hotspotHover
-					? 'text-bg bg-primary-text'
-					: ''} border-primary-text flex h-6 w-6 items-center justify-center rounded-full border text-xs transition-colors"
-			>
-				{idx + 1}
-			</div>
-			<div class="relative -top-0.5">
-				<div class="font-bold">
-					{hotspot.title}
-				</div>
-				<div class="text-xs">
-					Submitted by {hotspot.attribution ? hotspot.attribution : 'anonymous'}
-				</div>
-				<div class="mt-2">
-					{hotspot.content}
-				</div>
-			</div>
-		</div>
-	</div>
-{/if}
-{/each}
+					<div class="{photoState.showAllHotspots ? '' : 'hidden'} ">
+						{#each photo.hotspots.filter((hotspot) => hotspot.isPublished) as hotspot, idx}
+							{#if hotspot.isPublished}
+								<div
+									onmouseenter={() => highlightHotspot(idx)}
+									onmouseleave={dehighlightHotspot}
+									class="relative pb-8"
+									role="presentation"
+								>
+									<div class="relative flex gap-3">
+										<div
+											class="{idx + 1 === photoState.hotspotHover
+												? 'text-bg bg-primary-text'
+												: ''} border-primary-text flex h-6 w-6 items-center justify-center rounded-full border text-xs transition-colors"
+										>
+											{idx + 1}
+										</div>
+										<div class="relative -top-0.5">
+											<div class="font-bold">
+												{hotspot.title}
+											</div>
+											<div class="text-xs">
+												Submitted by {hotspot.attribution ? hotspot.attribution : 'anonymous'}
+											</div>
+											<div class="mt-2">
+												{hotspot.content}
+											</div>
+										</div>
+									</div>
+								</div>
+							{/if}
+						{/each}
 					</div>
-
-					
 				</div>
 			{/if}
-			<div class="absolute bottom-0 left-0 flex w-full justify-between p-4">
-				{#if !isModal}
-					<a href="/photo/{prevPhotoSlug}">
-						<StyledButton>prev</StyledButton>
-					</a>
-				{/if}
-				
-				<button onclick={(e) => toggleForm(e)}>
-					<StyledButton>Submit an Observation</StyledButton>
-				</button>
-				{#if !isModal}
-				<a href="/photo/{nextPhotoSlug}">
-					<StyledButton>next</StyledButton>
-				</a>
-				{/if}
-			</div>
+				<div class="absolute bottom-0 left-0 flex w-full justify-between p-4">
+					<SignedIn>
+
+						{#if !isModal}
+						<a href="/photo/{prevPhotoSlug}">
+							<StyledButton>prev</StyledButton>
+						</a>
+					{/if}
+	
+					<button onclick={(e) => toggleForm(e)}>
+						<StyledButton>Submit an Observation</StyledButton>
+					</button>
+					{#if !isModal}
+						<a href="/photo/{nextPhotoSlug}">
+							<StyledButton>next</StyledButton>
+						</a>
+					{/if}
+					</SignedIn>
+					<SignedOut>
+						<div class="w-full text-center">
+							Log in or sign up to submit an observation
+
+						</div>
+					</SignedOut>
+					
+				</div>
+		
+			
 		</div>
 
 		<div
 			class=" {photoState.showForm
-				? 'p-4 border-t'
+				? 'border-t p-4'
 				: 'hidden h-0 overflow-hidden'}  bg-bg border-primary-text w-full text-sm"
 		>
 			{#if photoState.showFormError}

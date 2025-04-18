@@ -4,7 +4,7 @@
     let { portableText } = $props();
 </script>
 
-<img src={getImgUrl(portableText.value)} alt={portableText.value.alt ? portableText.value.alt : ''}/>
+<img oncontextmenu={(e) => {e.preventDefault(); return false}} src={getImgUrl(portableText.value)} alt={portableText.value.alt ? portableText.value.alt : ''}/>
 {#if portableText.value.caption}
     <BlockContent value={portableText.value.caption}></BlockContent>
 {/if}
