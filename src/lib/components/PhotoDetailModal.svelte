@@ -5,7 +5,7 @@
 	let { photo } = $props();
 </script>
 
-<div class="flex h-full">
+<div class="flex h-full text-primary-text">
 	<PhotoPageSidebar {photo} isModal={true}></PhotoPageSidebar>
 	<PhotoPagePhoto {photo}></PhotoPagePhoto>
 </div>
