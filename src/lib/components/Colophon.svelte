@@ -1,6 +1,6 @@
 <script lang="ts">
 	import BlockContent from "./BlockContent.svelte";
-    let {colophon, children} = $props();
+    let {colophon, children = undefined} = $props();
 </script>
 
 <div>

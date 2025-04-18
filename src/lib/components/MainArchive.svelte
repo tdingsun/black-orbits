@@ -22,7 +22,7 @@
 			<Tags tags={tagsState.timeTags}></Tags>
 			{/if}
 		</div>
-		<div class="px-28 flex basis-full flex-shrink flex-grow justify-center ">
+		<div class="px-28 py-4 flex basis-full flex-shrink flex-grow justify-center ">
 			<PhotoLayer></PhotoLayer>
 		</div>
 		<div class="fixed right-0 flex basis-0 flex-col gap-8 pr-4">

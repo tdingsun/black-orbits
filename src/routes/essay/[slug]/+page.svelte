@@ -24,11 +24,12 @@ let showModal = () => {
 }
 
 	const transformScroll = (e: any) => {
+		e.preventDefault();
+
 		if (!e.deltaY) {
 			return;
 		}
-		window.scrollBy((e.deltaX + e.deltaY) * 0.5, 0);
-		e.preventDefault();
+		window.scrollBy((e.deltaX + e.deltaY), 0);
 	};
 	onMount(() => {
         document.onwheel = transformScroll
@@ -45,13 +46,13 @@ let showModal = () => {
 
     </div>
 
-<div style="margin-top:{headerHeight}px" class="{headerHeight === 0 ? 'hidden' : 'flex'}  gap-12 p-4">
-	<div class="w-[500px] min-w-[500px] text-4xl   flex flex-col h-[calc(100dvh-6rem)]">
+<div style="margin-top:{headerHeight}px" class="{headerHeight === 0 ? 'hidden' : 'flex'} font-work">
+	<div style="height:calc(100dvh - {headerHeight}px)" class="w-[500px] min-w-[500px] text-4xl flex flex-col p-4 bg-primary-text text-bg">
 		<div bind:clientHeight={titleHeight}>
 			<div>
 				{data.collection.essayTitle}
 			</div>
-			<div class="italic  mb-4">by {data.collection.essayAuthor}</div>
+			<div class="italic mb-4">by {data.collection.essayAuthor}</div>
 		
 		</div>
 			<img
@@ -63,20 +64,18 @@ let showModal = () => {
 	/>
 
 	</div>
-	<div class="w-[400px] min-w-[400px]">
-		<div class="font-mono text-xs top-1 relative tracking-tight">
+	<div class="w-[500px] min-w-[500px] border-r py-4 px-8 bg-primary-text text-bg">
+		<div class="font-mono text-xs top-1 relative">
 			<BlockContent value={data.collection.essayDek}></BlockContent>
 		</div>
 	</div>
 
-
-	<div class=" w-[500px] min-w-[500px] [column-gap:4rem] [column-width:450px] pr-8 max-h-[calc(100dvh-10rem)]">
-		<BlockContent value={data.collection.essay}></BlockContent>
-        <div class="p-8 h-[100dvh]"></div>
+	<div class="essayTextContainer relative w-[550px] min-w-[550px] [column-gap:4rem] [column-width:500px]  pt-4 pl-16 h-dvh max-h-[calc(100dvh-10rem)]">
+			<BlockContent value={data.collection.essay}></BlockContent>
+			<div class="h-[50dvw]"></div>
 	</div>
 </div>
 </div>
-   
 
 {#if modalVisible}
     <div onclick={hideModal} class="cursor-pointer z-9999 fixed w-dvw h-dvh p-16 top-0 left-0 backdrop-blur-md">

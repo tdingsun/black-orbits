@@ -2,13 +2,23 @@
 
 @theme {
     --color-primary-text: #483C32;
-    --color-bg: #aaaaaa;
+    --color-bg: #d9d5ca;
+
+    --font-work: "National Park", sans-serif
+
 }
+
 
 html, body {
     background-color: var(--color-bg);
     color: var(--color-primary-text);
     overscroll-behavior: none;
+    font-family: var(--font-work);
+}
+
+* {
+    orphans: 2;
+    widows: 2;
 }
 
 :root {
@@ -16,13 +26,13 @@ html, body {
 }
 
 .auth-container {
-    .cl-formButtonPrimary::after {
+    /* .cl-formButtonPrimary::after {
         background: none!important;
         content: "-->"!important;
         position: relative!important;
         width: 30px;
         letter-spacing: -2px;
-    }
+    } */
     .cl-formButtonPrimary:hover::after {
         opacity: 1!important;
     }
@@ -30,3 +40,7 @@ html, body {
         opacity: 0!important;
     }
 }
+
+/* .essayTextContainer > * {
+    padding-right: 4rem;
+} */

@@ -24,7 +24,7 @@
 	{#if !isColophonPage}
 		{#if Object.prototype.hasOwnProperty.call(collectionState.currCollection, 'slug')}
 			<a
-				class="{isContentPage ? '' : 'hidden'} hover:underline"
+				class="{isContentPage ? '' : 'hidden'} hover:underline text-sm font-bold"
 				href="/collection/{collectionState.currCollection?.slug?.current}"
 			>
 				[Back&nbsp;to&nbsp;Collection]

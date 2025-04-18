@@ -25,8 +25,12 @@ export function urlFor(source: Image) {
 	return builder.image(source);
 }
 
+export const getImgThumbnailUrl = (imgRef: Image) => {
+	return urlFor(imgRef).width(400).fit('max').format('webp').url();
+};
+
 export const getImgUrl = (imgRef: Image) => {
-	return urlFor(imgRef).width(1600).fit('max').url();
+	return urlFor(imgRef).width(1600).fit('max').format('webp').url();
 };
 
 export async function getColophon(): Promise<any> {

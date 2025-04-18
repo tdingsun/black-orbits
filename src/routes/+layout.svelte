@@ -10,9 +10,12 @@
 		signIn: {
 			start: {
 				title: 'Sign in',
-				subtitle: ''
-			}
-		}
+				subtitle: '',
+				
+			},
+		},
+		formButtonPrimary: '[Continue]'
+
 	}
 
 	let hideColophon = () => {

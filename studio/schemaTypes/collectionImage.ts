@@ -40,6 +40,18 @@ export default defineType({
             validation: (Rule) => Rule.required(),
 
         }),
+        defineField({
+            name: 'showBack',
+            title: "Show back of photo first?",
+            type: 'boolean',
+            initialValue: true,
+        }),
+        defineField({
+            name: 'isFeatured',
+            title: "Feature photo? (appears larger on grid)",
+            type: 'boolean',
+            initialValue: false,
+        }),
 
         defineField({
             name: 'image',

@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { goto } from '$app/navigation';
-	import { getImgUrl } from '$lib/sanity';
+	import { getImgThumbnailUrl } from '$lib/sanity';
 	import { tagsState } from '$lib/states.svelte';
 	import { onMount } from 'svelte';
 	let { photo, totalNumPhotos } = $props();
@@ -26,11 +26,11 @@
 	);
 
 	onMount(() => {
-        let randRotate = Math.random() * 5 - 2.5;
+        let randRotate = Math.random() * 4 - 2;
         let randX = Math.random() * 10 - 5;
         let randY = Math.random() * 10 - 5
         el.style.transform = `rotate(${randRotate}deg) translateX(${randX}px) translateY(${randY}px)`
-		dragElement(el);
+		// dragElement(el);
 
 
 		function dragElement(el) {
@@ -89,8 +89,8 @@
 </script>
 
 <a href={`/photo/${photo.slug.current}`} oncontextmenu={(e) => {e.preventDefault(); return false}}>
-	<div style="height: {Math.max(imgHeight, imgBackHeight)}px" class="relative w-48 pointer-events-none">
-		<div
+	<div  style="height: {Math.max(imgHeight, imgBackHeight)}px" class="relative {photo.isFeatured ? 'w-96' : 'w-48'} pointer-events-none">
+		<div bind:this={el}
 			 style="z-index: 1"
 			class="{shouldShow
 				? ''
@@ -105,21 +105,21 @@
 					{#if photo.imagebackside && photo.image}
 						<img
 							bind:clientHeight={imgHeight}
-							class=" w-full rounded-sm rotate-y-180 z-0 absolute top-0 backface-hidden active:border active:border-primary-text"
-							src={getImgUrl(photo.image)}
+							class="shadow-xl w-full {photo.showBack ? 'rotate-y-180' : ''} z-0 absolute top-0 backface-hidden active:border active:border-primary-text"
+							src={getImgThumbnailUrl(photo.image)}
 							alt={photo.alt ? photo.alt : ''}
 						/>
 						<img
 							bind:clientHeight={imgBackHeight}
-							class="  w-full  rounded-sm backface-hidden active:border active:border-primary-text"
-							src={getImgUrl(photo.imagebackside)}
+							class="shadow-xl w-full {photo.showBack ? '' : 'rotate-y-180'} backface-hidden active:border active:border-primary-text"
+							src={getImgThumbnailUrl(photo.imagebackside)}
 							alt={photo.alt ? photo.alt : ''}
 						/>
 					{:else if photo.image}
 						<img
 							bind:clientHeight={imgHeight}
-							class=" w-full rounded-sm backface-hidden active:border active:border-primary-text"
-							src={getImgUrl(photo.image)}
+							class="shadow-xl  w-full backface-hidden active:border active:border-primary-text"
+							src={getImgThumbnailUrl(photo.image)}
 							alt={photo.alt ? photo.alt : ''}
 						/>
 					{/if}
