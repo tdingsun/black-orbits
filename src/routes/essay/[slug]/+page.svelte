@@ -1,5 +1,4 @@
 <script lang="ts">
-	import bgImg  from '$lib/images/scratches2.png';
 	import { onMount } from 'svelte';
 	import { photoState, siteState } from '$lib/states.svelte';
 	import type { PageData } from './$types';

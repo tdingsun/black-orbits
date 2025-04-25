@@ -1,5 +1,4 @@
 <script lang="ts">
-	import bgImg from '$lib/images/scratches.png';
 	import DraggableImg from './DraggableImg.svelte';
 	import { collectionState } from '$lib/states.svelte';
 </script>

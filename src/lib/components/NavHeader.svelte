@@ -60,7 +60,7 @@ prevScrollPos = currentScrollPos;
 		</div>
 	</div>
 
-	<!-- {#if !isColophonPage}
+	{#if !isColophonPage}
 		{#if Object.prototype.hasOwnProperty.call(collectionState.currCollection, 'slug')}
 			<a
 				class="{isContentPage ? '' : 'hidden'} hover:underline text-sm font-bold"
@@ -69,7 +69,7 @@ prevScrollPos = currentScrollPos;
 				[Back&nbsp;to&nbsp;Collection]
 			</a>
 		{/if}
-	{/if} -->
+	{/if}
 
 	{#if !isContentPage}
 		<div class=" max-w-xl {isContentPage ? 'hidden' : ''}">

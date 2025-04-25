@@ -5,7 +5,7 @@
 	import { tagsState } from '$lib/states.svelte';
 	import ColophonLink from './ColophonLink.svelte';
 	import StyledButton from './StyledButton.svelte';
-	import bgImg from '$lib/images/scratches.png';
+	import bgImg from '$lib/images/scratches3.png';
 
 </script>
 
