@@ -13,57 +13,51 @@
 
 	let header: HTMLDivElement;
 
-
 	let isScrollingDown = $state(false);
 
 	onMount(() => {
-		window.onscroll = function() {scrollFunction()};
+		window.onscroll = function () {
+			scrollFunction();
+		};
 		let prevScrollPos = window.pageYOffset;
 		function scrollFunction() {
-			if(!isContentPage){
-				let currentScrollPos = window.pageYOffset;
+			let currentScrollPos = window.pageYOffset;
 
-if (prevScrollPos > currentScrollPos) {			
-	header.style.top = "0";
-	isScrollingDown = false;
-} else {
-	header.style.top = `-${headerHeight}px`;
-	isScrollingDown = true;
-
-
-}
-prevScrollPos = currentScrollPos;
-}
+			if (prevScrollPos > currentScrollPos) {
+				header.style.top = '0';
+				isScrollingDown = false;
+			} else {
+				header.style.top = `-${headerHeight}px`;
+				isScrollingDown = true;
 			}
-
-	})
+			prevScrollPos = currentScrollPos;
+		}
+	});
 </script>
 
 <div
 	bind:clientHeight={headerHeight}
 	bind:this={header}
-	class="border-primary-text transition-[top] duration-500 bg-bg sticky top-0 z-9999 flex flex-col sm:flex-row w-dvw items-start justify-between gap-8 border-b p-4 pb-3"
+	class="border-primary-text bg-bg sticky top-0 z-9999 flex w-dvw flex-col items-start justify-between gap-8 border-b p-4 pb-3 transition-[top] duration-500 sm:flex-row"
 >
-	<div class="flex sm:w-[100px] self-stretch {isContentPage ? 'flex items-center gap-8' : ''}">
-		<div class="flex h-auto  w-full justify-between gap-8 self-stretch">
+	<div class="flex self-stretch sm:w-[100px] {isContentPage ? 'flex items-center gap-8' : ''}">
+		<div class="flex h-auto w-full justify-between gap-8 self-stretch">
 			<SiteTitle></SiteTitle>
-			<div class="flex sm:hidden gap-4">
+			<div class="flex gap-4 sm:hidden">
 				{#if !isContentPage}
-				<StyledButton>
-					<ColophonLink></ColophonLink>
-				</StyledButton>
-			{/if}
+					<StyledButton>
+						<ColophonLink></ColophonLink>
+					</StyledButton>
+				{/if}
 				<SignOut></SignOut>
-		
 			</div>
-			
 		</div>
 	</div>
 
 	{#if !isColophonPage}
 		{#if Object.prototype.hasOwnProperty.call(collectionState.currCollection, 'slug')}
 			<a
-				class="{isContentPage ? '' : 'hidden'} hover:underline text-sm font-bold"
+				class="{isContentPage ? '' : 'hidden'} text-sm font-bold hover:underline"
 				href="/collection/{collectionState.currCollection?.slug?.current}"
 			>
 				[Back&nbsp;to&nbsp;Collection]
@@ -86,7 +80,7 @@ prevScrollPos = currentScrollPos;
 		</div>
 	{/if}
 
-	<div class="hidden sm:flex w-[100px] flex-col items-end justify-between self-stretch">
+	<div class="hidden w-[100px] flex-col items-end justify-between self-stretch sm:flex">
 		<SignOut></SignOut>
 		{#if !isContentPage}
 			<StyledButton>
