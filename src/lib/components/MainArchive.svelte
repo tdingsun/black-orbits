@@ -5,13 +5,15 @@
 	import { tagsState } from '$lib/states.svelte';
 	import ColophonLink from './ColophonLink.svelte';
 	import StyledButton from './StyledButton.svelte';
+	import bgImg from '$lib/images/scratches.png';
+
 </script>
 
 <div class="w-full">
 	<NavHeader></NavHeader>
 
-	<div class="flex p-4  ">
-		<div class="fixed flex basis-0 flex-col gap-8 w-24">
+	<div style="background-image: url({bgImg})" class="flex sm:flex-row flex-col  bg-fixed   ">
+		<div class=" sm:fixed border-b sm:border-b-0 border-primary-text p-4 bg-bg flex basis-0 flex-col sm:gap-8 sm:w-24">
 			{#if tagsState.imgTags.allTags.size}
 				<Tags tags={tagsState.imgTags}></Tags>
 			{/if}
@@ -22,11 +24,11 @@
 			<Tags tags={tagsState.timeTags}></Tags>
 			{/if}
 		</div>
-		<div class="px-28 py-4 flex basis-full flex-shrink flex-grow justify-center ">
+		<div class="p-4 sm:px-28 pt-6  flex basis-full flex-shrink flex-grow justify-center ">
 			<PhotoLayer></PhotoLayer>
 		</div>
-		<div class="fixed right-0 flex basis-0 flex-col gap-8 pr-4">
+		<!-- <div class="fixed right-0 flex basis-0 flex-col gap-8 pr-4">
 
-		</div>
+		</div> -->
 	</div>
 </div>

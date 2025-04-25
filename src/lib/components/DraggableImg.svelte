@@ -89,7 +89,7 @@
 </script>
 
 <a href={`/photo/${photo.slug.current}`} oncontextmenu={(e) => {e.preventDefault(); return false}}>
-	<div  style="height: {Math.max(imgHeight, imgBackHeight)}px" class="relative {photo.isFeatured ? 'w-96' : 'w-48'} pointer-events-none">
+	<div  style="height: {Math.max(imgHeight, imgBackHeight)}px" class="relative {photo.isFeatured ? 'w-96' : 'w-48'} max-w-[calc(100dvw-4rem)] pointer-events-none">
 		<div bind:this={el}
 			 style="z-index: 1"
 			class="{shouldShow

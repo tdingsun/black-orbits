@@ -1,4 +1,5 @@
 <script lang="ts">
+	import bgImg  from '$lib/images/scratches2.png';
 	import { onMount } from 'svelte';
 	import { photoState, siteState } from '$lib/states.svelte';
 	import type { PageData } from './$types';
@@ -46,29 +47,32 @@ let showModal = () => {
 
     </div>
 
-<div style="margin-top:{headerHeight}px" class="{headerHeight === 0 ? 'hidden' : 'flex'} font-work">
-	<div style="height:calc(100dvh - {headerHeight}px)" class="w-[500px] min-w-[500px] text-4xl flex flex-col p-4 bg-primary-text text-bg">
-		<div bind:clientHeight={titleHeight}>
-			<div>
-				{data.collection.essayTitle}
+<div style="margin-top:{headerHeight}px; " class="{headerHeight === 0 ? 'hidden' : 'flex'} font-work">
+	<div  class="flex">
+		<div style="height:calc(100dvh - {headerHeight}px);" class="w-[500px] min-w-[500px] text-4xl flex flex-col p-4">
+			<div bind:clientHeight={titleHeight}>
+				<div>
+					{data.collection.essayTitle}
+				</div>
+				<div class="italic mb-4">by {data.collection.essayAuthor}</div>
+			
 			</div>
-			<div class="italic mb-4">by {data.collection.essayAuthor}</div>
-		
+				<img
+			onclick={showModal}
+			style="max-height:calc(100dvh - {headerHeight}px - {titleHeight}px - 2.5rem );"
+			class="hover:cursor-pointer hover:border border-primary-text rounded-sm max-w-full mr-auto"
+			src={getImgUrl(data.collection.essayCoverImgObj.image)}
+			alt={data.collection.essayCoverImgObj.alt ? data.collection.essayCoverImgObj.alt : ''}
+		/>
+	
 		</div>
-			<img
-		onclick={showModal}
-		style="max-height:calc(100dvh - {headerHeight}px - {titleHeight}px - 2.5rem );"
-		class="hover:cursor-pointer hover:border border-primary-text rounded-sm max-w-full mr-auto"
-		src={getImgUrl(data.collection.essayCoverImgObj.image)}
-		alt={data.collection.essayCoverImgObj.alt ? data.collection.essayCoverImgObj.alt : ''}
-	/>
-
-	</div>
-	<div class="w-[500px] min-w-[500px] border-r py-4 px-8 bg-primary-text text-bg">
-		<div class="font-mono text-xs top-1 relative">
-			<BlockContent value={data.collection.essayDek}></BlockContent>
+		<div class="w-[500px] min-w-[500px] border-r py-4 px-8 ">
+			<div class="font-mono text-xs top-1 relative">
+				<BlockContent value={data.collection.essayDek}></BlockContent>
+			</div>
 		</div>
 	</div>
+	
 
 	<div class="essayTextContainer relative w-[550px] min-w-[550px] [column-gap:4rem] [column-width:500px]  pt-4 pl-16 h-dvh max-h-[calc(100dvh-10rem)]">
 			<BlockContent value={data.collection.essay}></BlockContent>

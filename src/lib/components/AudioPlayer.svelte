@@ -15,13 +15,13 @@
 	onMount(() => {
 		const wavesurfer = WaveSurfer.create({
 			container,
-			waveColor: '#888',
+			waveColor: '#fefce8',
 			progressColor: '#483C32',
             cursorColor: '#483C32',
 			url: src,
-			barWidth: 4,
+			barWidth: 8,
 			barGap: 2,
-			barRadius: 4,
+			barRadius: 8,
 			barHeight: 0.9,
 			cursorWidth: 1,
 			barAlign: 'bottom',

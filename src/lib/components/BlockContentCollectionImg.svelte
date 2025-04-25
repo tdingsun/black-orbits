@@ -26,7 +26,7 @@
 
 <div class="{isEssayPage ? ' w-full flex gap-2 border-t my-6' : 'pb-4'}  ">
     <!-- <a href="/photo/{portableText.value.slug.current}"> -->
-    <img oncontextmenu={(e) => {e.preventDefault(); return false}} onclick={showModal}  class="{isEssayPage ? 'h-30 max-w-full' : ''}  hover:border-primary-text hover:border hover:border-t-0 cursor-pointer" src={getImgUrl(portableText.value.image)} alt={portableText.value.image.alt ? portableText.value.image.alt : ''}/>
+    <img oncontextmenu={(e) => {e.preventDefault(); return false}} onclick={showModal}  class="{isEssayPage ? 'h-30 max-w-full hover:border-t-0' : 'rounded-xs hover:border'}  hover:border-primary-text hover:border  cursor-pointer" src={getImgUrl(portableText.value.image)} alt={portableText.value.image.alt ? portableText.value.image.alt : ''}/>
     <!-- </a> -->
     {#if portableText.value.caption}
     <div class="">
