@@ -1,5 +1,6 @@
 <script lang="ts">
-	import NavHeader from './NavHeader.svelte';
+	import CollectionPageNavHeader from './CollectionPageNavHeader.svelte';
+	import CollectionPageMobileNavHeader from './CollectionPageMobileNavHeader.svelte';
 	import Tags from './Tags.svelte';
 	import PhotoLayer from './PhotoLayer.svelte';
 	import { tagsState } from '$lib/states.svelte';
@@ -8,10 +9,25 @@
 	import bgImg from '$lib/images/scratches3.png';
 	import { onMount } from 'svelte';
 
-	let isScrollingDown = $state();
 	let tagsContainer: HTMLDivElement;
 	let headerHeight = $state(0);
-	
+	let maxHeaderHeight = $state(0);
+
+	let mobileHeaderHeight = $state(0);
+	let maxMobileHeaderHeight = $state(0);
+	$effect(() => {
+		if(mobileHeaderHeight > maxMobileHeaderHeight){
+			maxMobileHeaderHeight = mobileHeaderHeight
+		}
+	}
+	)
+
+	$effect(() => {
+		if(headerHeight > maxHeaderHeight){
+			maxHeaderHeight = headerHeight
+		}
+	}
+	)
 
 	onMount(() => {
 		window.addEventListener('scroll', scrollFunction);
@@ -23,11 +39,9 @@
 			let currentScrollPos = window.pageYOffset;
 
 			if (prevScrollPos > currentScrollPos) {
-				tagsContainer.style.top = `${headerHeight}px`;
-				isScrollingDown = false;
+				tagsContainer.style.top = `${maxHeaderHeight}px`;
 			} else {
-				tagsContainer.style.top = `0`;
-				isScrollingDown = true;
+				tagsContainer.style.top = `${headerHeight}px`;
 			}
 			prevScrollPos = currentScrollPos;
 		}
@@ -36,10 +50,11 @@
 </script>
 
 <div class="w-full">
-	<NavHeader bind:headerHeight={headerHeight}></NavHeader>
+	<CollectionPageMobileNavHeader bind:mobileHeaderHeight={mobileHeaderHeight}></CollectionPageMobileNavHeader>
+	<CollectionPageNavHeader bind:headerHeight={headerHeight}></CollectionPageNavHeader>
 
 	<div style="background-image: url({bgImg})" class="flex sm:flex-row flex-col  bg-fixed   ">
-		<div bind:this={tagsContainer} class="sticky top-0 transition-[top] duration-500 sm:top-[unset] z-10 sm:fixed border-b sm:border-b-0 border-primary-text p-4 bg-bg flex basis-0 flex-col sm:gap-8 sm:w-24">
+		<div style="top:{maxHeaderHeight}px" bind:this={tagsContainer} class="sm:flex hidden sticky  transition-[top] duration-250 sm:top-[unset] z-10 sm:fixed border-b sm:border-b-0 border-primary-text p-4 bg-bg  basis-0 flex-col sm:gap-8 sm:w-24">
 			{#if tagsState.imgTags.allTags.size}
 				<Tags tags={tagsState.imgTags}></Tags>
 			{/if}
@@ -50,7 +65,12 @@
 			<Tags tags={tagsState.timeTags}></Tags>
 			{/if}
 		</div>
-		<div class="p-4 sm:px-28 pt-6  flex basis-full flex-shrink flex-grow justify-center ">
+
+		<div style="top:{maxMobileHeaderHeight}px;" class="flex sm:hidden  relative p-4 sm:px-28 pt-6  basis-full flex-shrink flex-grow justify-center ">
+			<PhotoLayer></PhotoLayer>
+		</div>
+
+		<div style="top:{maxHeaderHeight}px;" class="hidden sm:flex relative p-4 sm:px-28 pt-6  basis-full flex-shrink flex-grow justify-center ">
 			<PhotoLayer></PhotoLayer>
 		</div>
 		<!-- <div class="fixed right-0 flex basis-0 flex-col gap-8 pr-4">

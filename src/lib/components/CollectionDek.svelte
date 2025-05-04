@@ -4,7 +4,7 @@
 
 </script>
 
-<div class="max-w-lg text-sm tracking-wide">
+<div class="max-w-lg text-sm">
     {#if Object.prototype.hasOwnProperty.call(collectionState.currCollection, 'dek')}
         <BlockContent value={collectionState.currCollection.dek}>
         </BlockContent>

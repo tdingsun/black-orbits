@@ -4,8 +4,8 @@
 	import type { PageData } from './$types';
 	import { getImgUrl } from '$lib/sanity';
 	import BlockContent from '$lib/components/BlockContent.svelte';
-	import NavHeader from '$lib/components/NavHeader.svelte';
 	import PhotoDetailModal from '$lib/components/PhotoDetailModal.svelte';
+	import ContentPageNavHeader from '$lib/components/ContentPageNavHeader.svelte';
 
 	let { data }: { data: PageData } = $props();
 
@@ -40,7 +40,7 @@
 
 <div class="w-dvw sm:w-full">
 	<div class="fixed top-0 left-0 z-10">
-		<NavHeader bind:headerHeight isContentPage={true}></NavHeader>
+		<ContentPageNavHeader bind:headerHeight isContentPage={true}></ContentPageNavHeader>
 	</div>
 
 	<div

@@ -11,8 +11,6 @@
 	import { onMount } from 'svelte';
 	let { headerHeight = $bindable(), isContentPage = false, isColophonPage = false } = $props();
 
-	let header: HTMLDivElement;
-
 	let isScrollingDown = $state(false);
 
 	onMount(() => {
@@ -24,10 +22,8 @@
 			let currentScrollPos = window.pageYOffset;
 
 			if (prevScrollPos > currentScrollPos) {
-				header.style.top = '0';
 				isScrollingDown = false;
 			} else {
-				header.style.top = `-${headerHeight}px`;
 				isScrollingDown = true;
 			}
 			prevScrollPos = currentScrollPos;
@@ -37,10 +33,9 @@
 
 <div
 	bind:clientHeight={headerHeight}
-	bind:this={header}
-	class="border-primary-text bg-bg sticky top-0 z-9999 flex w-dvw flex-col items-start justify-between gap-8 border-b p-4 pb-3 transition-[top] duration-500 sm:flex-row"
+	class="border-primary-text bg-bg sticky top-0 z-9999 flex w-dvw flex-col  border-b  items-start justify-between gap-4  p-4 transition-[top] duration-500 sm:flex-row"
 >
-	<div class="flex self-stretch sm:w-[100px] {isContentPage ? 'flex items-center gap-8' : ''}">
+	<div class=" flex self-stretch sm:w-[100px] {isContentPage ? 'flex items-center gap-8' : ''}">
 		<div class="flex h-auto w-full justify-between gap-8 self-stretch">
 			<SiteTitle></SiteTitle>
 			<div class="flex gap-4 sm:hidden">
@@ -54,38 +49,32 @@
 		</div>
 	</div>
 
-	{#if !isColophonPage}
-		{#if Object.prototype.hasOwnProperty.call(collectionState.currCollection, 'slug')}
-			<a
-				class="{isContentPage ? '' : 'hidden'} text-sm font-bold hover:underline"
-				href="/collection/{collectionState.currCollection?.slug?.current}"
-			>
-				[Back&nbsp;to&nbsp;Collection]
-			</a>
-		{/if}
+	{#if Object.prototype.hasOwnProperty.call(collectionState.currCollection, 'slug')}
+		<a
+			class="{isContentPage ? '' : 'hidden'} text-sm font-bold hover:underline self-end"
+			href="/collection/{collectionState.currCollection?.slug?.current}"
+		>
+			[Back&nbsp;to&nbsp;Collection]
+		</a>
 	{/if}
 
-	{#if !isContentPage}
-		<div class=" max-w-xl {isContentPage ? 'hidden' : ''}">
-			<div class="-mt-1">
-				<CollectionTitle></CollectionTitle>
-			</div>
-			<div class="py-2">
-				<CollectionDek></CollectionDek>
-			</div>
-			<div class="flex gap-8">
-				<EssayLink></EssayLink>
-				<InterviewLink></InterviewLink>
-			</div>
-		</div>
-	{/if}
+	
 
 	<div class="hidden w-[100px] flex-col items-end justify-between self-stretch sm:flex">
 		<SignOut></SignOut>
 		{#if !isContentPage}
+		<div
+		class="grid text-sm {isScrollingDown
+			? 'grid-rows-[0fr]'
+			: 'grid-rows-[1fr]'} transition-[grid-template-rows] duration-500"
+	>
+		<div class="overflow-auto {isScrollingDown ? 'pt-2' : ''}">
 			<StyledButton>
 				<ColophonLink></ColophonLink>
 			</StyledButton>
+			</div>
+			</div>
+
 		{/if}
 	</div>
 </div>
