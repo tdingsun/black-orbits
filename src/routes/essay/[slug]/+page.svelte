@@ -106,10 +106,10 @@
 {#if modalVisible}
 	<div
 		onclick={hideModal}
-		class="fixed top-0 left-0 z-9999 h-dvh w-dvw cursor-pointer p-16 backdrop-blur-md"
+		class="fixed top-0 left-0 z-9999 h-dvh w-dvw cursor-pointer p-8 sm:p-16 backdrop-blur-md"
 	>
-		<button onclick={hideModal} class=" absolute top-15 right-8 cursor-pointer hover:underline"
-			>[X]</button
+		<button onclick={hideModal} class="z-9999 absolute sm:top-11 sm:right-11 right-3 top-3 w-10 h-10 rounded-full bg-bg border border-primary-text p-2 cursor-pointer hover:text-bg hover:bg-primary-text transition-colors"
+			>X</button
 		>
 		<div
 			onclick={(e) => e.stopImmediatePropagation()}

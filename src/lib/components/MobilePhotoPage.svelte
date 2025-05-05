@@ -75,12 +75,15 @@
 <div>
     
 </div>
+
+{#if !isModal}
 <div class="p-4 flex justify-between">
     <SiteTitle></SiteTitle>
     <SignOut></SignOut>
 </div>
+{/if}
 
-<div class="p-4 text-sm">
+<div class="p-4 pb-0 text-sm">
     <span>This image is a part of</span>
     <a class="font-bold hover:underline" href="/collection/{photo.collectionInfo.slug.current}"
         >[{photo.collectionInfo.title}]
