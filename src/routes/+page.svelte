@@ -1,6 +1,6 @@
 <script lang="ts">
 	import LandingPageSignedOut from "$lib/components/LandingPageSignedOut.svelte";
-    import MainArchive from "$lib/components/MainArchive.svelte";
+    import CollectionPage from "$lib/components/CollectionPage.svelte";
 	import { SignedIn, SignedOut } from "svelte-clerk";
     import type { PageData } from './$types';
     import { collectionState, tagsState } from "$lib/states.svelte";
@@ -19,6 +19,6 @@
     <LandingPageSignedOut colophon={data.colophon}></LandingPageSignedOut>
 </SignedOut>
 <SignedIn>
-    <MainArchive></MainArchive>
+    <CollectionPage></CollectionPage>
 </SignedIn>
 

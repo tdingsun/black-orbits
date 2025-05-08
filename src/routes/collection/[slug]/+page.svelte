@@ -1,5 +1,5 @@
 <script lang="ts">
-    import MainArchive from "$lib/components/MainArchive.svelte";
+    import CollectionPage from "$lib/components/CollectionPage.svelte";
     import type { PageData } from './$types';
     import { collectionState, tagsState } from "$lib/states.svelte";
 	import { afterNavigate } from "$app/navigation";
@@ -14,4 +14,4 @@
 
 </script>
 
-<MainArchive></MainArchive>
+<CollectionPage></CollectionPage>

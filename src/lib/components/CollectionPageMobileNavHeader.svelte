@@ -84,7 +84,7 @@
             </div>
         {/if}
     
-        <div bind:this={tagsContainer} class="transition-[top] duration-500   border-primary-text  bg-bg  basis-0 flex-col border-t mt-4 p-4">
+        <div bind:this={tagsContainer} class="transition-[top] duration-500   border-primary-text  bg-bg  basis-0 flex flex-col gap-2 border-t mt-4 p-4">
             {#if tagsState.imgTags.allTags.size}
                 <Tags tags={tagsState.imgTags}></Tags>
             {/if}
