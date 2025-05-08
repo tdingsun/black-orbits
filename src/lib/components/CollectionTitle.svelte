@@ -17,17 +17,13 @@
 	});
 </script>
 
-<div>
+<div class="">
 	{#if Object.prototype.hasOwnProperty.call(collectionState.currCollection, 'title')}
 		<div class="flex gap-2">
-			<div class="py-1 pr-2">Collection:</div>
-			<div role="menu" tabindex="0" onclick={toggleMenu} onkeypress={toggleMenu}  onmouseleave={hideMenu} class=" top-[-1px] relative min-w-50">
-				<div  class="border {showMenu ? 'border-primary-text' : 'border-transparent'} hover:border-primary-text rounded-xs bg-bg px-2 py-1 flex cursor-pointer gap-2">
-					<div>{collectionState.currCollection.title}</div>
-					<div class="relative top-0.25 rotate-45">
-						<div class="border-primary-text absolute h-2 w-2 border-r-[1.5px]"></div>
-						<div class="border-primary-text absolute h-2 w-2 border-b-[1.5px]"></div>
-					</div>
+			<div class="py-1 pr-0 font-bold text-sm">Collection:</div>
+			<div role="menu" tabindex="0" onclick={toggleMenu} onkeypress={toggleMenu}  onmouseleave={hideMenu} class="text-2xl top-[-1px] relative min-w-54">
+				<div  class="border {showMenu ? 'b' : ''} hover:text-bg hover:bg-primary-text border-primary-text rounded-xs bg-bg px-2 py-1 flex cursor-pointer gap-1">
+					<div class="l">{collectionState.currCollection.title}</div>
 				</div>
 				{#if collectionState.allCollections.length}
 					<div

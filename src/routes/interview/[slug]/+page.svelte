@@ -31,7 +31,7 @@
     </div>
 
     {#if data.collection.interviewAudio}
-        <div class="py-4  bg-bg border-b mb-4">
+        <div class="py-4  bg-bg border-b mb-4 sticky top-0">
             <AudioPlayer src={data.collection.interviewAudio.url}></AudioPlayer>
         </div>
     {/if}

@@ -23,7 +23,7 @@
 		function scrollFunction() {
 			let currentScrollPos = window.pageYOffset;
 
-			if (prevScrollPos > currentScrollPos + 10) {
+			if (prevScrollPos > currentScrollPos || currentScrollPos < 100) {
 				isScrollingDown = false;
 			} else if (currentScrollPos > 50) {
 				isScrollingDown = true;

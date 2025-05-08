@@ -54,7 +54,7 @@
 	<CollectionPageNavHeader bind:headerHeight={headerHeight}></CollectionPageNavHeader>
 
 	<div style="background-image: url({bgImg})" class="flex sm:flex-row flex-col  bg-fixed   ">
-		<div style="top:{maxHeaderHeight}px" bind:this={tagsContainer} class="sm:flex hidden sticky  transition-[top] duration-250 sm:top-[unset] z-10 sm:fixed border-b sm:border-b-0 border-primary-text p-4 bg-bg  basis-0 flex-col sm:gap-8 sm:w-24">
+		<div style="top:{headerHeight}px" bind:this={tagsContainer} class="sm:flex hidden sticky   sm:top-[unset] z-10 sm:fixed border-b sm:border-b-0 border-primary-text p-4 bg-bg  basis-0 flex-col sm:gap-8 sm:w-24">
 			{#if tagsState.imgTags.allTags.size}
 				<Tags tags={tagsState.imgTags}></Tags>
 			{/if}

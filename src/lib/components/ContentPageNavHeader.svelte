@@ -1,10 +1,6 @@
 <script lang="ts">
 	import SignOut from './SignOut.svelte';
 	import SiteTitle from './SiteTitle.svelte';
-	import CollectionTitle from './CollectionTitle.svelte';
-	import CollectionDek from './CollectionDek.svelte';
-	import EssayLink from './EssayLink.svelte';
-	import InterviewLink from './InterviewLink.svelte';
 	import { collectionState } from '$lib/states.svelte';
 	import ColophonLink from './ColophonLink.svelte';
 	import StyledButton from './StyledButton.svelte';
@@ -21,7 +17,7 @@
 		function scrollFunction() {
 			let currentScrollPos = window.pageYOffset;
 
-			if (prevScrollPos > currentScrollPos) {
+			if (prevScrollPos > currentScrollPos || currentScrollPos < 100) {
 				isScrollingDown = false;
 			} else {
 				isScrollingDown = true;
@@ -33,7 +29,7 @@
 
 <div
 	bind:clientHeight={headerHeight}
-	class="border-primary-text bg-bg sticky top-0 z-9999 flex w-dvw flex-col  border-b  items-start justify-between gap-4  p-4 transition-[top] duration-500 sm:flex-row"
+	class="border-primary-text bg-bg sticky  z-9999 flex w-dvw flex-col  border-b  items-start justify-between gap-4  p-4 transition-[top] duration-500 sm:flex-row"
 >
 	<div class=" flex self-stretch sm:w-[100px] {isContentPage ? 'flex items-center gap-8' : ''}">
 		<div class="flex h-auto w-full justify-between gap-8 self-stretch">
@@ -51,7 +47,7 @@
 
 	{#if Object.prototype.hasOwnProperty.call(collectionState.currCollection, 'slug')}
 		<a
-			class="{isContentPage ? '' : 'hidden'} text-sm font-bold hover:underline self-end"
+			class="text-sm font-bold hover:underline self-end sm:self-center"
 			href="/collection/{collectionState.currCollection?.slug?.current}"
 		>
 			[Back&nbsp;to&nbsp;Collection]

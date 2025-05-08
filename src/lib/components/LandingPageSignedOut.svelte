@@ -12,8 +12,8 @@
 	} from 'svelte-clerk';
 	import bgImg from '$lib/images/scratches3.png';
 	import Colophon from './Colophon.svelte';
-    import { page } from '$app/state';
-    console.log(page.url);
+	import { page } from '$app/state';
+	console.log(page.url);
 	let { colophon } = $props();
 
 	let showSignUp = $state(false);
@@ -52,7 +52,9 @@
 								? 'cursor-pointer hover:underline  '
 								: ''}"
 						>
-							<span class={showSignUp ? '' : 'hidden'}>[</span>Log in<span class={showSignUp ? '' : 'hidden'}>]</span>
+							<span class={showSignUp ? '' : 'hidden'}>[</span>Log in<span
+								class={showSignUp ? '' : 'hidden'}>]</span
+							>
 						</div>
 						{#if !showSignUp}
 							<SignIn
@@ -67,13 +69,13 @@
 										formFieldInput:
 											'!text-primary-text !bg-transparent !border-primary-text !border !rounded-none !font-bold !text-base',
 										formButtonPrimary:
-											'!text-primary-text !bg-transparent ![appearence:none] !font-bold !text-base  !border-none !shadow-none !rounded-none !w-min !p-0 hover:!font-bold hover:underline',
+											'self-start !text-primary-text !bg-transparent ![appearence:none] !font-bold !text-base  !border-none !shadow-none !rounded-none !w-min !p-0 hover:!font-bold hover:underline',
 										buttonArrowIcon: '!hidden',
 										footer: '!hidden',
 										header: '!hidden',
-                                        formFieldAction: '!text-sm',
-                                        footerAction: '!m-0 !mt-12',
-                                        footerActionLink: '!text-sm'
+										formFieldAction: '!text-sm',
+										footerAction: '!m-0 !mt-12',
+										footerActionLink: '!text-sm'
 									}
 								}}
 							></SignIn>
@@ -82,49 +84,49 @@
 				</div>
 			</div>
 
-            {#if !page.url.hash.includes('factor')}
-            <div class="flex w-full justify-center">
-				<div class="flex w-full max-w-xl justify-center">
-					<div class="flex w-full justify-between gap-8 p-8">
-						<div class="flex">
-							<div
-								onclick={() => (showSignUp = true)}
-								class="font-bold {showSignUp ? '' : ' cursor-pointer hover:underline'}"
-							>
-								{showSignUp ? '[Sign up]' : '[Sign up for a library card]'}
+			{#if !page.url.hash.includes('factor')}
+				<div class="flex w-full justify-center">
+					<div class="flex w-full max-w-xl justify-center">
+						<div class="flex w-full justify-between gap-8 p-8">
+							<div class="flex">
+								<div
+									onclick={() => (showSignUp = true)}
+									class="font-bold {showSignUp ? '' : ' cursor-pointer hover:underline'}"
+								>
+									{showSignUp ? 'Sign up' : '[Sign up for a library card]'}
+								</div>
 							</div>
+							{#if showSignUp}
+								<div class="{showSignUp ? '' : 'hidden'} flex flex-grow">
+									<SignUp
+										appearance={{
+											elements: {
+												main: '!flex-shrink !max-w-sm !w-full',
+												rootBox: '!flex-shrink !w-0 !flex-grow !flex',
+												cardBox:
+													'!shadow-none !bg-transparent !rounded-none !w-0 !flex-grow !flex ',
+												card: '!bg-transparent !rounded-none !text-primary-text !p-0 !items-end',
+												headerTitle: '!font-normal !text-primary-text',
+												formFieldLabel: '!text-primary-text !text-base !font-bold ',
+												formFieldInput:
+													'!text-primary-text !bg-transparent !border-primary-text !border !rounded-none !font-bold',
+												formButtonPrimary:
+													'!text-primary-text !bg-transparent !text-base !font-bold !border-none !shadow-none !rounded-none !w-min !p-0 hover:!font-bold hover:underline',
+												buttonArrowIcon: '!hidden',
+												footer: '!hidden',
+												header: '!hidden',
+												formFieldInfoText: '!text-primary-text !font-sm !font-bold',
+												formFieldSuccessText: '!text-primary-text !font-sm !font-bold',
+												formFieldErrorText: '!font-sm !font-bold'
+											}
+										}}
+									></SignUp>
+								</div>
+							{/if}
 						</div>
-						{#if showSignUp}
-							<div class="{showSignUp ? '' : 'hidden'} flex flex-grow">
-								<SignUp
-									appearance={{
-										elements: {
-											main: '!flex-shrink !max-w-sm !w-full',
-											rootBox: '!flex-shrink !w-0 !flex-grow !flex',
-											cardBox: '!shadow-none !bg-transparent !rounded-none !w-0 !flex-grow !flex ',
-											card: '!bg-transparent !rounded-none !text-primary-text !p-0 !items-end',
-											headerTitle: '!font-normal !text-primary-text',
-											formFieldLabel: '!text-primary-text !text-base !font-bold ',
-											formFieldInput:
-												'!text-primary-text !bg-transparent !border-primary-text !border !rounded-none !font-bold',
-											formButtonPrimary:
-												'!text-primary-text !bg-transparent !text-base !font-bold !border-none !shadow-none !rounded-none !w-min !p-0 hover:!font-bold hover:underline',
-											buttonArrowIcon: '!hidden',
-											footer: '!hidden',
-											header: '!hidden',
-											formFieldInfoText: '!text-primary-text !font-sm !font-bold',
-											formFieldSuccessText: '!text-primary-text !font-sm !font-bold',
-											formFieldErrorText: '!font-sm !font-bold'
-										}
-									}}
-								></SignUp>
-							</div>
-						{/if}
 					</div>
 				</div>
-			</div>
-            {/if}
-			
+			{/if}
 		</div>
 	</div>
 
