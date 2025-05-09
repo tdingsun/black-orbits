@@ -8,8 +8,8 @@
 	let showSignUp = $state(false);
 </script>
 
-<div class="divide-primary-text flex w-full flex-col justify-center divide-y">
-			<div class="flex w-full justify-center">
+<div class="divide-primary-text flex w-full h-full flex-col justify-start divide-y {showSignUp ? 'bg-bg' : 'bg-amber-50' }">
+			<div class="flex w-full justify-center {showSignUp ? 'bg-amber-50' : 'bg-bg' } ">
 				<div class="flex w-full max-w-xl justify-center">
 					<div class="flex w-full justify-between gap-8 p-8 {showSignUp ? 'h-22' : 'h-48' } transition-[height]">
 						<div
@@ -52,7 +52,7 @@
 
 			{#if !page.url.hash.includes('factor')}
 				<div class="flex w-full justify-center">
-					<div class="flex w-full max-w-xl justify-center">
+					<div class="flex w-full max-w-xl justify-center ">
 						<div class="flex w-full justify-between gap-8 p-8">
 							<div class="flex">
 								<div

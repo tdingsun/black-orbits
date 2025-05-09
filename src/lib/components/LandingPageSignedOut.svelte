@@ -77,13 +77,13 @@
 
 <img src={bgImg} class="fixed top-0 left-0 w-full h-full object-cover object-top pointer-events-none z-1">
 
-<div  class=" border-b border-primary-text">
+<div  class=" border-b border-primary-text bg-bg">
 	<img onclick={changeLogo}  src={logos[currLogo]} class="fill-primary-text text-primary-text w-full h-[25dvw] p-4 object-fill select-none"/>
 </div>
 
 <div class="text-primary-text flex min-h-dvh min-w-dvw flex-col sm:flex-row ">
 	<div
-		class="text-primary-text hidden w-1/2  flex-shrink-0 flex-grow-0 basis-1/2 bg-yellow-50 border-r p-8  sm:block"
+		class="text-primary-text hidden w-1/2  flex-shrink-0 flex-grow-0 basis-1/2 bg-amber-50 border-r p-8  sm:block"
 	>
 
 
@@ -94,12 +94,12 @@
 
 	<div
 		style="background-image: url({bgImg})"
-		class="auth-container sticky top-0 flex max-h-dvh min-h-[calc(100dvh-5rem)] flex-shrink-0 flex-grow flex-col overflow-scroll bg-cover bg-fixed bg-top sm:w-1/2 sm:basis-1/2 bg-yellow-50"
+		class="auth-container sticky top-0 flex max-h-dvh min-h-[calc(100dvh-5rem)] flex-shrink-0 flex-grow flex-col overflow-scroll bg-cover bg-fixed bg-top sm:w-1/2 sm:basis-1/2 bg-amber-50"
 	>
 		<LogInSignUp></LogInSignUp>
 	</div>
 
-	<div class="text-primary-text relative bg-yellow-50 p-8 shadow-xl sm:hidden">
+	<div class="text-primary-text relative bg-amber-50 p-8 shadow-xl sm:hidden">
 		<div class="text-xl tracking-[0.2px]">
 			<div class="pb-4">Colophon</div>
 			<Colophon {colophon}></Colophon>

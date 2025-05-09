@@ -41,7 +41,7 @@
 <ClerkProvider {localization}>
 	{@render children()}
 	<div onclick={hideColophon} class="h-dvh w-dvw  fixed z-9999 top-0 transition-[right] duration-500 {siteState.showColophon ? 'right-0' : '-right-[100dvw]'}">
-		<div onclick={(e) => e.stopPropagation()}  class="w-full h-dvh w-md max-w-[calc(100dvw-4rem)] right-0 absolute bg-yellow-50  p-4 overflow-auto ">
+		<div onclick={(e) => e.stopPropagation()}  class="w-full h-dvh w-md max-w-[calc(100dvw-4rem)] right-0 absolute bg-amber-50  p-4 overflow-auto ">
 
 			<Colophon colophon={data.colophon} >
 				<h1 class="text-2xl mb-8">Colophon</h1>
