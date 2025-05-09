@@ -1,5 +1,5 @@
 <script lang="ts">
-	import DraggableImg from './DraggableImg.svelte';
+	import DraggableImg from './CollectionImg.svelte';
 	import { collectionState } from '$lib/states.svelte';
 </script>
 

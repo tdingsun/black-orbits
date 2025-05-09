@@ -4,7 +4,7 @@
 	import { tagsState } from '$lib/states.svelte';
 	import { onMount } from 'svelte';
 	let { photo, totalNumPhotos } = $props();
-	let el;
+	let el: HTMLDivElement;
 
     let imgHeight = $state(0);
     let imgBackHeight = $state(0);
@@ -33,58 +33,58 @@
 		// dragElement(el);
 
 
-		function dragElement(el) {
-			var pos1 = 0,
-				pos2 = 0,
-				pos3 = 0,
-				pos4 = 0;
-			el.onmousedown = dragMouseDown;
+		// function dragElement(el) {
+		// 	var pos1 = 0,
+		// 		pos2 = 0,
+		// 		pos3 = 0,
+		// 		pos4 = 0;
+		// 	el.onmousedown = dragMouseDown;
 
-			function dragMouseDown(e) {
-				e = e || window.event;
-				e.preventDefault();
-				pos3 = e.clientX;
-				pos4 = e.clientY;
-                let oldZ = el.style.zIndex;
-				document.querySelectorAll('.draggableImg').forEach((el) => {
-                    if(el.style.zIndex > oldZ) {
-                        el.style.zIndex = el.style.zIndex - 1;
-                    }
-				});
-				el.style.zIndex = totalNumPhotos;
-				document.onmouseup = closeDragElement;
-				document.onmousemove = elementDrag;
-                isDragging = false;
-			}
+		// 	function dragMouseDown(e) {
+		// 		e = e || window.event;
+		// 		e.preventDefault();
+		// 		pos3 = e.clientX;
+		// 		pos4 = e.clientY;
+        //         let oldZ = el.style.zIndex;
+		// 		document.querySelectorAll('.draggableImg').forEach((el) => {
+        //             if(el.style.zIndex > oldZ) {
+        //                 el.style.zIndex = el.style.zIndex - 1;
+        //             }
+		// 		});
+		// 		el.style.zIndex = totalNumPhotos;
+		// 		document.onmouseup = closeDragElement;
+		// 		document.onmousemove = elementDrag;
+        //         isDragging = false;
+		// 	}
 
-			function elementDrag(e) {
-				e = e || window.event;
-				e.preventDefault();
-				// calculate the new cursor position:
-				pos1 = pos3 - e.clientX;
-				pos2 = pos4 - e.clientY;
-				pos3 = e.clientX;
-				pos4 = e.clientY;
-				// set the element's new position:
+		// 	function elementDrag(e) {
+		// 		e = e || window.event;
+		// 		e.preventDefault();
+		// 		// calculate the new cursor position:
+		// 		pos1 = pos3 - e.clientX;
+		// 		pos2 = pos4 - e.clientY;
+		// 		pos3 = e.clientX;
+		// 		pos4 = e.clientY;
+		// 		// set the element's new position:
 
-				el.style.top = el.offsetTop - pos2 + 'px';
-				el.style.left = el.offsetLeft - pos1 + 'px';
-				el.style.position = 'absolute';
-				el.style.cursor = 'grabbing';
-                isDragging = true;
+		// 		el.style.top = el.offsetTop - pos2 + 'px';
+		// 		el.style.left = el.offsetLeft - pos1 + 'px';
+		// 		el.style.position = 'absolute';
+		// 		el.style.cursor = 'grabbing';
+        //         isDragging = true;
 
-			}
+		// 	}
 
-			function closeDragElement() {
-				// stop moving when mouse button is released:
-				document.onmouseup = null;
-				document.onmousemove = null;
-				el.style.cursor = 'pointer';
-                if(!isDragging){
-                    goto(`/photo/${photo.slug.current}`)
-                }
-			}
-		}
+		// 	function closeDragElement() {
+		// 		// stop moving when mouse button is released:
+		// 		document.onmouseup = null;
+		// 		document.onmousemove = null;
+		// 		el.style.cursor = 'pointer';
+        //         if(!isDragging){
+        //             goto(`/photo/${photo.slug.current}`)
+        //         }
+		// 	}
+		// }
 	});
 </script>
 
@@ -92,33 +92,33 @@
 	<div  style="height: {Math.max(imgHeight, imgBackHeight)}px" class="relative {photo.isFeatured ? 'w-96' : 'w-48'} max-w-[calc(100dvw-4rem)] pointer-events-none">
 		<div bind:this={el}
 			 style="z-index: 1"
-			class="{shouldShow
-				? ''
-				: 'hidden'} hover:!transform-none transition-transform pointer-events-auto draggableImg -left-[100dvw] w-full cursor-pointer "
+			class="collectionImg {shouldShow
+				? 'block opacity-100 '
+				: 'hidden opacity-0'} w-full transition-discrete hover:!transform-none transition-all pointer-events-auto draggableImg -left-[100dvw]  cursor-pointer "
 		>
-			<div class="group w-full perspective-distant">
+			<div class="group w-full perspective-distant ">
 				<div
 					class="{photo.image && photo.imagebackside
 						? 'group-hover:rotate-y-180'
-						: ''}  w-full transition-transform duration-500 transform-3d "
+						: ''}  w-full transition-transform duration-500 transform-3d  "
 				>
 					{#if photo.imagebackside && photo.image}
 						<img
 							bind:clientHeight={imgHeight}
-							class="shadow-xl w-full {photo.showBack ? 'rotate-y-180' : ''} z-0 absolute top-0 backface-hidden active:border active:border-primary-text"
+							class=" w-full {photo.showBack ? 'rotate-y-180' : ''} z-0 absolute top-0 backface-hidden active:border active:border-primary-text "
 							src={getImgThumbnailUrl(photo.image)}
 							alt={photo.alt ? photo.alt : ''}
 						/>
 						<img
 							bind:clientHeight={imgBackHeight}
-							class="shadow-xl w-full {photo.showBack ? '' : 'rotate-y-180'} backface-hidden active:border active:border-primary-text"
+							class=" w-full {photo.showBack ? '' : 'rotate-y-180'} backface-hidden active:border active:border-primary-text"
 							src={getImgThumbnailUrl(photo.imagebackside)}
 							alt={photo.alt ? photo.alt : ''}
 						/>
 					{:else if photo.image}
 						<img
 							bind:clientHeight={imgHeight}
-							class="shadow-xl  w-full backface-hidden active:border active:border-primary-text"
+							class=" w-full backface-hidden active:border active:border-primary-text"
 							src={getImgThumbnailUrl(photo.image)}
 							alt={photo.alt ? photo.alt : ''}
 						/>

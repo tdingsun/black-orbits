@@ -4,6 +4,8 @@
 	import '../app.css';
 	import Colophon from '$lib/components/Colophon.svelte';
 	import { siteState } from '$lib/states.svelte';
+	import { onNavigate } from '$app/navigation';
+
 	let { children, data } = $props();
 
 	const localization = {
@@ -21,6 +23,19 @@
 	let hideColophon = () => {
 		siteState.showColophon = false;
 	}
+
+
+// onNavigate((navigation) => {
+// 	if (!document.startViewTransition) return;
+
+// 	return new Promise((resolve) => {
+// 		document.startViewTransition(async () => {
+// 			resolve();
+// 			await navigation.complete;
+// 		});
+// 	});
+// });
+
 </script>
 
 <ClerkProvider {localization}>

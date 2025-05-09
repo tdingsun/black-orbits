@@ -39,11 +39,11 @@
     
 </div>
 
-{#if modalVisible}
-    <div onclick={hideModal} class="cursor-pointer z-9999 fixed w-dvw h-dvh p-16 top-0 left-0 backdrop-blur-md">
+<!-- {#if modalVisible} -->
+    <div onclick={hideModal} class="photoDetailModalContainer cursor-pointer z-9999 fixed w-dvw h-dvh p-16 top-0 left-0 backdrop-blur-md transition-discrete transition-all  {modalVisible ? 'opacity-100 pointer-events-auto block' : 'opacity-0 pointer-events-none hidden '}">
         <button onclick={hideModal} class=" cursor-pointer absolute top-15 right-8 hover:underline">[X]</button>
         <div onclick={(e) => e.stopImmediatePropagation()} class="cursor-default bg-bg border border-primary-text h-full">
             <PhotoDetailModal photo={portableText.value}></PhotoDetailModal>
         </div>
     </div>
-{/if}
+<!-- {/if} -->

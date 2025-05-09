@@ -45,3 +45,17 @@ html, body {
 /* .essayTextContainer > * {
     padding-right: 4rem;
 } */
+
+@view-transition {
+    navigation: auto;
+}
+
+@starting-style {
+    .collectionImg {
+        opacity: 0;
+    }
+
+    .photoDetailModalContainer {
+        opacity: 0;
+    }
+}
