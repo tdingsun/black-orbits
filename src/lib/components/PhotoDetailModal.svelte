@@ -6,9 +6,9 @@
 	let { photo } = $props();
 </script>
 
-<div class="hidden sm:flex h-full text-primary-text">
+<div class="hidden sm:flex h-full text-primary-text ">
 	<PhotoPageSidebar {photo} isModal={true}></PhotoPageSidebar>
-	<PhotoPagePhoto {photo}></PhotoPagePhoto>
+	<PhotoPagePhoto {photo} isModal={true}></PhotoPagePhoto>
 </div>
 
 <div class="flex sm:hidden h-full text-primary-text flex-col overflow-auto">

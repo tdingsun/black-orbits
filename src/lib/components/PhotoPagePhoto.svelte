@@ -4,7 +4,7 @@
 	import Caption from '$lib/components/Caption.svelte';
 	import { photoState, highlightHotspot, dehighlightHotspot } from '$lib/states.svelte';
 	import { onMount } from 'svelte';
-	let { photo } = $props();
+	let { photo, isModal=false } = $props();
 
 	let imgW = $state(1);
 	let imgH = $state(1);
@@ -39,8 +39,8 @@
 
 
 <div bind:clientWidth={fullContainerW}
-bind:clientHeight={fullContainerH}  class="h-full w-full flex-col relative {imgW > 1 ? 'opacity-100' : 'opacity-0'}">
-	<div bind:this={imgContainer} class=" p-4   mx-auto  ">
+bind:clientHeight={fullContainerH}  class="h-full w-full flex-col relative  {imgW > 1 ? 'opacity-100' : 'opacity-0'}">
+	<div bind:this={imgContainer} class=" p-4">
 		<img
 		role="presentation"
 		alt={photo.alt}
