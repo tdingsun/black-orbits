@@ -34,7 +34,6 @@
 	import logo26 from '$lib/images/logos/logo-26.svg';
 	import logo27 from '$lib/images/logos/logo-27.svg';
 	import logo28 from '$lib/images/logos/logo-28.svg';
-	import { onMount } from 'svelte';
 	import { shuffle } from '$lib/utils';
 
 	let logos = [
