@@ -10,8 +10,6 @@
 
     let showAnnotation = $state(false);
     onMount(() => {
-        console.log(portableText.plainTextContent);
-        console.log(portableText.plainTextContent.slice(0, -1));
     })
 </script>
 <span>

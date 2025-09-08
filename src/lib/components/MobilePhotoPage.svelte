@@ -54,7 +54,6 @@
 
 	onMount(() => {
 		let imgNaturalAspectRatio = img.naturalHeight/img.naturalWidth;
-		console.log(imgNaturalAspectRatio);
 		imgNaturalAspect = imgNaturalAspectRatio;
 		// imgContainer.style.aspectRatio = `${imgNaturalAspectRatio}`;
 	})
