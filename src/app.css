@@ -35,6 +35,12 @@ html, body {
     .cl-formButtonPrimary:hover::after {
         opacity: 1!important;
     }
+    .cl-formFieldInput {
+        width: calc(100% - 2px);
+        left: 1px;
+        position: relative;
+        box-shadow: none!important;
+    }
 
 
     ::placeholder {
