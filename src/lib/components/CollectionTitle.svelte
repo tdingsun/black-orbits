@@ -21,8 +21,8 @@
 	{#if Object.prototype.hasOwnProperty.call(collectionState.currCollection, 'title')}
 		<div class="flex gap-2">
 			<div role="menu" tabindex="0" onclick={toggleMenu} onkeypress={toggleMenu}  onmouseleave={hideMenu} class="text-2xl top-[-1px] relative min-w-54 w-full sm:w-auto">
-				<div  class="border {showMenu ? 'rounded-b-none' : ''} hover:text-bg hover:bg-primary-text border-primary-text rounded-xs bg-bg px-2 py-1 gap-3 flex cursor-pointer  transition-colors">
-								<div class="py-1 pr-0 font-bold text-sm">Collection</div>
+				<div  class="border {showMenu ? 'rounded-b-none' : ''} hover:text-bg hover:bg-primary-text border-primary-text rounded-xs bg-bg px-2 py-1 gap-2 flex cursor-pointer  transition-colors">
+								<div class="py-1 pr-0  text-xs">COLLECTION</div>
 
 					<div class="font-medium">{collectionState.currCollection.title}</div>
 				</div>

@@ -8,7 +8,7 @@
 	import ColophonLink from './ColophonLink.svelte';
 	import StyledButton from './StyledButton.svelte';
 	import { onMount } from 'svelte';
-	let { headerHeight = $bindable(), isContentPage = false, isColophonPage = false } = $props();
+	let { headerHeight = $bindable(), isContentPage = false } = $props();
 
 	let isScrollingDown = $state(false);
 
@@ -41,17 +41,17 @@
 			</div>
 		</div>
 	
-		<div class=" max-w-xl pt-4">
+		<div class=" max-w-2xl pt-4">
 			<div class="">
 				<CollectionTitle></CollectionTitle>
 			</div>
 			<div
 				class="grid  {isScrollingDown
 					? 'grid-rows-[0fr]'
-					: 'grid-rows-[1fr]'} transition-[grid-template-rows] duration-500"
+					: 'grid-rows-[1fr]'} transition-[grid-template-rows] duration-250"
 			>
 				<div class="overflow-auto">
-					<div class="pt-2 pb-4 ">
+					<div class="pt-2 pb-4 font-mono text-sm">
 						<CollectionDek></CollectionDek>
 					</div>
 					<div class="flex gap-8 pb-4">
@@ -70,7 +70,7 @@
 			<div
 				class="grid  {isScrollingDown
 					? 'grid-rows-[0fr]'
-					: 'grid-rows-[1fr]'} overflow-hidden transition-[grid-template-rows] duration-500"
+					: 'grid-rows-[1fr]'} overflow-hidden transition-[grid-template-rows] duration-250"
 			>
 				<div class=" overflow-auto transition-none pb-4 flex gap-2 {isScrollingDown ? '-mb-16' : '' } ">
 					<StyledButton>

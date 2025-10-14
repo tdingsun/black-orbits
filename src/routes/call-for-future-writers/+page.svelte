@@ -1,5 +1,6 @@
 <script lang="ts">
-	import StyledButton from '$lib/components/StyledButton.svelte';
+	import ContentPageNavHeader from '$lib/components/ContentPageNavHeader.svelte';
+import StyledButton from '$lib/components/StyledButton.svelte';
 	import { onMount } from 'svelte';
 
 	let { data } = $props();
@@ -31,6 +32,8 @@
 		});
 	});
 </script>
+
+<ContentPageNavHeader></ContentPageNavHeader>
 
 <div class="flex flex-col items-center justify-center py-12">
 	{#if showForm}
@@ -77,7 +80,7 @@
 				</div>
 				<button
 					type="submit"
-					class="border-primary-text hover:bg-primary-text hover:text-bg min-w-12 cursor-pointer rounded-xs border p-1 px-2 py-1 text-center text-lg whitespace-nowrap transition-colors"
+					class="border-primary-text hover:bg-primary-text hover:text-bg min-w-12 cursor-pointer rounded-xs border p-1 px-2 py-1 mt-4 text-center text-lg whitespace-nowrap transition-colors"
 					>Submit</button
 				>
 			</div>

@@ -2,10 +2,8 @@
 	import SignOut from './SignOut.svelte';
 	import SiteTitle from './SiteTitle.svelte';
 	import { collectionState } from '$lib/states.svelte';
-	import ColophonLink from './ColophonLink.svelte';
-	import StyledButton from './StyledButton.svelte';
 	import { onMount } from 'svelte';
-	let { headerHeight = $bindable(), isContentPage = false, isColophonPage = false } = $props();
+	let { headerHeight = $bindable() } = $props();
 
 	let isScrollingDown = $state(false);
 
