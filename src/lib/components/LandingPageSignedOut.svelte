@@ -98,7 +98,7 @@
 				src={logo}
 				class="{idx === currLogo
 					? 'relative opacity-100'
-					: 'absolute opacity-5'} fill-primary-text text-primary-text h-[25dvw] w-full cursor-pointer object-fill p-2 transition-opacity duration-500 select-none sm:p-4"
+					: 'absolute opacity-[3.5%]'} fill-primary-text text-primary-text h-[25dvw] w-full cursor-pointer object-fill p-2 transition-opacity duration-500 select-none sm:p-4"
 			/>
 		{/each}
 	</div>
