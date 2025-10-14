@@ -13,7 +13,7 @@
 </script>
 
 <div class="flex sm:flex-col gap-4 sm:gap-1 select-none">
-    <div class="text-sm font-bold cursor-default py-0.5 border border-transparent">{tags.title}:</div>
+    <div class="text-sm font-bold cursor-default py-0.5 border border-transparent">{tags.title}</div>
     <div class="flex  flex-wrap gap-4 sm:gap-0.5 sm:gap-x-2">
         {#each tags.allTags as tag}
         <div onclick={() => toggleTag(tag)}

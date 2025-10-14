@@ -40,9 +40,9 @@
 </div>
 
 <!-- {#if modalVisible} -->
-    <div onclick={hideModal} class="photoDetailModalContainer cursor-pointer z-9999 fixed w-dvw h-dvh p-8 md:p-16 lg:px-32 xl:px-48 top-0 left-0 backdrop-blur-md transition-discrete transition-all  {modalVisible ? 'opacity-100 pointer-events-auto block' : 'opacity-0 pointer-events-none hidden '}">
-        <div onclick={(e) => e.stopImmediatePropagation()} class="cursor-default bg-bg border border-primary-text h-full relative">
-            <button onclick={hideModal} class=" cursor-pointer absolute w-8 h-8 -top-4 -right-4 border border-primary-text bg-bg hover:bg-primary-text hover:text-bg transition-colors">[X]</button>
+    <div onclick={hideModal} class="photoDetailModalContainer cursor-pointer z-9999 fixed w-dvw h-dvh p-4 pt-8 pr-8 md:p-16 lg:px-32 xl:px-48 top-0 left-0 backdrop-blur-md transition-opacity  {modalVisible ? 'opacity-100 pointer-events-auto block' : 'opacity-0 pointer-events-none hidden '}">
+        <div onclick={(e) => e.stopImmediatePropagation()} class="cursor-default bg-bg border border-primary-text h-full max-w-6xl relative rounded-xs">
+            <button onclick={hideModal} class=" cursor-pointer absolute w-8 h-8 rounded-xs -top-4 -right-4 border border-primary-text bg-bg hover:bg-primary-text hover:text-bg transition-colors">✕</button>
 
             <PhotoDetailModal photo={portableText.value}></PhotoDetailModal>
         </div>

@@ -8,17 +8,17 @@
 	let showSignUp = $state(false);
 </script>
 
-<div class=" flex w-full h-full flex-col justify-start {showSignUp ? 'bg-bg' : 'bg-amber-50' }">
-			<div class="flex w-full justify-center {showSignUp ? 'bg-amber-50' : 'bg-bg' } ">
-				<div class="flex w-full max-w-xl justify-center">
-					<div class="flex w-full justify-between gap-8 p-8 border-b border-b-primary-text {showSignUp ? 'h-22' : 'h-48' } transition-[height]">
+<div class=" flex w-full h-full flex-col justify-start  ">
+			<div class="flex w-full justify-center   border-b border-b-primary-text border-dotted  ">
+				<div class="flex w-full max-w-xl justify-center xl:border-x border-dotted">
+					<div class="flex w-full justify-between gap-8  p-4 sm:p-8 {showSignUp ? 'h-22' : 'h-48  ' } transition-[height]">
 						<div
 							onclick={() => (showSignUp = false)}
-							class="flex justify-center font-bold text-lg {showSignUp
+							class="flex justify-center font-bold text-xl leading-[1.4] {showSignUp
 								? 'cursor-pointer hover:underline  '
 								: ''}"
 						>
-							<span class="{showSignUp ? '' : 'hidden'}">[</span>Log in<span
+							<span class="{showSignUp ? '' : 'hidden'} ">[</span>Log In<span
 								class={showSignUp ? '' : 'hidden'}>]</span
 							>
 						</div>
@@ -31,11 +31,11 @@
 										cardBox: '!shadow-none  !rounded-none !w-min !flex-grow !flex ',
 										card: '!bg-transparent !rounded-none !text-primary-text !p-0 !items-end !shadow-none',
 										headerTitle: '!font-bold  !text-primary-text ',
-										formFieldLabel: '!text-primary-text !text-lg !font-bold ',
+										formFieldLabel: '!text-primary-text !text-xl ',
 										formFieldInput:
-											'!text-primary-text !bg-transparent !border-primary-text !border !rounded-none !font-bold !text-lg',
+											'!text-primary-text !bg-transparent !border-primary-text !border !rounded-none !font-bold !text-xl',
 										formButtonPrimary:
-											'self-start !text-primary-text !bg-transparent ![appearence:none] !font-bold !text-lg  !border-none !shadow-none !rounded-none !w-min !p-0 hover:!font-bold hover:underline',
+											'self-start !text-primary-text !bg-transparent ![appearence:none] !font-bold !text-xl  !border-none !shadow-none !rounded-none !w-min !p-0 hover:!font-bold hover:underline',
 										buttonArrowIcon: '!hidden',
 										footer: '!hidden',
 										header: '!hidden',
@@ -51,13 +51,13 @@
 			</div>
 
 			{#if !page.url.hash.includes('factor')}
-				<div class="flex w-full justify-center">
-					<div class="flex w-full max-w-xl justify-center ">
-						<div class="flex w-full justify-between gap-8 p-8">
-							<div class="flex">
+				<div class="flex w-full justify-center flex-grow ">
+					<div class="flex w-full max-w-xl justify-center xl:border-x border-dotted  ">
+						<div class="flex w-full justify-between gap-8 p-4 sm:p-8 ">
+							<div class="flex  ">
 								<div
 									onclick={() => (showSignUp = true)}
-									class="font-bold text-lg {showSignUp ? '' : ' cursor-pointer hover:underline'}"
+									class="font-bold text-xl leading-[1.4] {showSignUp ? '' : ' cursor-pointer hover:underline'}"
 								>
 									{showSignUp ? 'Sign up' : '[Sign up for a library card]'}
 								</div>
@@ -73,11 +73,11 @@
 													'!shadow-none !bg-transparent !rounded-none !w-0 !flex-grow !flex ',
 												card: '!bg-transparent !rounded-none !text-primary-text !p-0 !items-end !shadow-none',
 												headerTitle: '!font-normal !text-primary-text',
-												formFieldLabel: '!text-primary-text !text-lg !font-bold ',
+												formFieldLabel: '!text-primary-text !text-xl ',
 												formFieldInput:
-													'!text-primary-text !bg-transparent !border-primary-text !border !rounded-none !font-bold !text-lg',
+													'!text-primary-text !bg-transparent !border-primary-text !border  !rounded-none !font-bold !text-xl',
 												formButtonPrimary:
-													'!text-primary-text !bg-transparent !text-lg !font-bold !border-none !shadow-none !rounded-none !w-min !p-0 hover:!font-bold hover:underline',
+													'!text-primary-text !bg-transparent !text-xl !font-bold !border-none !shadow-none !rounded-none !w-min !p-0 hover:!font-bold hover:underline',
 												buttonArrowIcon: '!hidden',
 												footer: '!hidden',
 												header: '!hidden',

@@ -67,7 +67,7 @@ import logo1 from '$lib/images/logos/logo-1.svg';
 </script>
 
 <a onclick={changeLogo} class="font-bold" href="/">
-    <img src={logos[currLogo]} class="w-48" />
+    <img src={logos[currLogo]} class="w-full sm:w-64" />
 </a>
 
 

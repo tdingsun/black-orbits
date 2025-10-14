@@ -38,14 +38,21 @@
 	bind:clientHeight={mobileHeaderHeight}
 	class="flex sm:hidden border-primary-text bg-bg fixed top-0 z-9999 w-dvw flex-col  border-b"
 >
-	<div class="sticky top-0 flex self-stretch p-4 {isContentPage ? 'flex items-center gap-8' : ''}">
-		<div class="flex h-auto w-full justify-between gap-8 self-stretch">
+	<div class="sticky top-0 flex self-stretch px-4 {isContentPage ? 'flex items-center gap-8' : ''}">
+		<div class="flex min-h-16 h-auto w-full justify-between items-top gap-4 self-stretch">
+            <div class="py-2.5">
 			<SiteTitle></SiteTitle>
-			<div class="flex gap-4">
+
+            </div>
+			<div class="flex gap-4 items-top h-0 pt-4">
 				{#if !isContentPage}
-					<StyledButton>
+                    <div>
+				    <StyledButton>
 						<ColophonLink></ColophonLink>
 					</StyledButton>
+                    </div>
+
+	
 				{/if}
 				<SignOut></SignOut>
 			</div>
@@ -53,7 +60,7 @@
 	</div>
 
     <div
-        class="grid text-sm {isScrollingDown
+        class="grid {isScrollingDown
             ? 'grid-rows-[0fr]'
             : 'grid-rows-[1fr]'} transition-[grid-template-rows] duration-500"
     >
@@ -71,13 +78,13 @@
     
         {#if !isContentPage}
             <div class="px-4 max-w-xl {isContentPage ? 'hidden' : ''}">
-                <div class="mt-1">
+                <div class="mt-8">
                     <CollectionTitle></CollectionTitle>
                 </div>
-                <div class="py-2">
+                <div class="py-2 pb-8">
                     <CollectionDek></CollectionDek>
                 </div>
-                <div class="flex gap-8">
+                <div class="flex gap-8 justify-between text-lg">
                     <EssayLink></EssayLink>
                     <InterviewLink></InterviewLink>
                 </div>

@@ -13,10 +13,11 @@
         tagsState.timeTags.allTags = data.timeTags;
         tagsState.colorTags.allTags = data.colorTags;
     })
+
 </script>
 
 <SignedOut>
-    <LandingPageSignedOut colophon={data.colophon}></LandingPageSignedOut>
+    <LandingPageSignedOut mobileImg={data.siteInfo.mobileHomeImg} colophon={data.colophon}></LandingPageSignedOut>
 </SignedOut>
 <SignedIn>
     <CollectionPage></CollectionPage>

@@ -52,7 +52,7 @@
 	<CollectionPageNavHeader bind:headerHeight={headerHeight}></CollectionPageNavHeader>
 
 	<div style="background-image: url({bgImg})" class="flex sm:flex-row flex-col  bg-fixed   ">
-		<div style="top:{headerHeight}px" bind:this={tagsContainer} class="sm:flex hidden sticky   sm:top-[unset] z-10 sm:fixed border-b sm:border-b-0 border-primary-text p-4   basis-0  flex-col sm:gap-8 sm:w-48">
+		<div style="top:{headerHeight}px" bind:this={tagsContainer} class="sm:flex hidden sticky   sm:top-[unset] z-10 sm:fixed border-b sm:border-b-0 border-primary-text p-4   basis-0  flex-col sm:gap-8 sm:w-64">
 			{#if tagsState.imgTags.allTags.size}
 				<Tags tags={tagsState.imgTags}></Tags>
 			{/if}
@@ -70,7 +70,7 @@
 		</div>
 
 		<!-- desktop -->
-		<div style="top:{maxHeaderHeight}px;" class="hidden sm:flex relative p-4 pl-48 pt-5   ">
+		<div style="top:{maxHeaderHeight}px;" class="hidden sm:flex relative p-4 pl-72 pt-5   ">
 			<PhotoLayer></PhotoLayer>
 		</div>
 

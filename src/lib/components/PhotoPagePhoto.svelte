@@ -85,7 +85,7 @@ bind:clientHeight={fullContainerH}  class="h-full w-full flex-col relative  {img
 	</div>
 	
 	<div class="  flex-grow border-t overflow-scroll justify-center flex p-4 pt-2">
-		<div style="min-width:min({imgW}px, 100%); max-width:max({imgW}px, 672px);" bind:clientHeight={captionH}  class="min-h-[25px]">
+		<div style="min-width:min({imgW}px, 100%); max-width:max({imgW}px, 672px);" bind:clientHeight={captionH}  class="min-h-[31px]">
 			<Caption>
 				<BlockContent value={photo.caption}></BlockContent>
 			</Caption>

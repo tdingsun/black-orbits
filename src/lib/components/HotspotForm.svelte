@@ -50,7 +50,7 @@
 }} method="POST" action="?/submitHotspot" class="flex flex-col justify-between h-full">
 	<div class="flex flex-col gap-4">
 		<div >
-			<div class="">Submit an Observation</div>
+			<div class="text-base">Submit an Observation</div>
 		</div>
 		<input type="hidden" name="id" value={id} />
 		<input type="hidden" name="userId" value={userId} />
@@ -59,12 +59,12 @@
 		<div class="flex items-center gap-4">
 			<img bind:this={hiddenImg} class="hidden" src={getImgUrl(photo.image)}/>
 			<canvas height=96 width=96 class="border-primary-text rounded-full border" bind:this={canvas}></canvas>
-			<div class="text-xs">(Click image to<br>select hotspot)</div>	
+			<div class="text-xs font-mono">Click image to select hotspot</div>	
 		</div>
 		
 		<div>
 			<label>
-				<div class="text-xs">Title</div>
+				<div class="text-xs font-mono">Title</div>
 				<input
 					required={true}
 					minlength="1"
@@ -76,7 +76,7 @@
 		</div>
 		<div>
 			<label>
-				<div class="text-xs">Observation</div>
+				<div class="text-xs font-mono">Observation</div>
 				<textarea
 					required={true}
 					minlength="1"
@@ -90,28 +90,28 @@
 
 		<div>
 			<label>
-				<div class="text-xs">Name</div>
+				<div class="text-xs font-mono">Name</div>
 				<input required={true} maxlength="90" name="name" class="border-primary-text w-full border p-1" />
 			</label>
 		</div>
 		<div class="pb-4">
 			<label>
-				<div class="text-xs">Email</div>
+				<div class="text-xs font-mono">Email</div>
 				<input required={true} maxlength="90" name="email" type="email" class="border-primary-text w-full border p-1" />
 			</label>
 		</div>
 	</div>
 
-	<div class="flex gap-3 text-sm mt-4">
+	<div class="flex gap-3 text-base mt-4">
 		<input
 			type="submit"
 			formaction="?/submitHotspot"
-			class="text-xs rounded-xs border-primary-text flex basis-1/2 cursor-pointer justify-center border px-2 py-1"
+			class=" rounded-xs border-primary-text flex basis-1/2 cursor-pointer justify-center border px-2 py-1"
 		/>
 
 		<button
 			onclick={(e) => toggleForm(e)} 
-			class="text-xs rounded-xs border-primary-text flex basis-1/2 cursor-pointer justify-center border px-2 py-1"
+			class=" rounded-xs border-primary-text flex basis-1/2 cursor-pointer justify-center border px-2 py-1"
 		>
 			Cancel
 		</button>

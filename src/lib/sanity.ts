@@ -33,6 +33,10 @@ export const getImgUrl = (imgRef: Image) => {
 	return urlFor(imgRef).width(1600).fit('max').format('webp').url();
 };
 
+export async function getSiteInfo(): Promise<any> {
+	return await client.fetch(groq`*[_id == "siteInfo"][0]`)
+}
+
 export async function getColophon(): Promise<any> {
 	return await client.fetch(groq`*[_id == "colophon"][0]{
 		...,

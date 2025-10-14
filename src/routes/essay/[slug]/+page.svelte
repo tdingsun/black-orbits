@@ -88,32 +88,30 @@
 		</div>
 
 			<div class="sm:w-[500px] sm:min-w-[500px] border-r px-4 pb-16  sm:px-8 sm:py-4">
-				<div class="relative top-1 font-mono text-xs">
+				<div class="relative top-1 font-mono text-sm leading-[1.5]">
 					<BlockContent value={data.collection.essayDek}></BlockContent>
 				</div>
 			</div>
 		</div>
 
 		<div
-			class="essayTextContainer relative sm:h-dvh sm:max-h-[calc(100dvh-10rem)] sm:w-[550px] sm:min-w-[550px] sm:[column-gap:4rem] pt-4 px-4 sm:pl-16 sm:[column-width:500px]"
+			class=" relative sm:h-dvh sm:max-h-[calc(100dvh-8rem)] sm:w-[550px] sm:min-w-[550px] sm:[column-gap:2rem] sm:[column-rule:1px_dotted_#483c32]    pt-4 px-4 sm:pl-4 sm:[column-width:500px]"
 		>
+			<div class="sm:pr-16">
 			<BlockContent value={data.collection.essay}></BlockContent>
+
+			</div>
 			<div class="h-[50dvw]"></div>
 		</div>
 	</div>
 </div>
 
-	<div
-		onclick={hideModal}
-		class="photoDetailModalContainer fixed top-0 left-0 z-9999 h-dvh w-dvw cursor-pointer p-8 sm:p-16 backdrop-blur-md transition-opacity {modalVisible ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none' }"
-	>
-		<button onclick={hideModal} class="z-9999 absolute sm:top-11 sm:right-11 right-3 top-3 w-10 h-10 rounded-full bg-bg border border-primary-text p-2 cursor-pointer hover:text-bg hover:bg-primary-text transition-colors"
-			>X</button
-		>
-		<div
-			onclick={(e) => e.stopImmediatePropagation()}
-			class="bg-bg border-primary-text h-full cursor-default border"
-		>
-			<PhotoDetailModal photo={data.collection.essayCoverImgObj}></PhotoDetailModal>
-		</div>
-	</div>
+
+
+	    <div onclick={hideModal} class="photoDetailModalContainer cursor-pointer z-9999 fixed w-dvw h-dvh p-4 pt-8 pr-8 md:p-16 lg:px-32 xl:px-48 top-0 left-0 backdrop-blur-md transition-opacity  {modalVisible ? 'opacity-100 pointer-events-auto block' : 'opacity-0 pointer-events-none hidden '}">
+        <div onclick={(e) => e.stopImmediatePropagation()} class="cursor-default bg-bg border border-primary-text h-full max-w-6xl relative rounded-xs">
+            <button onclick={hideModal} class=" cursor-pointer absolute w-8 h-8 rounded-xs -top-4 -right-4 border border-primary-text bg-bg hover:bg-primary-text hover:text-bg transition-colors">✕</button>
+
+            <PhotoDetailModal photo={data.collection.essayCoverImgObj}></PhotoDetailModal>
+        </div>
+    </div>
