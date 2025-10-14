@@ -3,7 +3,6 @@
 
 	import StyledButton from './StyledButton.svelte';
 	import HotspotForm from './HotspotForm.svelte';
-	import BlockContent from './BlockContent.svelte';
 	import SignOut from './SignOut.svelte';
 	import SiteTitle from './SiteTitle.svelte';
 	import { SignedIn, SignedOut } from 'svelte-clerk';

@@ -72,7 +72,10 @@
 					? 'grid-rows-[0fr]'
 					: 'grid-rows-[1fr]'} overflow-hidden transition-[grid-template-rows] duration-500"
 			>
-				<div class=" overflow-auto transition-none pb-4 {isScrollingDown ? '-mb-16' : '' } ">
+				<div class=" overflow-auto transition-none pb-4 flex gap-2 {isScrollingDown ? '-mb-16' : '' } ">
+					<StyledButton>
+						<a href="/call-for-future-writers">Call for Writers</a>
+					</StyledButton>
 					<StyledButton>
 						<ColophonLink></ColophonLink>
 					</StyledButton>
