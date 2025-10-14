@@ -3,24 +3,27 @@
 	import { onMount } from 'svelte';
 
 	let { data } = $props();
-	console.log(data);
 	let formEl: HTMLFormElement;
-	let showForm = true;
+	let showForm = $state(true);
+	let loading = $state(false);
 	onMount(() => {
 		formEl.addEventListener('submit', function (e) {
-			console.log('here');
-			console.log(formEl);
 			e.preventDefault();
-			const data = new FormData(formEl);
-			console.log(data);
+			loading = true;
+			showForm = false;
+			const formData = new FormData(formEl);
+			const data = Object.fromEntries(formData);
 			const action = e.target.action;
-			console.log(action);
 
 			fetch(action, {
 				method: 'POST',
-				body: data
-			}).then(() => {
-				showForm = false;
+				headers: {
+					'Content-Type': 'text/plain;charset=utf-8'
+				},
+				body: JSON.stringify(data)
+			}).then((res) => {
+				console.log(res);
+				loading = false;
 				setTimeout(() => {
 					showForm = true;
 				}, 3000);
@@ -35,7 +38,7 @@
 			bind:this={formEl}
 			id="future-writers-form"
 			method="POST"
-			action="https://script.google.com/macros/s/AKfycbySw1bpwpeYF1d9tk_teZQwupoqmFf6IV7DaZHvmZJeLzvYo4nqIGPkNCvG8Yxdtr8X0A/exec"
+			action="https://script.google.com/macros/s/AKfycbxgTxuzh6EDtLHdQOKs5aL8KwHC0G66QPoHi33VCli2BKapCq7Zqx02kby7pdvVhUavZg/exec"
 			class="flex max-w-lg flex-col"
 		>
 			<h1 class="mb-4 text-4xl">Call for Future Writers</h1>
@@ -72,11 +75,15 @@
 						{/each}
 					</select>
 				</div>
-				<StyledButton>
-					<button type="submit" class="cursor-pointer p-1 text-lg">Submit</button>
-				</StyledButton>
+				<button
+					type="submit"
+					class="border-primary-text hover:bg-primary-text hover:text-bg min-w-12 cursor-pointer rounded-xs border p-1 px-2 py-1 text-center text-lg whitespace-nowrap transition-colors"
+					>Submit</button
+				>
 			</div>
 		</form>
+	{:else if loading}
+		<h1 class="mb-4 text-4xl">Submitting Form...</h1>
 	{:else}
 		<h1 class="mb-4 text-4xl">Thank you for your interest!</h1>
 	{/if}
