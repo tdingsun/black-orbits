@@ -35,43 +35,46 @@ import StyledButton from '$lib/components/StyledButton.svelte';
 
 <ContentPageNavHeader></ContentPageNavHeader>
 
-<div class="flex flex-col items-center justify-center py-12">
+<div class="flex flex-col items-center justify-center py-12 px-4">
 	{#if showForm}
 		<form
 			bind:this={formEl}
 			id="future-writers-form"
 			method="POST"
 			action="https://script.google.com/macros/s/AKfycbxgTxuzh6EDtLHdQOKs5aL8KwHC0G66QPoHi33VCli2BKapCq7Zqx02kby7pdvVhUavZg/exec"
-			class="flex max-w-lg flex-col"
+			class="flex max-w-xl p-8 pt-6 flex-col border border-dotted bg-amber-50"
 		>
-			<h1 class="mb-4 text-4xl">Call for Future Writers</h1>
-			<div class="flex flex-col gap-4 text-lg">
+			<h1 class="mb-8 text-4xl">Call for Future Writers</h1>
+            <p class="mb-8">
+                Interested in writing an essay about a collection?  Fill out the form to inquire and we will get back to you shortly.
+            </p>
+			<div class="flex flex-col gap-6 text-lg">
 				<div class="flex flex-col gap-1">
-					<label for="email">Email</label>
-					<input required class="rounded-xs border p-1" name="email" type="email" />
+					<label for="email" class="font-mono text-sm ">Email</label>
+					<input required class="rounded-xs border p-1 bg-bg" name="email" type="email" />
 				</div>
 
 				<div class="flex flex-col gap-1">
-					<label for="name">Name</label>
-					<input required class="rounded-xs border p-1" name="name" type="text" />
+					<label for="name" class="font-mono text-sm">Name</label>
+					<input required class="rounded-xs border p-1 bg-bg" name="name" type="text" />
 				</div>
 
 				<div class="flex flex-col gap-1">
-					<label for="dob">Date of Birth</label>
-					<input required class="rounded-xs border p-1" name="dob" type="text" />
+					<label for="dob" class="font-mono text-sm">Date of Birth</label>
+					<input required class="rounded-xs border p-1 bg-bg" name="dob" type="text" />
 				</div>
 				<div class="flex flex-col gap-1">
-					<label for="location">Location</label>
-					<input required class="rounded-xs border p-1" name="location" type="text" />
+					<label for="location" class="font-mono text-sm">Location</label>
+					<input required class="rounded-xs border p-1 bg-bg" name="location" type="text" />
 				</div>
 				<div class="flex flex-col gap-1">
-					<label for="writing_samples">Links to 3 Writing Samples</label>
-					<textarea required class="rounded-xs border p-1" name="writing_samples" />
+					<label for="writing_samples" class="font-mono text-sm">Links to 3 Writing Samples</label>
+					<textarea required class="rounded-xs border p-1 bg-bg" name="writing_samples" />
 				</div>
 				<div class="flex flex-col gap-1">
-					<label for="which_collection">Which collection are you interested in writing about?</label
+					<label for="which_collection" class="font-mono text-sm">Which collection are you interested in writing about?</label
 					>
-					<select class="rounded-xs border p-1" name="which_collection">
+					<select class="rounded-xs border p-1 bg-bg" name="which_collection">
 						<option hidden disabled selected value> -- Select a Collection -- </option>
 						{#each data.allCollectionTitles as collection}
 							<option value={collection.title}>{collection.title}</option>
@@ -80,7 +83,7 @@ import StyledButton from '$lib/components/StyledButton.svelte';
 				</div>
 				<button
 					type="submit"
-					class="border-primary-text hover:bg-primary-text hover:text-bg min-w-12 cursor-pointer rounded-xs border p-1 px-2 py-1 mt-4 text-center text-lg whitespace-nowrap transition-colors"
+					class="border-primary-text max-w-36 px-8 self-end hover:bg-primary-text hover:text-amber-50 min-w-12 cursor-pointer rounded-xs border p-1  py-1 mt-4 text-center text-lg whitespace-nowrap transition-colors"
 					>Submit</button
 				>
 			</div>

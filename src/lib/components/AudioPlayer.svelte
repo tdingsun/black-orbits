@@ -19,13 +19,13 @@
 			progressColor: '#483C32',
             cursorColor: '#483C32',
 			url: src,
-			barWidth: 8,
+			barWidth: 4,
 			barGap: 2,
 			barRadius: 8,
 			barHeight: 0.9,
 			cursorWidth: 1,
 			barAlign: 'bottom',
-			height: 48
+			height: 32
 		});
 
 		wavesurfer.on('click', () => {

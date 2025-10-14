@@ -77,7 +77,7 @@
 	onMount(() => {
 		setInterval(() => {
 			changeLogo();
-		}, 3000);
+		}, 2000);
 	});
 </script>
 

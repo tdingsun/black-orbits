@@ -1,5 +1,5 @@
 <script lang="ts">
-  import PhotoMetadata from './PhotoMetadata.svelte';
+	import PhotoMetadata from './PhotoMetadata.svelte';
 
 	import StyledButton from './StyledButton.svelte';
 	import HotspotForm from './HotspotForm.svelte';
@@ -50,7 +50,7 @@
 >
 	<div class="flex h-full flex-col pb-0">
 		<div class="border-primary-text flex justify-between px-4 pt-4 {isModal ? 'hidden' : ''}">
-			<div class="flex flex-col gap-1 max-w-48 -mt-1">
+			<div class="-mt-1 flex max-w-48 flex-col gap-1">
 				<SiteTitle></SiteTitle>
 				<!-- <div class="text-sm">
 					<ColophonLink></ColophonLink>
@@ -84,19 +84,19 @@
 					by {photo.collectionInfo.interviewAuthor}
 				{/if}.
 			</div>
-			<div class="flex flex-col pb-4 text-xs font-mono {photoState.showForm ? 'hidden' : ''}">
+			<div class="flex flex-col pb-4 font-mono text-xs {photoState.showForm ? 'hidden' : ''}">
 				<PhotoMetadata {photo}></PhotoMetadata>
 			</div>
 		</div>
 
 		<div class=" {photoState.showForm ? 'hidden' : ''} flex flex-grow flex-col">
 			{#if photo.hotspots && photo.hotspots.filter((hotspot) => hotspot.isPublished).length > 0}
-				<div class="mb-15.5 h-0 flex-grow overflow-scroll border-y p-4 pb-0">
-					<div class=" flex justify-between pb-4">
+				<div class="mb-15.5 h-0 flex-grow overflow-scroll border-y py-4 pb-0">
+					<div class=" flex justify-between px-4 pb-4">
 						<div class="font-bold">Observations</div>
 						<button onclick={toggleHotspots}>
 							<StyledButton>
-								{photoState.showAllHotspots ? 'hide' : 'show'}
+								{photoState.showAllHotspots ? 'Hide' : 'Show'}
 							</StyledButton>
 						</button>
 					</div>
@@ -107,7 +107,7 @@
 								<div
 									onmouseenter={() => highlightHotspot(idx)}
 									onmouseleave={dehighlightHotspot}
-									class="relative pb-8"
+									class="relative border-t border-dotted p-4"
 									role="presentation"
 								>
 									<div class="relative flex gap-3">
@@ -122,10 +122,10 @@
 											<div class="text-base">
 												{hotspot.title}
 											</div>
-											<div class="text-xs font-mono">
+											<div class="font-mono text-xs">
 												Submitted by {hotspot.attribution ? hotspot.attribution : 'anonymous'}
 											</div>
-											<div class="mt-4 text-xs font-mono">
+											<div class="mt-4 font-mono text-xs">
 												{hotspot.content}
 											</div>
 										</div>
@@ -136,34 +136,37 @@
 					</div>
 				</div>
 			{/if}
-				<div class="absolute bottom-0 left-0 flex w-full justify-between p-4">
-					<SignedIn>
-
-						{#if !isModal}
-						<a href="/photo/{prevPhotoSlug}">
-							<StyledButton>prev</StyledButton>
+			<div class="absolute bottom-0 left-0 flex w-full items-center justify-between p-4">
+				<SignedIn>
+					{#if !isModal}
+						<a href="/photo/{prevPhotoSlug}" class="flex">
+							<StyledButton>
+								<div class="relative flex h-[20px] items-center pl-1.5">
+									<div class="absolute h-2.5 w-2.5 -rotate-45 border-t border-l"></div>
+									<div class="absolute h-0 w-5 border-t"></div>
+								</div>
+							</StyledButton>
 						</a>
 					{/if}
-	
-					<button onclick={(e) => toggleForm(e)}>
+
+					<button onclick={(e) => toggleForm(e)} class="flex-grow">
 						<StyledButton>Submit an Observation</StyledButton>
 					</button>
 					{#if !isModal}
-						<a href="/photo/{nextPhotoSlug}">
-							<StyledButton>next</StyledButton>
+						<a href="/photo/{nextPhotoSlug}" class="flex">
+							<StyledButton>
+								<div class="relative flex h-[20px] rotate-180 items-center pl-1.5">
+									<div class="absolute h-2.5 w-2.5 -rotate-45 border-t border-l"></div>
+									<div class="absolute h-0 w-5 border-t"></div>
+								</div>
+							</StyledButton>
 						</a>
 					{/if}
-					</SignedIn>
-					<SignedOut>
-						<div class="w-full text-center">
-							Log in or sign up to submit an observation
-
-						</div>
-					</SignedOut>
-					
-				</div>
-		
-			
+				</SignedIn>
+				<SignedOut>
+					<div class="w-full text-center text-sm">Log in or sign up to submit an observation</div>
+				</SignedOut>
+			</div>
 		</div>
 
 		<div

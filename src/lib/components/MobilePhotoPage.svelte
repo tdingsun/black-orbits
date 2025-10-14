@@ -78,11 +78,10 @@
 <div></div>
 
 {#if !isModal}
-	<div class="flex justify-between p-4 pt-2 gap-4">
-        <div class="max-w-54">
-		<SiteTitle></SiteTitle>
-
-        </div>
+	<div class="flex justify-between gap-4 p-4 pt-2">
+		<div class="max-w-54">
+			<SiteTitle></SiteTitle>
+		</div>
 		<SignOut></SignOut>
 	</div>
 {/if}
@@ -187,18 +186,18 @@
 				<div class="text-base font-bold">Observations</div>
 				<button onclick={toggleHotspots}>
 					<StyledButton>
-						{photoState.showAllHotspots ? 'hide' : 'show'}
+						{photoState.showAllHotspots ? 'Hide' : 'Show'}
 					</StyledButton>
 				</button>
 			</div>
 
-			<div class="{photoState.showAllHotspots ? '' : 'hidden'} divide-y divide-dotted ">
+			<div class="{photoState.showAllHotspots ? '' : 'hidden'} divide-y divide-dotted">
 				{#each photo.hotspots.filter((hotspot) => hotspot.isPublished) as hotspot, idx}
 					{#if hotspot.isPublished}
 						<div
 							onmouseenter={() => highlightHotspot(idx)}
 							onmouseleave={dehighlightHotspot}
-							class="relative py-3 px-3.5"
+							class="relative px-3.5 py-3"
 							role="presentation"
 						>
 							<div class="relative flex gap-3">
@@ -213,10 +212,10 @@
 									<div class="text-base">
 										{hotspot.title}
 									</div>
-									<div class="text-xs font-mono">
+									<div class="font-mono text-xs">
 										Submitted by {hotspot.attribution ? hotspot.attribution : 'anonymous'}
 									</div>
-									<div class="mt-4 text-xs font-mono">
+									<div class="mt-4 font-mono text-xs">
 										{hotspot.content}
 									</div>
 								</div>
@@ -227,25 +226,35 @@
 			</div>
 		</div>
 	{/if}
-	<div class="  flex w-full justify-between p-4">
+	<div class="  flex w-full justify-between gap-4 p-4">
 		<SignedIn>
 			{#if !isModal}
 				<a href="/photo/{prevPhotoSlug}">
-					<StyledButton>prev</StyledButton>
+					<StyledButton>
+						<div class="relative flex h-[20px] items-center pl-1.5">
+							<div class="absolute h-2.5 w-2.5 -rotate-45 border-t border-l"></div>
+							<div class="absolute h-0 w-5 border-t"></div>
+						</div>
+					</StyledButton>
 				</a>
 			{/if}
 
-			<button onclick={(e) => toggleForm(e)}>
-				<StyledButton>Submit an Observation</StyledButton>
-			</button>
+			<StyledButton onclick={(e) => toggleForm(e)} class="flex-grow"
+				>Submit an Observation</StyledButton
+			>
 			{#if !isModal}
 				<a href="/photo/{nextPhotoSlug}">
-					<StyledButton>next</StyledButton>
+					<StyledButton
+						><div class="relative flex h-[20px] rotate-180 items-center pl-1.5">
+							<div class="absolute h-2.5 w-2.5 -rotate-45 border-t border-l"></div>
+							<div class="absolute h-0 w-5 border-t"></div>
+						</div></StyledButton
+					>
 				</a>
 			{/if}
 		</SignedIn>
 		<SignedOut>
-			<div class="w-full text-center">Log in or sign up to submit an observation</div>
+			<div class="w-full text-center text-sm">Log in or sign up to submit an observation</div>
 		</SignedOut>
 	</div>
 </div>

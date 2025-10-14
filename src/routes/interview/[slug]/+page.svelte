@@ -24,14 +24,14 @@
 </script>
 
 <ContentPageNavHeader isContentPage={true}></ContentPageNavHeader>
-<div class="p-4 gap-4 max-w-xl border-x border-dotted m-auto  pb-48">
-    <div class="text-4xl pt-4">
+<div class="py-4 px-4 sm:px-8 sm:mt-12 gap-4 max-w-xl sm:border-x border-t border-dotted m-auto  pb-48">
+    <div class="text-4xl">
         <div class="">{data.collection.interviewTitle}</div>
         <div class="italic">by {data.collection.interviewAuthor}</div>
     </div>
 
     {#if data.collection.interviewAudio}
-        <div class="py-4  bg-bg border-y my-12 sticky top-0">
+        <div class="py-4  bg-bg border-y border-dotted my-12 sticky top-[-1px]">
             <AudioPlayer src={data.collection.interviewAudio.url}></AudioPlayer>
         </div>
     {/if}

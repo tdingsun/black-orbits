@@ -50,7 +50,7 @@
 }} method="POST" action="?/submitHotspot" class="flex flex-col justify-between h-full">
 	<div class="flex flex-col gap-4">
 		<div >
-			<div class="text-base">Submit an Observation</div>
+			<div class="text-base font-bold">Submit an Observation</div>
 		</div>
 		<input type="hidden" name="id" value={id} />
 		<input type="hidden" name="userId" value={userId} />
@@ -102,18 +102,19 @@
 		</div>
 	</div>
 
-	<div class="flex gap-3 text-base mt-4">
-		<input
-			type="submit"
-			formaction="?/submitHotspot"
-			class=" rounded-xs border-primary-text flex basis-1/2 cursor-pointer justify-center border px-2 py-1"
-		/>
-
-		<button
+	<div class="flex gap-3 text-sm mt-4">
+				<button
 			onclick={(e) => toggleForm(e)} 
-			class=" rounded-xs border-primary-text flex basis-1/2 cursor-pointer justify-center border px-2 py-1"
+			class=" rounded-xs border-primary-text border-dotted hover:bg-primary-text transition-colors hover:text-bg flex basis-1/2 cursor-pointer justify-center border px-2 py-1"
 		>
 			Cancel
 		</button>
+		<input
+			type="submit"
+			formaction="?/submitHotspot"
+			class=" rounded-xs border-primary-text flex basis-1/2 hover:bg-primary-text transition-colors hover:text-bg cursor-pointer justify-center border px-2 py-1"
+		/>
+
+
 	</div>
 </form>
