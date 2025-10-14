@@ -33,7 +33,7 @@
 										headerTitle: '!font-bold  !text-primary-text ',
 										formFieldLabel: '!text-primary-text !text-xl ',
 										formFieldInput:
-											'!text-primary-text !bg-transparent !border-primary-text !border !rounded-none !font-bold !text-xl',
+											'!text-primary-text !bg-transparent !border-primary-text !border !rounded-none !text-xl',
 										formButtonPrimary:
 											'self-start !text-primary-text !bg-transparent ![appearence:none] !font-bold !text-xl  !border-none !shadow-none !rounded-none !w-min !p-0 hover:!font-bold hover:underline',
 										buttonArrowIcon: '!hidden',
@@ -75,7 +75,7 @@
 												headerTitle: '!font-normal !text-primary-text',
 												formFieldLabel: '!text-primary-text !text-xl ',
 												formFieldInput:
-													'!text-primary-text !bg-transparent !border-primary-text !border  !rounded-none !font-bold !text-xl',
+													'!text-primary-text !bg-transparent !border-primary-text !border  !rounded-none !text-xl',
 												formButtonPrimary:
 													'!text-primary-text !bg-transparent !text-xl !font-bold !border-none !shadow-none !rounded-none !w-min !p-0 hover:!font-bold hover:underline',
 												buttonArrowIcon: '!hidden',
