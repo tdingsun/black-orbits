@@ -37,6 +37,10 @@ export async function getSiteInfo(): Promise<any> {
 	return await client.fetch(groq`*[_id == "siteInfo"][0]`)
 }
 
+export async function getCallForWritersFormContent(): Promise<any> {
+	return await client.fetch(groq`*[_id == "callForWritersForm"][0]`)
+}
+
 export async function getColophon(): Promise<any> {
 	return await client.fetch(groq`*[_id == "colophon"][0]{
 		...,

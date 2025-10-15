@@ -1,4 +1,5 @@
 <script lang="ts">
+	import BlockContent from '$lib/components/BlockContent.svelte';
 	import ContentPageNavHeader from '$lib/components/ContentPageNavHeader.svelte';
 import StyledButton from '$lib/components/StyledButton.svelte';
 	import { onMount } from 'svelte';
@@ -44,10 +45,10 @@ import StyledButton from '$lib/components/StyledButton.svelte';
 			action="https://script.google.com/macros/s/AKfycbxgTxuzh6EDtLHdQOKs5aL8KwHC0G66QPoHi33VCli2BKapCq7Zqx02kby7pdvVhUavZg/exec"
 			class="flex max-w-xl p-8 pt-6 flex-col border border-dotted bg-amber-50"
 		>
-			<h1 class="mb-8 text-4xl">Call for Future Writers</h1>
-            <p class="mb-8">
-                Interested in writing an essay about a collection?  Fill out the form to inquire and we will get back to you shortly.
-            </p>
+			<h1 class="mb-2 text-4xl">{data.formContent.formTitle}</h1>
+            <div class="mb-8">
+                <BlockContent value={data.formContent.formDek}></BlockContent>
+            </div>
 			<div class="flex flex-col gap-6 text-lg">
 				<div class="flex flex-col gap-1">
 					<label for="email" class="font-mono text-sm ">Email</label>

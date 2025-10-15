@@ -31,7 +31,12 @@ export default defineConfig({
               .title('Colophon')
               .id('colophon')
               .icon(DocumentIcon)
-              .child(S.document().schemaType('colophon').documentId('colophon').title('Colophon2')),
+              .child(S.document().schemaType('colophon').documentId('colophon').title('Colophon')),
+              S.listItem()
+              .title('Call For Future Writers Form')
+              .id('callForWritersForm')
+              .icon(DocumentIcon)
+              .child(S.document().schemaType('callForWritersForm').documentId('callForWritersForm').title('Call For Future Writers Form')),
             S.documentTypeListItem('collection').title('Collections'),
             S.documentTypeListItem('collectionImage').title('Photos'),
           ]),
