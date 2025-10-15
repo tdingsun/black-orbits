@@ -9,6 +9,11 @@ export default defineCliConfig({
    * Enable auto-updates for studios.
    * Learn more at https://www.sanity.io/docs/cli#auto-updates
    */
-  autoUpdates: true,
-  studioHost: 'blackorbits'
+
+  studioHost: 'blackorbits',
+  deployment: {
+    autoUpdates: true,
+    appId: 'mmwjqt4k8gzsuu93n6v94jm7',
+  },
+
 })
